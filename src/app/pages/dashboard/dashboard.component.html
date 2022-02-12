@@ -1,0 +1,44 @@
+<!-- <header>
+  <div class="header-container">
+    <div class="wrap">
+      <img src="/assets/menu.svg" alt="" />
+      <img src="/assets/logo.svg" alt="" />
+    </div>
+    <button class="sign-out">Sign Out</button>
+  </div>
+</header> -->
+
+<app-sidebar></app-sidebar>
+
+<div class="dashboard-wrapper">
+  <div [routerLink]="['/storage']" class="box">
+    <img src="/assets/1.svg" alt="" />
+    <p>საწყობში</p>
+    <b style="color: #51a6b1">1</b>
+  </div>
+  <div class="box">
+    <img src="/assets/2.svg" alt="" />
+    <p>გზაში</p>
+    <b style="color: #3c8eed">2</b>
+  </div>
+  <div class="box">
+    <img src="/assets/3.svg" alt="" />
+    <p>ჩამოსული</p>
+    <b style="color: #ffba51">1</b>
+  </div>
+  <div class="box">
+    <img src="/assets/4.svg" alt="" />
+    <p>გაცემული</p>
+    <b style="color: #35d03b">0</b>
+  </div>
+</div>
+
+<div class="account-details-wrapper">
+  <div *ngFor="let col of cols" class="row">
+    <div class="left">
+      <p>{{ col.header }}</p>
+      <h4>{{ col.field }}</h4>
+    </div>
+    <div class="copy">დააკოპირე</div>
+  </div>
+</div>

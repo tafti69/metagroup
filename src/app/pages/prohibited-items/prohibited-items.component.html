@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<div class="main-wrap">
+  <div class="wrap">
+    <div class="line"></div>
+    <h1>Prohibited Items</h1>
+    <p style="margin: 0">
+      It is prohibited to send the following types of products
+    </p>
+  </div>
+
+  <div class="wrapper-2">
+    <div class="box" *ngFor="let i of items">
+      <div class="icon-wrap">
+        <img src="/assets/no.svg" alt="" />
+      </div>
+      <div class="box-text">
+        <p>{{ i }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div class="wrapper">
+  <div class="text">
+    <h1><span style="color: #fe8a00">AI</span> CARGO -</h1>
+    <h1>FAST AND RELIABLE</h1>
+    <H1>SERVICE</H1>
+  </div>
+  <img class="illustration" src="/assets/delivery.svg" alt="" />
+</div>
+<app-custom></app-custom>
+
+<div class="wrapper-3">
+  <h2>Brands <span style="color: #fe8a00">We</span> Work With</h2>
+  <div class="brands">
+    <div class="box" *ngFor="let i of brands">
+      <img src="{{ i }}" alt="" />
+    </div>
+  </div>
+</div>
+
+<div class="wrapper-4">
+  <div class="box-left">
+    <div class="line"></div>
+    <h3>Tarifs</h3>
+    <div class="prices">
+      <p>0.5 Kg - <span> $2</span></p>
+      <p>0.5 Kg - 1 Kg - <span> $3</span></p>
+      <p>1 kg < her 100 gr - <span> $0.3</span></p>
+    </div>
+  </div>
+  <div class="box-right">
+    <div class="line"></div>
+    <h3>Flights</h3>
+    <div class="flight">
+      <div class="vert-line"></div>
+      <div class="info">
+        <p style="font-weight: 500; margin: 0">TR192501</p>
+        <div class="some-flex">
+          <img src="/assets/calendar.svg" alt="" />
+          <p>14-01-2022</p>
+        </div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="vert-line"></div>
+      <div class="info">
+        <p style="font-weight: 500; margin: 0">TR192501</p>
+        <div class="some-flex">
+          <img src="/assets/calendar.svg" alt="" />
+          <p>14-01-2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,66 @@
+.table-wrapper {
+  width: 70%;
+  margin: 4rem auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  .table-header {
+    margin-bottom: 10px;
+    h2 {
+      margin: 0;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 9px;
+  margin-top: 10px;
+
+  thead {
+    td {
+      color: #484c5f;
+      font-weight: 600;
+    }
+  }
+}
+
+th {
+  color: #d5dde5;
+  text-align: left;
+  vertical-align: middle;
+}
+tr {
+  border: 1px solid #8b8ea0;
+  color: #666b85;
+  padding: 24px;
+}
+
+td {
+  padding: 8px;
+  border-right: 1px solid #8b8ea0;
+  #curier {
+    border-radius: 4px;
+    padding: 4px 0;
+    color: #666b85;
+    option {
+      padding: 6px;
+      color: #666b85;
+    }
+  }
+  .decl,
+  .invoice {
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    color: white;
+  }
+  .decl {
+    background: #fe8a00;
+  }
+  .invoice {
+    background: #ff4423;
+  }
+}

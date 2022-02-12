@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <div>
+    <label for="name">სახელი და გვარი ქართულად</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">სახელი და გვარი ლატინურად</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">ტელეფონის ნომერი</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">დამატებიტი ტელ. ნომერი</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">ელ-ფოსტა</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">პირადი ნომერი</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">პაროლი</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">გაიმეორეთ პაროლი</label>
+    <input id="name" type="text" />
+  </div>
+  <div>
+    <label for="name">ქალაქი/რეგიონი</label>
+    <select name="" id="name">
+      <option *ngFor="let item of cities" value="">
+        {{ item.name_ka }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label for="name">მისამართი</label>
+    <input id="name" type="text" />
+  </div>
+  <button>რეგისტრაცია</button>
+</div>

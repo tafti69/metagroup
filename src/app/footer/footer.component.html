@@ -1,0 +1,17 @@
+<footer>
+  <div class="footer-wrapper">
+    <img src="/assets/Layer 3.svg" alt="" />
+    <div class="details-wrapper">
+      <div *ngFor="let i of footer" class="footer-details">
+        <img src="{{ i.image }}" alt="" />
+        <p style="margin-left: 6px">{{ i.text }}</p>
+      </div>
+    </div>
+    <div class="social-media">
+      <img src="../assets/youtube.svg" alt="" />
+      <img src="../assets/Icon awesome-facebook.svg" alt="" />
+      <img src="../assets/Icon awesome-instagram.svg" alt="" />
+    </div>
+  </div>
+  <div class="bottom">Copyright © 2022 | Butterfly Effect</div>
+</footer>

@@ -1,0 +1,106 @@
+<header>
+  <div class="header-container">
+    <a [routerLink]="['/']">
+      <img class="img1" src="/assets/logo.svg" alt=""
+    /></a>
+    <div class="header-text">
+      <ul>
+        <li
+          [routerLink]="['/']"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Ana Sayfa
+        </li>
+        <li [routerLink]="['/about']" routerLinkActive="router-link-active">
+          Hakkimizda
+        </li>
+        <li
+          [routerLink]="['/prohibiteditems']"
+          routerLinkActive="router-link-active"
+        >
+          Akrdzaluli Nivtebi
+        </li>
+        <li [routerLink]="['/shops']" routerLinkActive="router-link-active">
+          Magazalar
+        </li>
+        <li [routerLink]="['/contacts']" routerLinkActive="router-link-active">
+          Contact
+        </li>
+      </ul>
+
+      <!-- <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span> -->
+    </div>
+    <div class="btns">
+      <button [routerLink]="['/signin']" class="sign-in">Giriş yap</button>
+      <button [routerLink]="['/signup']" class="sign-up">Üye ol</button>
+      <div
+        *ngFor="let l of langButtons"
+        [ngClass]="{ active: l.isClicked }"
+        (click)="setActive(l)"
+        class="lang-wrap active"
+      >
+        <img src="{{ l.image }}" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-header">
+    <a [routerLink]="['/']">
+      <img class="img2" src="/assets/logo.svg" alt=""
+    /></a>
+    <img
+      (click)="openMenu()"
+      class="burger"
+      src="../../assets/menu.svg"
+      alt=""
+    />
+  </div>
+
+  <div *ngIf="show" class="header-container-mobile">
+    <div class="header-text">
+      <ul>
+        <li
+          [routerLink]="['/']"
+          routerLinkActive="router-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Ana Sayfa
+        </li>
+        <li [routerLink]="['/about']" routerLinkActive="router-link-active">
+          Hakkimizda
+        </li>
+        <li
+          [routerLink]="['/prohibiteditems']"
+          routerLinkActive="router-link-active"
+        >
+          Akrdzaluli Nivtebi
+        </li>
+        <li [routerLink]="['/shops']" routerLinkActive="router-link-active">
+          Magazalar
+        </li>
+        <li [routerLink]="['/contacts']" routerLinkActive="router-link-active">
+          Contact
+        </li>
+      </ul>
+
+      <!-- <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span> -->
+    </div>
+    <div class="btns">
+      <div style="display: flex; margin: 1rem 0">
+        <button [routerLink]="['/signin']" class="sign-in">Giriş yap</button>
+        <button [routerLink]="['/signup']" class="sign-up">Üye ol</button>
+      </div>
+      <div style="display: flex">
+        <div
+          *ngFor="let l of langButtons"
+          [ngClass]="{ active: l.isClicked }"
+          (click)="setActive(l)"
+          class="lang-wrap active"
+        >
+          <img src="{{ l.image }}" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

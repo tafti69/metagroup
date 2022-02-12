@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6rem auto;
+  width: 80%;
+  @media (max-width: 1140px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    margin: 2rem auto;
+  }
+  h1 {
+    color: #131313;
+    font-size: 54px;
+    margin: 0;
+    font-weight: bold;
+    @media (max-width: 1140px) {
+      font-size: 42px;
+    }
+  }
+  .illustration {
+    @media (max-width: 1140px) {
+      width: 500px;
+    }
+    @media (max-width: 640px) {
+      width: 360px;
+    }
+  }
+}
+
+.wrapper-4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6rem auto;
+  width: 80%;
+  @media (max-width: 1140px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+  .box-left,
+  .box-right {
+    width: 46%;
+    height: 330px;
+    box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+    border-radius: 8px;
+    background: #fff;
+    padding-left: 24px;
+    padding-top: 24px;
+    margin: 1rem auto;
+    @media (max-width: 1140px) {
+      width: 96%;
+    }
+  }
+  .prices {
+    margin-top: 2rem;
+  }
+
+  span {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #eaeaea;
+  }
+
+  .flight {
+    display: flex;
+    margin-top: 2rem;
+    .info {
+      margin-left: 1rem;
+    }
+    .some-flex {
+      display: flex;
+      align-items: center;
+      p {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .vert-line {
+    height: 72px;
+    width: 4px;
+    background: #3b4549;
+  }
+}

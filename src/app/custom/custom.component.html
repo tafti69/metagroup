@@ -1,0 +1,14 @@
+<div class="wrapper-2">
+  <div class="box" *ngFor="let i of icons">
+    <div class="parent-wrap">
+      <div class="icon-wrap">
+        <img src="{{ i.image }}" alt="" />
+      </div>
+    </div>
+    <div class="box-text">
+      <h4>{{ i.head }}</h4>
+      <p>{{ i.text }}</p>
+      <p>{{ i.text2 }}</p>
+    </div>
+  </div>
+</div>

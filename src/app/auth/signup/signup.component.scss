@@ -1,0 +1,44 @@
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  border-radius: 12px;
+  width: 960px;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+  }
+  label {
+    margin-bottom: 6px;
+  }
+  input,
+  select {
+    width: 400px;
+    height: 40px;
+    border: 1px solid #f0f0f0;
+    background: #f7f7f7d7;
+    border-radius: 6px;
+    padding-left: 10px;
+    outline: none;
+  }
+  option {
+    padding: 4px;
+  }
+  button {
+    width: 200px;
+    height: 40px;
+    border: none;
+    background: #fe8a00;
+    border-radius: 6px;
+    margin-top: 2rem;
+    color: #fff;
+  }
+}
