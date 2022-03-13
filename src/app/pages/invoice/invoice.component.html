@@ -1,0 +1,47 @@
+<app-sidebar></app-sidebar>
+
+<div class="table-wrapper">
+  <div class="table-header">
+    <h2>ატვირთე ინვოისი</h2>
+  </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="button-wrapper">
+      <span class="label"> Upload File </span>
+      <input
+        type="file"
+        name="upload"
+        id="upload"
+        class="upload-box"
+        formControlName="imageCtrl"
+        (change)="handleUpload($event)"
+        placeholder="Upload File"
+      />
+      {{ form.value.imageCtrl }}
+    </div>
+
+    <button type="submit">
+      Add
+      <div class="lds-ring" *ngIf="isLoading"><div></div></div>
+    </button>
+  </form>
+</div>
+
+<div class="table-wrapper">
+  <div class="table-header">
+    <h2>ატვირთული ინვოისი</h2>
+  </div>
+  <div style="display: flex" *ngFor="let i of orders">
+    <div class="filename">
+      {{ i.documentUploaded ? file : "there is no file" }}
+    </div>
+
+    <button class="download" (click)="downloadInvoiceFile()">
+      Download
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >download</mat-icon
+      >
+
+      <div class="lds-ring" *ngIf="isLoading"><div></div></div>
+    </button>
+  </div>
+</div>

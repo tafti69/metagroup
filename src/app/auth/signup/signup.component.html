@@ -1,49 +1,175 @@
 <app-header></app-header>
 
-<div class="wrapper">
-  <div>
-    <label for="name">სახელი და გვარი ქართულად</label>
-    <input id="name" type="text" />
+<form [formGroup]="form" (ngSubmit)="signUp()">
+  <div class="wrapper">
+    <div>
+      <label for="name">სახელი და გვარი ქართულად</label>
+      <input id="name" type="text" formControlName="firstNameAndLastNameKA" />
+      <div
+        *ngIf="
+          form.controls['firstNameAndLastNameKA'].invalid &&
+          (form.controls['firstNameAndLastNameKA'].dirty ||
+            form.controls['firstNameAndLastNameKA'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['firstNameAndLastNameKA'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">სახელი და გვარი ლატინურად</label>
+      <input id="name" type="text" formControlName="firstNameAndLastNameEN" />
+      <div
+        *ngIf="
+          form.controls['firstNameAndLastNameEN'].invalid &&
+          (form.controls['firstNameAndLastNameEN'].dirty ||
+            form.controls['firstNameAndLastNameEN'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['firstNameAndLastNameEN'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">ტელეფონის ნომერი</label>
+      <input id="name" type="text" formControlName="phoneNumber" />
+      <div
+        *ngIf="
+          form.controls['phoneNumber'].invalid &&
+          (form.controls['phoneNumber'].dirty ||
+            form.controls['phoneNumber'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['phoneNumber'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">დამატებიტი ტელ. ნომერი (Optional)</label>
+      <input id="name" type="text" formControlName="additionalPhoneNumber" />
+    </div>
+    <div>
+      <label for="name">ელ-ფოსტა</label>
+      <input id="name" type="text" formControlName="email" />
+      <div
+        *ngIf="
+          form.controls['email'].invalid &&
+          (form.controls['email'].dirty || form.controls['email'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['email'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">პირადი ნომერი</label>
+      <input id="name" type="text" formControlName="personalID" />
+      <div
+        *ngIf="
+          form.controls['personalID'].invalid &&
+          (form.controls['personalID'].dirty ||
+            form.controls['personalID'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['personalID'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">პაროლი</label>
+      <input id="name" type="password" formControlName="password" />
+      <div
+        *ngIf="
+          form.controls['password'].invalid &&
+          (form.controls['password'].dirty || form.controls['password'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['password'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">გაიმეორეთ პაროლი</label>
+      <input id="name" type="text" />
+    </div>
+    <div>
+      <label for="name">ქალაქი/რეგიონი</label>
+      <select name="" id="name" formControlName="region">
+        <option *ngFor="let item of cities" value="item">
+          {{ item.name_ka }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          form.controls['region'].invalid &&
+          (form.controls['region'].dirty || form.controls['region'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['region'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div>
+      <label for="name">მისამართი</label>
+      <input id="name" type="text" formControlName="address" />
+      <div
+        *ngIf="
+          form.controls['address'].invalid &&
+          (form.controls['address'].dirty || form.controls['address'].touched)
+        "
+      >
+        <small
+          style="color: red"
+          *ngIf="form.controls['address'].errors.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div style="align-items: center">
+      <button type="submit">
+        რეგისტრაცია
+        <div class="lds-ring" *ngIf="isLoading">
+          <div></div>
+        </div>
+      </button>
+      <div *ngIf="errorResponse">
+        <div class="errordiv">{{ errorMsg }}</div>
+      </div>
+      <div *ngIf="!form.valid">
+        <div class="errordiv">{{ errorMsg }}</div>
+      </div>
+      <div *ngIf="success">
+        <div class="successdiv">You have successfuly created an account!</div>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="name">სახელი და გვარი ლატინურად</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">ტელეფონის ნომერი</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">დამატებიტი ტელ. ნომერი</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">ელ-ფოსტა</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">პირადი ნომერი</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">პაროლი</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">გაიმეორეთ პაროლი</label>
-    <input id="name" type="text" />
-  </div>
-  <div>
-    <label for="name">ქალაქი/რეგიონი</label>
-    <select name="" id="name">
-      <option *ngFor="let item of cities" value="">
-        {{ item.name_ka }}
-      </option>
-    </select>
-  </div>
-  <div>
-    <label for="name">მისამართი</label>
-    <input id="name" type="text" />
-  </div>
-  <button>რეგისტრაცია</button>
-</div>
+</form>

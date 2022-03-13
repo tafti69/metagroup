@@ -13,8 +13,17 @@
   align-items: center;
   .account {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    padding: 8px;
+    margin: 32px 0;
+    border: 1px solid #e7e7e7;
+    border-radius: 16px;
+    width: 150px;
+
+    img {
+      height: 48px;
+    }
   }
   ul {
     margin: 0;
@@ -37,4 +46,13 @@
       }
     }
   }
+}
+
+.sign-out {
+  width: 100px;
+  border-radius: 6px;
+  height: 40px;
+  background: #272727;
+  color: white;
+  margin-top: 3rem;
 }

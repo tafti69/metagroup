@@ -10,7 +10,29 @@ export class HeaderComponent implements OnInit {
 
   show = false;
 
-  ngOnInit(): void {}
+  lang: any;
+
+  ngOnInit(): void {
+    this.lang = localStorage.getItem('lang');
+    if (this.lang === undefined || this.lang === null) {
+      localStorage.setItem('lang', 'AZE');
+      this.lang = 'AZE';
+    }
+
+    if (this.lang === 'AZE') {
+      this.langButtons[0].isClicked = true;
+      this.langButtons[1].isClicked = false;
+      this.langButtons[2].isClicked = false;
+    } else if (this.lang === 'KA') {
+      this.langButtons[0].isClicked = false;
+      this.langButtons[1].isClicked = true;
+      this.langButtons[2].isClicked = false;
+    } else {
+      this.langButtons[0].isClicked = false;
+      this.langButtons[1].isClicked = false;
+      this.langButtons[2].isClicked = true;
+    }
+  }
 
   openMenu() {
     this.show = !this.show;
@@ -28,14 +50,13 @@ export class HeaderComponent implements OnInit {
     }
 
     button.isClicked = true;
-    // if(this.langButtons[0].isClicked){
-    //   localStorage.setItem("lang","KA");
-
-    // }
-    // else{
-    //   localStorage.setItem("lang","AZE");
-
-    // }
-    // window.location.reload();
+    if (this.langButtons[0].isClicked) {
+      localStorage.setItem('lang', 'AZE');
+    } else if (this.langButtons[1].isClicked) {
+      localStorage.setItem('lang', 'KA');
+    } else {
+      localStorage.setItem('lang', 'RU');
+    }
+    window.location.reload();
   }
 }

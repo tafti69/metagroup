@@ -11,6 +11,17 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  @media (max-width: 1440px) {
+    width: 860px;
+    top: 70%;
+    padding: 3rem 2rem;
+  }
+
+  @media (max-width: 900px) {
+    width: 94%;
+    top: 70%;
+    padding: 1.4rem 1rem;
+  }
   div {
     display: flex;
     flex-direction: column;
@@ -22,12 +33,28 @@
   input,
   select {
     width: 400px;
-    height: 40px;
-    border: 1px solid #f0f0f0;
-    background: #f7f7f7d7;
+    height: 36px;
     border-radius: 6px;
     padding-left: 10px;
-    outline: none;
+    border: 1px solid #e7e7e7;
+    @media (max-width: 1440px) {
+      width: 360px;
+    }
+    @media (max-width: 1000px) {
+      width: 300px;
+    }
+  }
+  select {
+    width: 416px;
+    height: 40px;
+    border-radius: 6px;
+    padding-left: 10px;
+    @media (max-width: 1440px) {
+      width: 376px;
+    }
+    @media (max-width: 1000px) {
+      width: 316px;
+    }
   }
   option {
     padding: 4px;
@@ -35,10 +62,25 @@
   button {
     width: 200px;
     height: 40px;
-    border: none;
     background: #fe8a00;
     border-radius: 6px;
     margin-top: 2rem;
     color: #fff;
+    &:disabled {
+      background: #adadad;
+    }
   }
+}
+
+.errordiv {
+  margin-top: 10px;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successdiv {
+  margin-top: 10px;
+  color: green;
 }

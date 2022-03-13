@@ -1,15 +1,38 @@
 <app-header></app-header>
 
-<div class="wrapper">
-  <h3>ავტორიზაცია</h3>
-  <div>
-    <label for="name">ელ-ფოსტა</label>
-    <input id="name" type="text" />
+<form [formGroup]="form" (ngSubmit)="login()">
+  <div class="wrapper">
+    <h3>ავტორიზაცია</h3>
+    <div>
+      <label for="name">ელ-ფოსტა</label>
+      <input id="name" type="text" formControlName="email" />
+      <!-- <div
+        [hidden]="!form.controls['email'].hasError('invalid')"
+        class="alert alert-danger"
+      >
+        Invalid E-mail. Try again!
+      </div> -->
+    </div>
+    <div>
+      <label for="name">პაროლი</label>
+      <input id="name" type="password" formControlName="password" />
+      <!-- <div
+        [hidden]="form.controls['password'].hasError('invalid')"
+        class="alert alert-danger"
+      >
+        Invalid password. Try again!
+      </div> -->
+      <span>დაგავიწყდა პაროლი?</span>
+    </div>
+    <button>
+      შესვლა
+      <div class="lds-ring" *ngIf="isLoading"><div></div></div>
+    </button>
+    <!-- <div style="color: red; margin-top: 10px" *ngIf="!form.valid">
+      {{ err }}
+    </div> -->
+    <div style="color: red; margin-top: 10px" *ngIf="errorResponse">
+      {{ err }}
+    </div>
   </div>
-  <div>
-    <label for="name">პაროლი</label>
-    <input id="name" type="text" />
-    <span>დაგავიწყდა პაროლი?</span>
-  </div>
-  <button>შესვლა</button>
-</div>
+</form>

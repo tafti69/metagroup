@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +17,19 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StorageTableComponent } from './pages/storage-table/storage-table.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
+import { DeclarationComponent } from './pages/declaration/declaration.component';
+import { FacebookModule } from 'ngx-facebook';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { PartnersComponent } from './pages/partners/partners.component';
+import { AuthGuard } from './auth.guard';
+import { AuthInterceptor } from './auth.interceptor';
+import { AdminComponent } from './pages/admin/admin.component';
+
+import { MatTabsModule } from '@angular/material/tabs';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
+
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -33,9 +47,30 @@ import { FooterComponent } from './footer/footer.component';
     StorageTableComponent,
     SidebarComponent,
     FooterComponent,
+    DeclarationComponent,
+    PartnersComponent,
+    AdminComponent,
+    InvoiceComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    MatTabsModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    FacebookModule.forRoot(),
+  ],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

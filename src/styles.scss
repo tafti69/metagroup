@@ -1,3 +1,39 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ai-cargo-primary: mat-palette($mat-indigo);
+$ai-cargo-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ai-cargo-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ai-cargo-theme: mat-light-theme(
+  (
+    color: (
+      primary: $ai-cargo-primary,
+      accent: $ai-cargo-accent,
+      warn: $ai-cargo-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ai-cargo-theme);
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 html,
@@ -7,7 +43,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background: #fbfbfb;
+  background: #f7f6f5;
 }
 
 a {
@@ -20,14 +56,65 @@ li {
   list-style: none;
 }
 
-select {
+select,
+input {
   outline: none;
+  background: #f1f3f5d7;
+  border: 1px solid #f0f0f0;
 }
 
 button {
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+button {
+  width: 200px;
+  height: 40px;
+  background: #fe8a00;
+  border-radius: 6px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.lds-ring div {
+  margin-left: 6px;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .line {
@@ -89,4 +176,60 @@ button {
       }
     }
   }
+}
+
+.table-wrapper {
+  width: 70%;
+  margin: 4rem auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  @media (max-width: 1575px) {
+    width: 80%;
+  }
+  .table-header {
+    margin-bottom: 10px;
+    h2 {
+      margin: 0;
+    }
+  }
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #fe8a00;
+}
+
+.button-wrapper {
+  position: relative;
+  width: 220px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.button-wrapper span.label {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  width: 200px;
+  border: 2px dotted #fe8a00;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #131313;
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+#upload {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
 }

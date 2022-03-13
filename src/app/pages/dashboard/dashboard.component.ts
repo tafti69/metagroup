@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   user;
   cols: any[];
+
+  copy2(text) {
+    const elem = document.createElement('textarea');
+    elem.value = text;
+    document.body.appendChild(elem);
+    elem.select();
+    document.execCommand('copy');
+    document.body.removeChild(elem);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    this.router.navigate(['/']);
+  }
 
   ngOnInit(): void {
     this.cols = [

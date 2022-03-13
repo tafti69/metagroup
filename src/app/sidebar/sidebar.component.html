@@ -1,4 +1,10 @@
 <div class="sidebar">
+  <img
+    src="/assets/logo.svg"
+    alt=""
+    [routerLink]="['/']"
+    style="cursor: pointer"
+  />
   <div class="account">
     <img src="/assets/acc.svg" alt="" />
     <p>Hello, Carl</p>
@@ -13,5 +19,13 @@
     <li>გზაში</li>
     <li>ჩამოსული</li>
     <li>გაცემული</li>
+    <li [routerLink]="['/partners']" routerLinkActive="router-link-active">
+      პარტნიორები
+    </li>
+    <li [routerLink]="['/admin']" routerLinkActive="router-link-active">
+      ადმინ პანელი
+    </li>
   </ul>
+
+  <button (click)="logout()" class="sign-out">Sign Out</button>
 </div>

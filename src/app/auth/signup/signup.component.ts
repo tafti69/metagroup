@@ -1,4 +1,9 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SignUpModel } from 'src/app/models/auth';
+import { ServicesService } from 'src/app/services.service';
 
 @Component({
   selector: 'app-signup',
@@ -6,8 +11,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  constructor() {}
-
   cities = [
     {
       name_ka: 'თბილისი',
@@ -281,5 +284,67 @@ export class SignupComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {}
+  constructor(private userService: ServicesService, private router: Router) {}
+
+  form: FormGroup;
+  errorMsg = '';
+  success = false;
+  isLoading = false;
+  errorResponse = false;
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl('', Validators.required),
+      firstNameAndLastNameEN: new FormControl('', Validators.required),
+      firstNameAndLastNameKA: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', Validators.required),
+      additionalPhoneNumber: new FormControl(''),
+      personalID: new FormControl('', Validators.required),
+      region: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+    });
+  }
+
+  signUp() {
+    const form = this.form.value;
+    if (this.form.valid) {
+      let model = new SignUpModel();
+
+      model.email = form.email;
+      model.firstNameAndLastNameEN = form.firstNameAndLastNameEN;
+      model.firstNameAndLastNameKA = form.firstNameAndLastNameKA;
+      model.phoneNumber = form.phoneNumber;
+      model.additionalPhoneNumber = form.additionalPhoneNumber;
+      model.personalID = form.personalID;
+      model.region = form.region;
+      model.address = form.address;
+      model.password = form.password;
+
+      this.isLoading = true;
+
+      this.userService.createUser(model).subscribe(
+        (value) => {
+          console.log(value);
+          this.success = true;
+          this.isLoading = false;
+          // localStorage.setItem('email', this.form.value.username);
+          // localStorage.setItem('password', this.form.value.password);
+          // localStorage.setItem('token', value.token);
+          this.router.navigate(['/dashboard']);
+        },
+        (errorRes) => {
+          this.isLoading = false;
+          this.errorResponse = true;
+          if (errorRes.error[0].code === 'DuplicateUserName') {
+            this.errorMsg = errorRes.error[0].description;
+          }
+          console.log(errorRes);
+        }
+      );
+    } else {
+      this.errorMsg = 'Please fill in the forms!';
+      return;
+    }
+  }
 }

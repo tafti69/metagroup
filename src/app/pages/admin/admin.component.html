@@ -1,0 +1,176 @@
+<app-sidebar></app-sidebar>
+<div class="admin-dashboard">
+  <mat-tab-group>
+    <mat-tab label="Orders">
+      <form (ngSubmit)="onCreateOrder()" [formGroup]="form">
+        <div>
+          <label for="val">Personal ID</label>
+          <input id="val" type="text" formControlName="personalId" />
+        </div>
+        <div>
+          <label for="val">Tracking ID</label>
+          <input id="val" type="text" formControlName="trackingId" />
+        </div>
+
+        <button type="submit">
+          Create Order
+          <div class="lds-ring" style="margin-top: -8px" *ngIf="isLoading">
+            <div></div>
+          </div>
+        </button>
+      </form>
+      <div>
+        <div class="table-header">
+          <h2 style="font-weight: 500">Orders Table</h2>
+        </div>
+        <table *ngFor="let o of orders">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>თრექინგი</td>
+              <td>წონა</td>
+              <td>თანხა</td>
+              <td>მაღაზია</td>
+              <td>ვალუტა</td>
+              <td>გატანა</td>
+              <td>სტატუსი</td>
+              <td>მოქმედება</td>
+              <td>ინვოისი</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ o.uniqueIdentifier }}</td>
+              <td>{{ o.trackingId }}</td>
+              <td>{{ o.height }}</td>
+              <td>{{ o.amountToPay }}</td>
+              <td>
+                <select
+                  style="width: 180px; height: 28px"
+                  id="curier"
+                  [(ngModel)]="o.partner"
+                >
+                  <option *ngFor="let p of partners" value="p.item.name">
+                    {{ p.item.name }}
+                  </option>
+                </select>
+              </td>
+
+              <td>
+                <select
+                  style="width: 80px; height: 28px"
+                  id="curier"
+                  [(ngModel)]="o.currency"
+                >
+                  <option *ngFor="let i of currencies" value="i.value">
+                    {{ i.value }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <select
+                  style="width: 150px; height: 28px"
+                  [(ngModel)]="o.deliveryType"
+                  id="curier"
+                >
+                  <option *ngFor="let i of deliveries" value="i.id">
+                    {{ i.item.name }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <select
+                  style="width: 150px; height: 28px"
+                  id="curier"
+                  [(ngModel)]="o.status.item.name"
+                >
+                  <option *ngFor="let s of statuses" [value]="s.item.name">
+                    {{ s.item.name }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <button [routerLink]="['/declaration']" class="decl">
+                  დეკლარირება
+                </button>
+              </td>
+              <td>
+                <button [routerLink]="['/invoice', o.id]" class="invoice">
+                  ინვოისი
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Currency">
+      <form (ngSubmit)="onCreateCurrency()" [formGroup]="form">
+        <div>
+          <label for="val">Currency name</label>
+          <input id="val" type="text" formControlName="currencyName" />
+        </div>
+        <button type="submit">Create Currency</button>
+      </form>
+      <div>
+        <label for="sel">Created Currencies</label>
+        <select name="sel" id="sel">
+          <option *ngFor="let i of currencies" value="i">{{ i.value }}</option>
+        </select>
+      </div>
+    </mat-tab>
+    <mat-tab label="City">
+      <form (ngSubmit)="onCreateCity()" [formGroup]="form">
+        <div>
+          <label for="val">City name (KA)</label>
+          <input id="val" type="text" formControlName="kaCity" />
+        </div>
+        <div>
+          <label for="val">City name (AZ)</label>
+          <input id="val" type="text" formControlName="azCity" />
+        </div>
+        <div>
+          <label for="val">City name (RU)</label>
+          <input id="val" type="text" formControlName="ruCity" />
+        </div>
+        <button type="submit">Create City</button>
+      </form>
+      <div>
+        <label for="sul">Created Cities</label>
+        <select name="sul" id="sul">
+          <option *ngFor="let city of cities" value="city">
+            {{ city.item.name }}
+          </option>
+        </select>
+      </div>
+    </mat-tab>
+    <mat-tab label="Product"
+      ><form (ngSubmit)="onCreateProduct()" [formGroup]="form">
+        <div>
+          <label for="val">Product Name (KA)</label>
+          <input id="val" type="text" formControlName="kaProduct" />
+        </div>
+        <div>
+          <label for="val">Product Name (AZ)</label>
+          <input id="val" type="text" formControlName="azProduct" />
+        </div>
+        <div>
+          <label for="val">Product Name (RU)</label>
+          <input id="val" type="text" formControlName="ruProduct" />
+        </div>
+        <button type="submit">Create Product</button>
+      </form>
+      <div>
+        <label for="sol">Created Product Categories</label>
+        <select id="sol">
+          <option *ngFor="let p of products" value="p">
+            {{ p.item.name }}
+          </option>
+        </select>
+      </div>
+    </mat-tab>
+    <!-- <mat-tab label="Delivery Types">
+        
+    </mat-tab> -->
+  </mat-tab-group>
+</div>

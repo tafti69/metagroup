@@ -1,0 +1,52 @@
+<app-sidebar></app-sidebar>
+
+<div class="admin-dashboard">
+  <form (ngSubmit)="onCreatePartner()" [formGroup]="form">
+    <div>
+      <label for="">Shop Name (KA)</label>
+      <input type="text" placeholder="KA" formControlName="kaNameCtrl" />
+    </div>
+    <div>
+      <label for="">Shop Name (AZ)</label>
+      <input type="text" placeholder="AZ" formControlName="azNameCtrl" />
+    </div>
+    <div>
+      <label for="">Shop Name (RU)</label>
+      <input type="text" placeholder="RU" formControlName="ruNameCtrl" />
+    </div>
+    <div>
+      <label for="">Shop URL</label>
+      <input type="text" placeholder="Paste Url" formControlName="urlCtrl" />
+    </div>
+    <div class="button-wrapper">
+      <span class="label"> Upload File </span>
+      <input
+        type="file"
+        name="upload"
+        id="upload"
+        class="upload-box"
+        formControlName="imageCtrl"
+        (change)="handleUpload($event)"
+        placeholder="Upload File"
+      />
+      {{ form.value.imageCtrl }}
+    </div>
+
+    <button type="submit">
+      Create Partner
+      <div class="lds-ring" *ngIf="isLoading"><div></div></div>
+    </button>
+  </form>
+</div>
+
+<div class="created-partners">
+  <div class="wrapper-3">
+    <div class="brands">
+      <div class="box" *ngFor="let p of partners">
+        <a href="{{ p.item.url }}"
+          ><img src="{{ p.item.imageURL }}" alt=""
+        /></a>
+      </div>
+    </div>
+  </div>
+</div>
