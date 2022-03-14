@@ -1,0 +1,27 @@
+<app-sidebar></app-sidebar>
+
+<div class="admin-dashboard">
+  <form (ngSubmit)="onCreateProduct()" [formGroup]="form">
+    <div>
+      <label for="val">Product Name (KA)</label>
+      <input id="val" type="text" formControlName="kaProduct" />
+    </div>
+    <div>
+      <label for="val">Product Name (AZ)</label>
+      <input id="val" type="text" formControlName="azProduct" />
+    </div>
+    <div>
+      <label for="val">Product Name (RU)</label>
+      <input id="val" type="text" formControlName="ruProduct" />
+    </div>
+    <button type="submit">Create Product</button>
+  </form>
+  <div>
+    <label for="sol">Created Product Categories</label>
+    <select id="sol">
+      <option *ngFor="let p of products" value="p">
+        {{ p.item.name }}
+      </option>
+    </select>
+  </div>
+</div>

@@ -30,6 +30,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 
 import { MatIconModule } from '@angular/material/icon';
+import { CurrencyComponent } from './pages/currency/currency.component';
+import { CityComponent } from './pages/city/city.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { MatIconModule } from '@angular/material/icon';
     PartnersComponent,
     AdminComponent,
     InvoiceComponent,
+    CurrencyComponent,
+    CityComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

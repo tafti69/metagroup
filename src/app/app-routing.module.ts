@@ -5,12 +5,15 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { CityComponent } from './pages/city/city.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
+import { CurrencyComponent } from './pages/currency/currency.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { PartnersComponent } from './pages/partners/partners.component';
+import { ProductsComponent } from './pages/products/products.component';
 import { ProhibitedItemsComponent } from './pages/prohibited-items/prohibited-items.component';
 import { ShopsComponent } from './pages/shops/shops.component';
 import { StorageTableComponent } from './pages/storage-table/storage-table.component';
@@ -63,6 +66,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: 'admin',
     component: AdminComponent,
+  },
+  {
+    path: 'currency',
+    component: CurrencyComponent,
+  },
+  {
+    path: 'cities',
+    component: CityComponent,
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
   },
   {
     canActivate: [AuthGuard],

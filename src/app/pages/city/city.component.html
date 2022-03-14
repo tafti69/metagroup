@@ -1,0 +1,26 @@
+<app-sidebar></app-sidebar>
+<div class="admin-dashboard">
+  <form (ngSubmit)="onCreateCity()" [formGroup]="form">
+    <div>
+      <label for="val">City name (KA)</label>
+      <input id="val" type="text" formControlName="kaCity" />
+    </div>
+    <div>
+      <label for="val">City name (AZ)</label>
+      <input id="val" type="text" formControlName="azCity" />
+    </div>
+    <div>
+      <label for="val">City name (RU)</label>
+      <input id="val" type="text" formControlName="ruCity" />
+    </div>
+    <button type="submit">Create City</button>
+  </form>
+  <div>
+    <label for="sul">Created Cities</label>
+    <select name="sul" id="sul">
+      <option *ngFor="let city of cities" value="city">
+        {{ city.item.name }}
+      </option>
+    </select>
+  </div>
+</div>

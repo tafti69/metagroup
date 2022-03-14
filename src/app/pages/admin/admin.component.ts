@@ -16,9 +16,6 @@ export class AdminComponent implements OnInit {
 
   form: FormGroup;
 
-  currencies: any = [];
-  cities: any = [];
-  products: any = [];
   orders: any = [];
   partners: any = [];
   statuses: any = [];
@@ -35,22 +32,12 @@ export class AdminComponent implements OnInit {
     }
 
     this.form = new FormGroup({
-      currencyName: new FormControl('', Validators.required),
-      kaCity: new FormControl('', Validators.required),
-      azCity: new FormControl('', Validators.required),
-      ruCity: new FormControl('', Validators.required),
-      kaProduct: new FormControl('', Validators.required),
-      azProduct: new FormControl('', Validators.required),
-      ruProduct: new FormControl('', Validators.required),
       trackingId: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
     });
 
     this.getDeliveryTypes();
     this.getStatuses();
-    this.getProduct();
-    this.getCity();
-    this.getCurrencies();
     this.getOrders();
     this.getPartners();
   }
@@ -65,59 +52,6 @@ export class AdminComponent implements OnInit {
     this.service.getDeliveryType(this.lang).subscribe((res) => {
       console.log(res);
       this.deliveries = res;
-    });
-  }
-
-  getCurrencies() {
-    this.service.getCurrency().subscribe((res) => {
-      this.currencies = res;
-    });
-  }
-
-  onCreateCurrency() {
-    let model = new CreateCurrency();
-    model.value = this.form.value.currencyName;
-
-    this.service.createCurrency(model).subscribe((res) => {
-      window.location.reload();
-    });
-  }
-
-  onCreateCity() {
-    const form = this.form.value;
-    let model = new CreateCitiesModel();
-
-    model.azName = form.azCity;
-    model.kaName = form.kaCity;
-    model.ruName = form.ruCity;
-
-    this.service.createCity(model).subscribe((res) => {
-      window.location.reload();
-    });
-  }
-
-  getCity() {
-    this.service.getCity(this.lang).subscribe((res) => {
-      this.cities = res;
-    });
-  }
-
-  onCreateProduct() {
-    const form = this.form.value;
-    let model = new CreateProductModel();
-
-    model.azName = form.azProduct;
-    model.kaName = form.kaProduct;
-    model.ruName = form.ruProduct;
-
-    this.service.createProduct(model).subscribe((res) => {
-      window.location.reload();
-    });
-  }
-
-  getProduct() {
-    this.service.getProduct(this.lang).subscribe((res) => {
-      this.products = res;
     });
   }
 

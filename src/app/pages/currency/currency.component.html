@@ -1,0 +1,17 @@
+<app-sidebar></app-sidebar>
+
+<div class="admin-dashboard">
+  <form (ngSubmit)="onCreateCurrency()" [formGroup]="form">
+    <div>
+      <label for="val">Currency name</label>
+      <input id="val" type="text" formControlName="currencyName" />
+    </div>
+    <button type="submit">Create Currency</button>
+  </form>
+  <div>
+    <label for="sel">Created Currencies</label>
+    <select name="sel" id="sel">
+      <option *ngFor="let i of currencies" value="i">{{ i.value }}</option>
+    </select>
+  </div>
+</div>
