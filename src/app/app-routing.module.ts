@@ -81,7 +81,7 @@ const routes: Routes = [
   },
   {
     canActivate: [AuthGuard],
-    path: 'declaration',
+    path: 'declaration/:id',
     component: DeclarationComponent,
   },
   {

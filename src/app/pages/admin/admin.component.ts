@@ -4,6 +4,7 @@ import { CreateCitiesModel } from 'src/app/models/cities';
 import { CreateCurrency } from 'src/app/models/currency';
 import { CreateOrder } from 'src/app/models/orders';
 import { CreateProductModel } from 'src/app/models/product';
+import { Statuses } from 'src/app/models/status';
 import { ServicesService } from 'src/app/services.service';
 
 @Component({
@@ -20,6 +21,8 @@ export class AdminComponent implements OnInit {
   partners: any = [];
   statuses: any = [];
   deliveries: any = [];
+  currencies: any = [];
+  selectedStatusId: any = [];
 
   lang: any;
   isLoading = false;
@@ -40,6 +43,13 @@ export class AdminComponent implements OnInit {
     this.getStatuses();
     this.getOrders();
     this.getPartners();
+    this.getCurrencies();
+  }
+
+  getCurrencies() {
+    this.service.getCurrency().subscribe((res) => {
+      this.currencies = res;
+    });
   }
 
   getStatuses() {
@@ -80,5 +90,28 @@ export class AdminComponent implements OnInit {
     this.service.getPartners(this.lang).subscribe((res) => {
       this.partners = res;
     });
+  }
+
+  onStatusChange(e: Event) {
+    console.log((e.target as HTMLSelectElement).value);
+    this.selectedStatusId = (e.target as HTMLSelectElement).value;
+  }
+
+  changeStatus(id) {
+    
+    let model = new Statuses();
+
+    model.orderId = id;
+    model.statusId = this.selectedStatusId;
+
+    console.log(model);
+    this.isLoading = true;
+    this.service.updateStatus(model).subscribe(res => {
+      this.isLoading = false;
+      window.location.reload();
+      
+    }) 
+
+    
   }
 }

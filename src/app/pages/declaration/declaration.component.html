@@ -4,42 +4,47 @@
   <div class="table-header">
     <h2>ამანათის განახლება</h2>
   </div>
-  <form>
+  <form [formGroup]="form" (ngSubmit)="createDeclaration()">
     <div class="decl-form">
-      <label for="a">თრექინგი</label>
-      <input id="a" type="text" placeholder="726001100463509" />
+      <label>თრექინგი</label>
+      <input type="text" formControlName="trackingId" [value]="trackId" readonly />
     </div>
     <div class="decl-form">
       <label for="a">ნივთის დასახელება</label>
-      <select name="" id="a">
-        <option value="ტანსაცმელი">ტანსაცმელი</option>
+      <select formControlName="productNameId" (change)="onChange($event)">
+        <option [value]="null">აირჩიე</option>
+        <option *ngFor="let p of products" [value]="p.id">
+          {{ p.item.name }}
+        </option>
       </select>
     </div>
     <div class="decl-form">
-      <label for="a">მაღაზია სადაც შეიძნეთ</label>
-      <select name="" id="a">
-        <option value="Trendyol.com">Trendyol.com</option>
+      <label>მაღაზია სადაც შეიძნეთ</label>
+      <select formControlName="partnerId">
+        <option [value]="null">აირჩიე</option>
+        <option *ngFor="let p of partners" [value]="p.id">
+          {{ p.item.name }}
+        </option>
       </select>
     </div>
     <div class="wrap">
       <div class="decl-form">
         <label for="a">ფასი</label>
-        <input id="a" type="text" placeholder="189.95" />
+        <input id="a" type="text" placeholder="189.95" formControlName="paidAmount" />
       </div>
       <div class="decl-form">
         <label for="a">ვალუტა</label>
-        <select name="" id="a">
-          <option value="">TRY</option>
-          <option value="">GEL</option>
-          <option value="">EUR</option>
-          <option value="">USD</option>
+        <select name="" id="a" formControlName="currencyId">
+          <option [value]="null">აირჩიე</option>
+          <option *ngFor="let c of currencies" [value]="c.id">{{c.value}}</option>
         </select>
       </div>
     </div>
     <div style="width: 100%" class="decl-form">
       <label for="a">კომენტარი</label>
-      <textarea name="" id="a" cols="30" rows="10"></textarea>
+      <textarea name="" id="a" cols="20" rows="5" formControlName="comment"></textarea>
     </div>
     <button>განახლება</button>
+    <div class="loader" *ngIf="isLoading"></div>
   </form>
 </div>

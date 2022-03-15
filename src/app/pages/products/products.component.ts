@@ -49,6 +49,7 @@ export class ProductsComponent implements OnInit {
   getProduct() {
     this.service.getProduct(this.lang).subscribe((res) => {
       this.products = res;
+      
     });
   }
 }

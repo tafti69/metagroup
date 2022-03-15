@@ -4,9 +4,10 @@ import { SignInModel, SignUpModel } from './models/auth';
 import { CreateCitiesModel } from './models/cities';
 import { CreateCurrency } from './models/currency';
 import { AddFileInvoice } from './models/invoice';
-import { CreateOrder } from './models/orders';
+import { CreateOrder, Declaration } from './models/orders';
 import { CreateProductModel } from './models/product';
 import { CreatePartner } from './models/shops';
+import { Statuses } from './models/status';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -44,7 +45,7 @@ export class ServicesService {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang };
     const userUrl = this.url + 'Partners/getPartners';
-    return this.http.get(userUrl, httpOptionsLoc);
+    return this.http.get<any>(userUrl, httpOptionsLoc);
   }
 
   createCurrency(model: CreateCurrency) {
@@ -54,7 +55,7 @@ export class ServicesService {
 
   getCurrency() {
     const userUrl = this.url + 'Currencies/GetCurrencies';
-    return this.http.get(userUrl);
+    return this.http.get<any>(userUrl);
   }
 
   createCity(model: CreateCitiesModel) {
@@ -78,7 +79,7 @@ export class ServicesService {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang };
     const userUrl = this.url + 'ProductNames/GetNames';
-    return this.http.get(userUrl, httpOptionsLoc);
+    return this.http.get<any>(userUrl, httpOptionsLoc);
   }
 
   createOrder(model: CreateOrder) {
@@ -123,4 +124,23 @@ export class ServicesService {
     const userUrl = this.url + 'DeliveryTypes/GetTypes';
     return this.http.get(userUrl, httpOptionsLoc);
   }
+  
+  updateStatus(model: Statuses) {
+    const userUrl = this.url + 'Orders/UpdateStatus';
+    return this.http.post<Statuses>(userUrl, model);
+
+  }
+
+  createDeclaration(model: Declaration) {
+    const userUrl = this.url + 'Declarations/CreateDeclaration';
+    return this.http.post<Declaration>(userUrl, model);
+  }
+
+  getDeclaration(lang: string, id: String) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { Id: id, Lang: lang };
+    const userUrl = this.url + `Declarations/GetDeclaration`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
 }

@@ -1,5 +1,8 @@
 <app-sidebar></app-sidebar>
+<div class="loader" *ngIf="isLoading"></div>
+
 <div class="admin-dashboard">
+  <h2>Orders Controller</h2>
   <form (ngSubmit)="onCreateOrder()" [formGroup]="form">
     <div>
       <label for="val">Personal ID</label>
@@ -11,16 +14,10 @@
     </div>
 
     <button type="submit">
-      Create Order
-      <div class="lds-ring" style="margin-top: -8px" *ngIf="isLoading">
-        <div></div>
-      </div>
+      Create Order      
     </button>
   </form>
   <div>
-    <div class="table-header">
-      <h2 style="font-weight: 500">Orders Table</h2>
-    </div>
     <table *ngFor="let o of orders">
       <thead>
         <tr>
@@ -34,6 +31,7 @@
           <td>სტატუსი</td>
           <td>მოქმედება</td>
           <td>ინვოისი</td>
+          <td>სტატუსი</td>
         </tr>
       </thead>
       <tbody>
@@ -44,7 +42,7 @@
           <td>{{ o.amountToPay }}</td>
           <td>
             <select
-              style="width: 180px; height: 28px"
+              style="width: 150px; height: 28px"
               id="curier"
               [(ngModel)]="o.partner"
             >
@@ -60,7 +58,7 @@
               id="curier"
               [(ngModel)]="o.currency"
             >
-              <option *ngFor="let i of currencies" value="i.value">
+              <option *ngFor="let i of currencies" [value]="i.value">
                 {{ i.value }}
               </option>
             </select>
@@ -71,30 +69,38 @@
               [(ngModel)]="o.deliveryType"
               id="curier"
             >
-              <option *ngFor="let i of deliveries" value="i.id">
+              <option *ngFor="let i of deliveries" [value]="i.id">
                 {{ i.item.name }}
               </option>
             </select>
           </td>
+          
           <td>
             <select
               style="width: 150px; height: 28px"
               id="curier"
-              [(ngModel)]="o.status.item.name"
+              [(ngModel)]="o.status.id"
+              (change)="onStatusChange($event)"
             >
-              <option *ngFor="let s of statuses" [value]="s.item.name">
+              <option [value]="null">Select Country</option>
+              <option *ngFor="let s of statuses" [value]="s.id">
                 {{ s.item.name }}
               </option>
             </select>
           </td>
           <td>
-            <button [routerLink]="['/declaration']" class="decl">
+            <button [routerLink]="['/declaration', o.id]" class="decl">
               დეკლარირება
             </button>
           </td>
           <td>
             <button [routerLink]="['/invoice', o.id]" class="invoice">
               ინვოისი
+            </button>
+          </td>
+          <td>
+            <button (click)="changeStatus(o.id)" style="background-color: rgb(16, 158, 16);" class="invoice">
+              განახლება
             </button>
           </td>
         </tr>
