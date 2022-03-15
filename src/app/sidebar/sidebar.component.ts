@@ -10,6 +10,7 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router) {}
 
   show = true;
+  name: string;
 
   closeSidebar() {
     this.show = !this.show;
@@ -21,5 +22,7 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = localStorage.getItem('name');
+  }
 }

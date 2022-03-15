@@ -32,6 +32,7 @@ header {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   width: 80%;
+
   @media (max-width: 1140px) {
     width: 70%;
     display: grid;
@@ -51,7 +52,10 @@ header {
   box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   border-radius: 8px;
   cursor: pointer;
-
+  transition: 0.12s ease-out;
+  &:hover {
+    transform: scale(1.008);
+  }
   p {
     font-size: 18px;
     font-weight: 500;

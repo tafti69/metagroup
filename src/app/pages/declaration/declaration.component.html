@@ -7,11 +7,16 @@
   <form [formGroup]="form" (ngSubmit)="createDeclaration()">
     <div class="decl-form">
       <label>თრექინგი</label>
-      <input type="text" formControlName="trackingId" [value]="trackId" readonly />
+      <input
+        type="text"
+        formControlName="trackingId"
+        [value]="trackId"
+        readonly
+      />
     </div>
     <div class="decl-form">
       <label for="a">ნივთის დასახელება</label>
-      <select formControlName="productNameId" (change)="onChange($event)">
+      <select formControlName="productNameId">
         <option [value]="null">აირჩიე</option>
         <option *ngFor="let p of products" [value]="p.id">
           {{ p.item.name }}
@@ -30,19 +35,27 @@
     <div class="wrap">
       <div class="decl-form">
         <label for="a">ფასი</label>
-        <input id="a" type="text" placeholder="189.95" formControlName="paidAmount" />
+        <input id="a" type="text" formControlName="paidAmount" />
       </div>
       <div class="decl-form">
         <label for="a">ვალუტა</label>
         <select name="" id="a" formControlName="currencyId">
           <option [value]="null">აირჩიე</option>
-          <option *ngFor="let c of currencies" [value]="c.id">{{c.value}}</option>
+          <option *ngFor="let c of currencies" [value]="c.id">
+            {{ c.value }}
+          </option>
         </select>
       </div>
     </div>
     <div style="width: 100%" class="decl-form">
       <label for="a">კომენტარი</label>
-      <textarea name="" id="a" cols="20" rows="5" formControlName="comment"></textarea>
+      <textarea
+        name=""
+        id="a"
+        cols="20"
+        rows="5"
+        formControlName="comment"
+      ></textarea>
     </div>
     <button>განახლება</button>
     <div class="loader" *ngIf="isLoading"></div>

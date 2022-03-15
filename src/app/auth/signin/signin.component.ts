@@ -31,10 +31,10 @@ export class SigninComponent implements OnInit {
       model.password = this.form.value.password;
       this.isLoading = true;
       this.userService.loginUser(model).subscribe((res) => {
-        console.log(res);
         this.isLoading = false;
         localStorage.setItem('id', res.id);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('name', res.name);
         this.router.navigate(['/dashboard']);
       }),
         (error) => {

@@ -33,6 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CurrencyComponent } from './pages/currency/currency.component';
 import { CityComponent } from './pages/city/city.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { ProductsComponent } from './pages/products/products.component';
     CurrencyComponent,
     CityComponent,
     ProductsComponent,
+    OntheroadTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { ProductsComponent } from './pages/products/products.component';
     HttpClientModule,
     MatTabsModule,
     MatIconModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     FacebookModule.forRoot(),
   ],

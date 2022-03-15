@@ -4,11 +4,11 @@ export class CreateOrder {
 }
 
 export class Declaration {
-orderId	:	string
-trackingId	:	string
-paidAmount	:	number;
-currencyId: number;
-partnerId	:	string;
-productNameId	:	string;
-comment: string;
+  orderId: string;
+  trackingId: string;
+  paidAmount: number;
+  currencyId: number;
+  partnerId: string;
+  productNameId: string;
+  comment: string;
 }

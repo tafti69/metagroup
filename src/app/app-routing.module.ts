@@ -12,6 +12,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
 import { PartnersComponent } from './pages/partners/partners.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProhibitedItemsComponent } from './pages/prohibited-items/prohibited-items.component';
@@ -56,6 +57,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: 'storage',
     component: StorageTableComponent,
+  },
+  {
+    canActivate: [AuthGuard],
+    path: 'ontheroad',
+    component: OntheroadTableComponent,
   },
   {
     canActivate: [AuthGuard],

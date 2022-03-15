@@ -15,4 +15,6 @@ export class SignInModel {
   password: string;
   id: string;
   token: string;
+  isAdmin: boolean;
+  name: string;
 }

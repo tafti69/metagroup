@@ -3,6 +3,7 @@
 
 <div class="admin-dashboard">
   <h2>Orders Controller</h2>
+  <!-- <mat-spinner></mat-spinner> -->
   <form (ngSubmit)="onCreateOrder()" [formGroup]="form">
     <div>
       <label for="val">Personal ID</label>
@@ -13,12 +14,10 @@
       <input id="val" type="text" formControlName="trackingId" />
     </div>
 
-    <button type="submit">
-      Create Order      
-    </button>
+    <button type="submit">Create Order</button>
   </form>
   <div>
-    <table *ngFor="let o of orders">
+    <table>
       <thead>
         <tr>
           <td>#</td>
@@ -31,22 +30,21 @@
           <td>სტატუსი</td>
           <td>მოქმედება</td>
           <td>ინვოისი</td>
-          <td>სტატუსი</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let o of orders">
           <td>{{ o.uniqueIdentifier }}</td>
           <td>{{ o.trackingId }}</td>
           <td>{{ o.height }}</td>
-          <td>{{ o.amountToPay }}</td>
+          <td>{{ o.paidAmount }}</td>
           <td>
             <select
-              style="width: 150px; height: 28px"
+              style="width: 120px; height: 28px"
               id="curier"
-              [(ngModel)]="o.partner"
+              [(ngModel)]="o.declaration.partner.id"
             >
-              <option *ngFor="let p of partners" value="p.item.name">
+              <option *ngFor="let p of partners" [value]="p.id">
                 {{ p.item.name }}
               </option>
             </select>
@@ -56,31 +54,32 @@
             <select
               style="width: 80px; height: 28px"
               id="curier"
-              [(ngModel)]="o.currency"
+              [(ngModel)]="o.declaration.currency.id"
             >
-              <option *ngFor="let i of currencies" [value]="i.value">
+              <option *ngFor="let i of currencies" [value]="i.id">
                 {{ i.value }}
               </option>
             </select>
           </td>
           <td>
             <select
-              style="width: 150px; height: 28px"
-              [(ngModel)]="o.deliveryType"
+              style="width: 120px; height: 28px"
+              [(ngModel)]="o.deliveryType.id"
               id="curier"
+              (change)="onUpdateDelivery($event, o.id)"
             >
               <option *ngFor="let i of deliveries" [value]="i.id">
                 {{ i.item.name }}
               </option>
             </select>
           </td>
-          
+
           <td>
             <select
-              style="width: 150px; height: 28px"
+              style="width: 120px; height: 28px"
               id="curier"
               [(ngModel)]="o.status.id"
-              (change)="onStatusChange($event)"
+              (change)="onStatusChange($event, o.id)"
             >
               <option [value]="null">Select Country</option>
               <option *ngFor="let s of statuses" [value]="s.id">
@@ -96,11 +95,6 @@
           <td>
             <button [routerLink]="['/invoice', o.id]" class="invoice">
               ინვოისი
-            </button>
-          </td>
-          <td>
-            <button (click)="changeStatus(o.id)" style="background-color: rgb(16, 158, 16);" class="invoice">
-              განახლება
             </button>
           </td>
         </tr>

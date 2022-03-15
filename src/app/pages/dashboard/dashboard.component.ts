@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServicesService } from 'src/app/services.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: ServicesService) {}
 
   user;
   cols: any[];
+  count: any = [];
+
+  lang: any;
+  userId: any;
 
   copy2(text) {
     const elem = document.createElement('textarea');
@@ -45,5 +50,22 @@ export class DashboardComponent implements OnInit {
         field: 'ilkin.gojaev@gmail.com',
       },
     ];
+
+    this.lang = localStorage.getItem('lang');
+    if (this.lang === undefined || this.lang === null) {
+      this.lang = 'AZE';
+      localStorage.setItem('lang', 'AZE');
+    }
+
+    this.userId = localStorage.getItem('id');
+
+    this.getDashboardInfo();
+  }
+
+  getDashboardInfo() {
+    this.service.getDashboardInfo(this.lang, this.userId).subscribe((res) => {
+      this.count = res;
+      console.log(res);
+    });
   }
 }

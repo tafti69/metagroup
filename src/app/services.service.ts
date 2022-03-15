@@ -7,7 +7,7 @@ import { AddFileInvoice } from './models/invoice';
 import { CreateOrder, Declaration } from './models/orders';
 import { CreateProductModel } from './models/product';
 import { CreatePartner } from './models/shops';
-import { Statuses } from './models/status';
+import { Statuses, UpdateStatuses } from './models/status';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -124,11 +124,10 @@ export class ServicesService {
     const userUrl = this.url + 'DeliveryTypes/GetTypes';
     return this.http.get(userUrl, httpOptionsLoc);
   }
-  
+
   updateStatus(model: Statuses) {
     const userUrl = this.url + 'Orders/UpdateStatus';
     return this.http.post<Statuses>(userUrl, model);
-
   }
 
   createDeclaration(model: Declaration) {
@@ -136,11 +135,50 @@ export class ServicesService {
     return this.http.post<Declaration>(userUrl, model);
   }
 
-  getDeclaration(lang: string, id: String) {
+  getDeclaration(lang: string, id: string) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { Id: id, Lang: lang };
     const userUrl = this.url + `Declarations/GetDeclaration`;
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
 
+  updateDeliveryType(model: UpdateStatuses) {
+    const userUrl = this.url + 'Orders/UpdateDeliveryType';
+    return this.http.post<UpdateStatuses>(userUrl, model);
+  }
+
+  getDashboardInfo(lang: string, id: string) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { Id: id, Lang: lang };
+    const userUrl = this.url + `Orders/GetDashboardInfo`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  getMyFirst(lang: string, id: string) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { Id: id, Lang: lang };
+    const userUrl = this.url + `Orders/GetMyFirst`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  getMySecond(lang: string, id: string) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { Id: id, Lang: lang };
+    const userUrl = this.url + `Orders/GetMySecond`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  getMyThird(lang: string, id: string) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { Id: id, Lang: lang };
+    const userUrl = this.url + `Orders/GetMyThird`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  getMyFourth(lang: string, id: string) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { Id: id, Lang: lang };
+    const userUrl = this.url + `Orders/GetMyFourth`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
 }

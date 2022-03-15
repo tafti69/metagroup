@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services.service';
 
 @Component({
-  selector: 'app-storage-table',
-  templateUrl: './storage-table.component.html',
-  styleUrls: ['./storage-table.component.scss'],
+  selector: 'app-ontheroad-table',
+  templateUrl: './ontheroad-table.component.html',
+  styleUrls: ['./ontheroad-table.component.scss'],
 })
-export class StorageTableComponent implements OnInit {
+export class OntheroadTableComponent implements OnInit {
   constructor(private service: ServicesService) {}
 
   lang: any;
@@ -23,11 +23,11 @@ export class StorageTableComponent implements OnInit {
 
     this.userId = localStorage.getItem('id');
 
-    this.getFirst();
+    this.getSecond();
   }
 
-  getFirst() {
-    this.service.getMyFirst(this.lang, this.userId).subscribe((res) => {
+  getSecond() {
+    this.service.getMySecond(this.lang, this.userId).subscribe((res) => {
       console.log(res);
       this.storage = res;
     });

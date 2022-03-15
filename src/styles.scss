@@ -57,7 +57,8 @@ li {
 }
 
 select,
-input, textarea {
+input,
+textarea {
   outline: none;
   background: #f1f3f5d7;
   border: 1px solid #f0f0f0;
@@ -125,7 +126,6 @@ button {
     transform: rotate(360deg);
   }
 }
-
 
 .line {
   width: 40px;
@@ -256,9 +256,6 @@ button {
   flex-wrap: wrap;
 }
 
-button {
-  margin-top: 10px;
-}
 input {
   width: 400px;
   height: 36px;

@@ -8,11 +8,13 @@ import { ServicesService } from 'src/app/services.service';
 @Component({
   selector: 'app-declaration',
   templateUrl: './declaration.component.html',
-  styleUrls: ['./declaration.component.scss']
+  styleUrls: ['./declaration.component.scss'],
 })
 export class DeclarationComponent implements OnInit {
-
-  constructor(private service: ServicesService, private route: ActivatedRoute) { }
+  constructor(
+    private service: ServicesService,
+    private route: ActivatedRoute
+  ) {}
 
   form: FormGroup;
   orderId: any;
@@ -25,45 +27,38 @@ export class DeclarationComponent implements OnInit {
   products: any = [];
 
   ngOnInit(): void {
-
     this.lang = localStorage.getItem('lang');
     if (this.lang === undefined || this.lang === null) {
       this.lang = 'AZE';
       localStorage.setItem('lang', 'AZE');
     }
 
-   this.form = new FormGroup({
-    trackingId: new FormControl('', Validators.required),
-    paidAmount: new FormControl('', Validators.required),
-    currencyId: new FormControl('', Validators.required),
-    partnerId: new FormControl('', Validators.required),
-    productNameId: new FormControl('', Validators.required),
-    comment: new FormControl(''),
-   })
+    this.form = new FormGroup({
+      trackingId: new FormControl('', Validators.required),
+      paidAmount: new FormControl('', Validators.required),
+      currencyId: new FormControl('', Validators.required),
+      partnerId: new FormControl('', Validators.required),
+      productNameId: new FormControl('', Validators.required),
+      comment: new FormControl(''),
+    });
 
+    this.orderId = this.route.snapshot.params.id;
 
-
-   this.orderId = this.route.snapshot.params.id;
-
-   this.getCurrencies();
-   this.getDecl();
-   this.getPartners();
-   this.getProduct();
+    this.getCurrencies();
+    this.getDecl();
+    this.getPartners();
+    this.getProduct();
   }
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {
       this.currencies = res;
-      // this.form.patchValue({
-      //   currencyId: res.id
-      // })
     });
   }
 
   getPartners() {
     this.service.getPartners(this.lang).subscribe((res) => {
       this.partners = res;
-
     });
   }
 
@@ -84,33 +79,29 @@ export class DeclarationComponent implements OnInit {
     model.productNameId = val.productNameId;
     model.comment = val.comment;
 
+    console.log(model);
+
     this.isLoading = true;
-    this.service.createDeclaration(model).subscribe(res => {
+    this.service.createDeclaration(model).subscribe((res) => {
       console.log(res);
       this.isLoading = false;
-    })
+    });
   }
 
   getDecl() {
-    this.isLoading = true
-    this.service.getDeclaration(this.lang, this.orderId).subscribe(res => {
+    this.isLoading = true;
+    this.service.getDeclaration(this.lang, this.orderId).subscribe((res) => {
       this.trackId = res.trackingId;
       console.log(res);
       this.isLoading = false;
       this.form.patchValue({
         trackingId: this.trackId,
         paidAmount: res.paidAmount,
-        currencyId: res.currency,
-        partnerId: res.partner,
-        productNameId: res.productName,
-        comment: res.comment
-      })
-    })
+        currencyId: res.currency.id,
+        partnerId: res.partner.id,
+        productNameId: res.productName.id,
+        comment: res.comment,
+      });
+    });
   }
-
-  onChange(e) {
-    console.log((e.target as HTMLSelectElement).value);
-  }
-
-
 }

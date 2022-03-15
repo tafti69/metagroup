@@ -4,8 +4,9 @@ import { CreateCitiesModel } from 'src/app/models/cities';
 import { CreateCurrency } from 'src/app/models/currency';
 import { CreateOrder } from 'src/app/models/orders';
 import { CreateProductModel } from 'src/app/models/product';
-import { Statuses } from 'src/app/models/status';
+import { Statuses, UpdateStatuses } from 'src/app/models/status';
 import { ServicesService } from 'src/app/services.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +14,10 @@ import { ServicesService } from 'src/app/services.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  constructor(private service: ServicesService) {}
+  constructor(
+    private service: ServicesService,
+    private snackbar: MatSnackBar
+  ) {}
 
   form: FormGroup;
 
@@ -22,7 +26,7 @@ export class AdminComponent implements OnInit {
   statuses: any = [];
   deliveries: any = [];
   currencies: any = [];
-  selectedStatusId: any = [];
+  selectedStatusId: any;
 
   lang: any;
   isLoading = false;
@@ -92,26 +96,37 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onStatusChange(e: Event) {
-    console.log((e.target as HTMLSelectElement).value);
+  onStatusChange(e: Event, id: string) {
     this.selectedStatusId = (e.target as HTMLSelectElement).value;
-  }
-
-  changeStatus(id) {
-    
     let model = new Statuses();
 
     model.orderId = id;
     model.statusId = this.selectedStatusId;
 
     console.log(model);
-    this.isLoading = true;
-    this.service.updateStatus(model).subscribe(res => {
-      this.isLoading = false;
-      window.location.reload();
-      
-    }) 
 
-    
+    this.service.updateStatus(model).subscribe((res) => {
+      console.log(res);
+
+      this.snackbar.open('Status Updated', '', {
+        duration: 3000,
+      });
+    });
+  }
+
+  onUpdateDelivery(e: Event, id: string) {
+    const deliveryId = (e.target as HTMLSelectElement).value;
+
+    let model = new UpdateStatuses();
+
+    model.orderId = id;
+    model.deliveryTypeId = deliveryId;
+
+    console.log(model);
+
+    this.service.updateDeliveryType(model).subscribe((res) => {
+      console.log(res);
+      this.snackbar.open('Delivery Type Updated');
+    });
   }
 }
