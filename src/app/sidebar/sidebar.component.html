@@ -16,24 +16,9 @@
     <li [routerLink]="['/storage']" routerLinkActive="router-link-active">
       საწყობში
     </li>
-    <li>გზაში</li>
+    <li [routerLink]="['/ontheroad']" routerLinkActive="router-link-active">გზაში</li>
     <li>ჩამოსული</li>
     <li>გაცემული</li>
-    <li [routerLink]="['/partners']" routerLinkActive="router-link-active">
-      Partners
-    </li>
-    <li [routerLink]="['/admin']" routerLinkActive="router-link-active">
-      Orders
-    </li>
-    <li [routerLink]="['/products']" routerLinkActive="router-link-active">
-      Products
-    </li>
-    <li [routerLink]="['/cities']" routerLinkActive="router-link-active">
-      Cities
-    </li>
-    <li [routerLink]="['/currency']" routerLinkActive="router-link-active">
-      Currency
-    </li>
   </ul>
 
   <button (click)="logout()" class="sign-out">Sign Out</button>

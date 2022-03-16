@@ -22,6 +22,8 @@ export class StorageTableComponent implements OnInit {
     }
 
     this.userId = localStorage.getItem('id');
+    console.log(this.userId);
+    
 
     this.getFirst();
   }

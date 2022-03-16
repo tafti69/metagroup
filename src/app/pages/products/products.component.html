@@ -1,5 +1,5 @@
 <app-sidebar></app-sidebar>
-
+<div *ngIf="isLoading" class="loader"></div>
 <div class="admin-dashboard">
   <h2>Products Controller</h2>
   <form (ngSubmit)="onCreateProduct()" [formGroup]="form">

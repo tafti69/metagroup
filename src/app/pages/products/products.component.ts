@@ -41,7 +41,9 @@ export class ProductsComponent implements OnInit {
     model.kaName = form.kaProduct;
     model.ruName = form.ruProduct;
 
+    this.isLoading = true
     this.service.createProduct(model).subscribe((res) => {
+      this.isLoading = false;
       window.location.reload();
     });
   }

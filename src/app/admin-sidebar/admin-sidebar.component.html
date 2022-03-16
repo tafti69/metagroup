@@ -1,0 +1,32 @@
+<div class="sidebar">
+    <img
+      src="/assets/logo.svg"
+      alt=""
+      [routerLink]="['/']"
+      style="cursor: pointer"
+    />
+    <div class="account">
+      <img src="/assets/acc.svg" alt="" />
+      <p style="margin-left: 8px">Hello, {{ name }}</p>
+    </div>
+    <ul>
+      
+      <li [routerLink]="['/partners']" routerLinkActive="router-link-active">
+        Partners
+      </li>
+      <li [routerLink]="['/admin']" routerLinkActive="router-link-active">
+        Orders
+      </li>
+      <li [routerLink]="['/products']" routerLinkActive="router-link-active">
+        Products
+      </li>
+      <li [routerLink]="['/cities']" routerLinkActive="router-link-active">
+        Cities
+      </li>
+      <li [routerLink]="['/currency']" routerLinkActive="router-link-active">
+        Currency
+      </li>
+    </ul>
+  
+    <button (click)="logout()" class="sign-out">Sign Out</button>
+  </div>

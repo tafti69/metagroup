@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignInModel } from 'src/app/models/auth';
@@ -32,10 +32,18 @@ export class SigninComponent implements OnInit {
       this.isLoading = true;
       this.userService.loginUser(model).subscribe((res) => {
         this.isLoading = false;
+        
         localStorage.setItem('id', res.id);
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.name);
-        this.router.navigate(['/dashboard']);
+
+        if(res.isAdmin) {
+          this.router.navigate(['/admin']);
+        }
+        else {
+          this.router.navigate(['/dashboard']);
+        }
+        
       }),
         (error) => {
           console.log(error);

@@ -35,6 +35,7 @@ import { CityComponent } from './pages/city/city.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
+import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table
     CityComponent,
     ProductsComponent,
     OntheroadTableComponent,
+    AdminSidebarComponent,
   ],
   imports: [
     BrowserModule,

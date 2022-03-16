@@ -16,9 +16,6 @@ export class InvoiceComponent implements OnInit {
   ) {}
 
   form: FormGroup;
-
-  addedImage: any = [];
-
   lang: any;
 
   isLoading = false;
@@ -26,22 +23,25 @@ export class InvoiceComponent implements OnInit {
   extension: any;
   orderId: any;
   trackingId: any;
-  orders: any = [];
   file: any;
+  uploaded: any;
 
   ngOnInit(): void {
     this.form = new FormGroup({
       imageCtrl: new FormControl('', Validators.required),
     });
-
+    
+    this.lang = localStorage.getItem("lang");
     this.orderId = this.route.snapshot.params.id;
 
     this.service.getFileName(this.orderId).subscribe((res) => {
-      console.log(res);
       this.file = res;
     });
-
-    this.getOrders();
+    
+    this.service.getById(this.lang, this.orderId).subscribe((res)=>{
+      this.uploaded = res.documentUploaded;
+    });
+   
   }
 
   onSubmit() {
@@ -50,6 +50,7 @@ export class InvoiceComponent implements OnInit {
     model.content = this.image;
     model.extension = this.extension;
     model.orderId = this.orderId;
+
 
     this.service.addFileForInvoice(model).subscribe((res) => {
       console.log(res);
@@ -86,10 +87,5 @@ export class InvoiceComponent implements OnInit {
     });
   }
 
-  getOrders() {
-    this.service.getOrder(this.lang).subscribe((res) => {
-      this.orders = res;
-      console.log(res);
-    });
-  }
+
 }

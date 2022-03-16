@@ -91,9 +91,14 @@ export class ServicesService {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang };
     const userUrl = this.url + 'Orders/GetAll';
-    return this.http.get(userUrl, httpOptionsLoc);
+    return this.http.get<any>(userUrl, httpOptionsLoc);
   }
-
+  getById(lang: string, id:any) {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { lang: lang, id:id };
+    const userUrl = this.url + 'Orders/GetById';
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
   getStatuses(lang: string) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang };
@@ -117,6 +122,7 @@ export class ServicesService {
     const userUrl = this.url + `Orders/GetFileName/${orderId}`;
     return this.http.get(userUrl);
   }
+  
 
   getDeliveryType(lang: string) {
     const httpOptionsLoc = httpOptions;
