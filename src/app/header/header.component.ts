@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   langButtons = [
     { image: '/assets/aze.svg', isClicked: true },
     { image: '/assets/geo.svg', isClicked: false },
-    { image: '/assets/tr.svg', isClicked: false },
+    { image: '/assets/russ.svg', isClicked: false },
   ];
 
   setActive(button: any): void {

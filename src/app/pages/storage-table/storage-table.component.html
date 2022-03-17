@@ -1,5 +1,5 @@
 <app-sidebar></app-sidebar>
-<div class="loader" *ngIf="isLoading"></div>
+
 <div class="table-wrapper">
   <div class="table-header">
     <h2>საწყობი</h2>
@@ -11,7 +11,7 @@
         <td>თრექინგი</td>
         <td>წონა</td>
         <td>თანხა</td>
-        <td>მაღაზია</td>    
+        <td>მაღაზია</td>
         <td>ვალუტა</td>
         <td>გატანა</td>
         <td>მოქმედება</td>
@@ -21,57 +21,66 @@
     <tbody>
       <tr *ngFor="let s of storage">
         <td>{{ s.uniqueIdentifier }}</td>
-          <td>{{ s.trackingId }}</td>
-          <td>{{ s.height }}</td>
-          <td>{{ s.paidAmount }}</td>
-          <td>
-            <select
+        <td>{{ s.trackingId }}</td>
+        <td>{{ s.height }}</td>
+        <td>{{ s.paidAmount }}</td>
+        <td>
+          <select
             *ngIf="s.declaration.partner"
-              style="width: 120px; height: 28px"
-              id="curier"
-              [(ngModel)]="s.declaration.partner.id"
-            >
-              <option *ngFor="let p of partners" [value]="p.id">
-                {{ p.item.name }}
-              </option>
-            </select>
-          </td>
-          <td>
-            <select
-              style="width: 80px; height: 28px"
-              id="curier"
-              *ngIf="s.declaration.currency"
-              [(ngModel)]="s.declaration.currency.id"
-            >
-              <option *ngFor="let c of currencies" [value]="c.id">
-                {{ c.value }}
-              </option>
-            </select>
-          </td>
-          <td>
-            <select
-              style="width: 120px; height: 28px"
-              [(ngModel)]="s.deliveryType.id"
-              id="curier"
-              *ngIf="s.deliveryType"
-              (change)="onUpdateDelivery($event, s.id)"
-            >
-              <option *ngFor="let d of deliveries" [value]="d.id">
-                {{ d.item.name }}
-              </option>
-            </select>
-          </td>
-          <td>
-            <button [routerLink]="['/declaration', s.id]" class="decl" [style.background-color]="s.declaration.paidAmount ? 'green' : ''">
-             {{s.declaration.paidAmount ? 'დეკლარირებული' : 'დეკლარირება'}}
-            </button>
-          </td>
-          <td>
-            <button [routerLink]="['/invoice', s.id]" class="invoice" [style.background-color]="s.documentUploaded ? 'green' : ''">
-              {{s.documentUploaded ? 'ატვირთული' : 'ატვირთვა'}}
-            </button>
-          </td>
+            style="width: 120px; height: 28px"
+            id="curier"
+            [(ngModel)]="s.declaration.partner.id"
+          >
+            <option *ngFor="let p of partners" [value]="p.id">
+              {{ p.item.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <select
+            style="width: 80px; height: 28px"
+            id="curier"
+            *ngIf="s.declaration.currency"
+            [(ngModel)]="s.declaration.currency.id"
+          >
+            <option *ngFor="let c of currencies" [value]="c.id">
+              {{ c.value }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <select
+            style="width: 120px; height: 28px"
+            [(ngModel)]="s.deliveryType.id"
+            id="curier"
+            *ngIf="s.deliveryType"
+            (change)="onUpdateDelivery($event, s.id)"
+          >
+            <option *ngFor="let d of deliveries" [value]="d.id">
+              {{ d.item.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <button
+            [routerLink]="['/declaration', s.id]"
+            class="decl"
+            [style.background-color]="s.declaration.paidAmount ? '#52b788' : ''"
+          >
+            {{ s.declaration.paidAmount ? "დეკლარირებული" : "დეკლარირება" }}
+          </button>
+        </td>
+        <td>
+          <button
+            [routerLink]="['/invoice', s.id]"
+            class="invoice"
+            [style.background-color]="s.documentUploaded ? '#52b788' : ''"
+          >
+            {{ s.documentUploaded ? "ატვირთული" : "ატვირთვა" }}
+          </button>
+        </td>
       </tr>
     </tbody>
+    <div class="loader" *ngIf="isLoading"></div>
   </table>
 </div>

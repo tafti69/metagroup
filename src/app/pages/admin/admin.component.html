@@ -1,5 +1,4 @@
 <app-sidebar></app-sidebar>
-<div class="loader" *ngIf="isLoading"></div>
 
 <div class="admin-dashboard">
   <h2>Orders Controller</h2>
@@ -11,7 +10,12 @@
     </div>
     <div>
       <label for="val">Tracking ID</label>
-      <input id="val" type="text" formControlName="trackingId" />
+      <input
+        style="margin-left: 10px"
+        id="val"
+        type="text"
+        formControlName="trackingId"
+      />
     </div>
 
     <button type="submit">Create Order</button>
@@ -32,6 +36,7 @@
           <td>ინვოისი</td>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let o of orders">
           <td>{{ o.uniqueIdentifier }}</td>
@@ -40,7 +45,7 @@
           <td>{{ o.paidAmount }}</td>
           <td>
             <select
-            *ngIf="o.declaration.partner"
+              *ngIf="o.declaration.partner"
               style="width: 120px; height: 28px"
               id="curier"
               [(ngModel)]="o.declaration.partner.id"
@@ -91,17 +96,28 @@
             </select>
           </td>
           <td>
-            <button [routerLink]="['/declaration', o.id]" class="decl" [style.background-color]="o.declaration.paidAmount ? 'green' : ''">
-             {{o.declaration.paidAmount ? 'დეკლარირებული' : 'დეკლარირება'}}
+            <button
+              [routerLink]="['/declaration', o.id]"
+              class="decl"
+              [style.background-color]="
+                o.declaration.paidAmount ? '#52b788' : ''
+              "
+            >
+              {{ o.declaration.paidAmount ? "დეკლარირებული" : "დეკლარირება" }}
             </button>
           </td>
           <td>
-            <button [routerLink]="['/invoice', o.id]" class="invoice" [style.background-color]="o.documentUploaded ? 'green' : ''">
-              {{o.documentUploaded ? 'ატვირთული' : 'ატვირთვა'}}
+            <button
+              [routerLink]="['/invoice', o.id]"
+              class="invoice"
+              [style.background-color]="o.documentUploaded ? '#52b788' : ''"
+            >
+              {{ o.documentUploaded ? "ატვირთული" : "ატვირთვა" }}
             </button>
           </td>
         </tr>
       </tbody>
+      <div class="loader" *ngIf="isLoading"></div>
     </table>
   </div>
 </div>

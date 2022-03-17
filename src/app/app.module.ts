@@ -35,9 +35,9 @@ import { CityComponent } from './pages/city/city.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
-import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
-import {TableModule} from 'primeng/table';
 import { NotFoundComponent } from './not-found/not-found.component';
+
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CityComponent,
     ProductsComponent,
     OntheroadTableComponent,
-    AdminSidebarComponent,
     NotFoundComponent,
   ],
   imports: [
@@ -75,7 +74,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatTabsModule,
     MatIconModule,
     MatSnackBarModule,
-    TableModule,
+    MatTableModule,
     BrowserAnimationsModule,
     FacebookModule.forRoot(),
   ],
@@ -88,6 +87,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     },
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
