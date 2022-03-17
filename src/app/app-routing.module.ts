@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { CityComponent } from './pages/city/city.component';
@@ -94,6 +95,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: 'invoice/:id',
     component: InvoiceComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

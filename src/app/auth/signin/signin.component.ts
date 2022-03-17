@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignInModel } from 'src/app/models/auth';
+import { Emitters, SignInModel } from 'src/app/models/auth';
 import { ServicesService } from 'src/app/services.service';
 
 @Component({
@@ -37,6 +37,7 @@ export class SigninComponent implements OnInit {
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.name);
 
+        Emitters.user.emit(res.isAdmin);
         if(res.isAdmin) {
           this.router.navigate(['/admin']);
         }

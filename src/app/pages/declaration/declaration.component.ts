@@ -1,7 +1,7 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Emitters } from 'src/app/models/auth';
 import { Declaration } from 'src/app/models/orders';
 import { ServicesService } from 'src/app/services.service';
 
@@ -21,10 +21,12 @@ export class DeclarationComponent implements OnInit {
   trackId: any;
   lang: any;
   isLoading = false;
+    success = false;
 
   currencies: any = [];
   partners: any = [];
   products: any = [];
+
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -85,6 +87,8 @@ export class DeclarationComponent implements OnInit {
     this.service.createDeclaration(model).subscribe((res) => {
       console.log(res);
       this.isLoading = false;
+      this.success = true;
+      Emitters.successDecl.emit(true)
     });
   }
 

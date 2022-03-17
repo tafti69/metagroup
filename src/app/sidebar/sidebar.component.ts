@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Emitters } from '../models/auth';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  constructor(private router: Router) {}
+  isAdmin:boolean = false;
+  constructor(private router: Router) {Emitters.user.subscribe(data=>{this.isAdmin = data})}
 
   show = true;
   name: string;
+
 
   closeSidebar() {
     this.show = !this.show;
@@ -24,6 +27,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name');
+    console.log(this.isAdmin);
+    
   }
 
 }

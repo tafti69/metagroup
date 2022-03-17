@@ -91,13 +91,13 @@
             </select>
           </td>
           <td>
-            <button [routerLink]="['/declaration', o.id]" class="decl">
-              დეკლარირება
+            <button [routerLink]="['/declaration', o.id]" class="decl" [style.background-color]="o.declaration.paidAmount ? 'green' : ''">
+             {{o.declaration.paidAmount ? 'დეკლარირებული' : 'დეკლარირება'}}
             </button>
           </td>
           <td>
-            <button [routerLink]="['/invoice', o.id]" class="invoice">
-              ინვოისი
+            <button [routerLink]="['/invoice', o.id]" class="invoice" [style.background-color]="o.documentUploaded ? 'green' : ''">
+              {{o.documentUploaded ? 'ატვირთული' : 'ატვირთვა'}}
             </button>
           </td>
         </tr>

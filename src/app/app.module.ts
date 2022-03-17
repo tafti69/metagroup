@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +36,8 @@ import { ProductsComponent } from './pages/products/products.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
+import {TableModule} from 'primeng/table';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
     ProductsComponent,
     OntheroadTableComponent,
     AdminSidebarComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
     MatTabsModule,
     MatIconModule,
     MatSnackBarModule,
+    TableModule,
     BrowserAnimationsModule,
     FacebookModule.forRoot(),
   ],
@@ -84,5 +88,6 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

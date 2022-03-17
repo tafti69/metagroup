@@ -7,6 +7,7 @@ import { CreateProductModel } from 'src/app/models/product';
 import { Statuses, UpdateStatuses } from 'src/app/models/status';
 import { ServicesService } from 'src/app/services.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Emitters } from 'src/app/models/auth';
 
 @Component({
   selector: 'app-admin',
@@ -14,10 +15,15 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  success: boolean = false;
   constructor(
     private service: ServicesService,
     private snackbar: MatSnackBar
-  ) {}
+  ) {
+    Emitters.successDecl.subscribe(data => {
+      this.success = data;
+    })
+  }
 
   form: FormGroup;
 
@@ -27,6 +33,8 @@ export class AdminComponent implements OnInit {
   deliveries: any = [];
   currencies: any = [];
   selectedStatusId: any;
+
+  updated = false;
 
   lang: any;
   isLoading = false;
@@ -48,6 +56,7 @@ export class AdminComponent implements OnInit {
     this.getOrders();
     this.getPartners();
     this.getCurrencies();
+
   }
 
   getCurrencies() {
@@ -105,13 +114,16 @@ export class AdminComponent implements OnInit {
 
     console.log(model);
 
+      this.snackbar.open('Status Updated', '', {
+        duration: 1000,
+      });
+    
     this.service.updateStatus(model).subscribe((res) => {
       console.log(res);
-
-      this.snackbar.open('Status Updated', '', {
-        duration: 3000,
-      });
+      window.location.reload()
     });
+    
+
   }
 
   onUpdateDelivery(e: Event, id: string) {

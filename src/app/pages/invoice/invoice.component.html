@@ -34,7 +34,7 @@
       {{ uploaded ? file : "there is no file" }}
     </div>
 
-    <button class="download" (click)="downloadInvoiceFile()">
+    <button *ngIf="uploaded" class="download" (click)="downloadInvoiceFile()">
       Download
       <mat-icon aria-hidden="false" aria-label="Example home icon"
         >download</mat-icon

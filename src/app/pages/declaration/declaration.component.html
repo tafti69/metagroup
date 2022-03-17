@@ -57,7 +57,7 @@
         formControlName="comment"
       ></textarea>
     </div>
-    <button>განახლება</button>
+    <button [style.background-color]="success ? 'green' : ''">{{success ? 'განახლებულია' : 'განახლება'}}</button>
     <div class="loader" *ngIf="isLoading"></div>
   </form>
 </div>

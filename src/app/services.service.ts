@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { SignInModel, SignUpModel } from './models/auth';
 import { CreateCitiesModel } from './models/cities';
 import { CreateCurrency } from './models/currency';
