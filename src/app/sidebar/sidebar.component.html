@@ -17,8 +17,8 @@
       საწყობში
     </li>
     <li [routerLink]="['/ontheroad']" routerLinkActive="router-link-active">გზაში</li>
-    <li>ჩამოსული</li>
-    <li>გაცემული</li>
+    <li [routerLink]="['/arrived']" routerLinkActive="router-link-active">ჩამოსული</li>
+    <li [routerLink]="['/issued']" routerLinkActive="router-link-active">გაცემული</li>
    <div *ngIf="isAdmin">
     <li [routerLink]="['/partners']" routerLinkActive="router-link-active">
       Partners

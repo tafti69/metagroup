@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateCitiesModel } from 'src/app/models/cities';
-import { CreateCurrency } from 'src/app/models/currency';
 import { CreateOrder } from 'src/app/models/orders';
-import { CreateProductModel } from 'src/app/models/product';
 import { Statuses, UpdateStatuses } from 'src/app/models/status';
 import { ServicesService } from 'src/app/services.service';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Emitters } from 'src/app/models/auth';
 
 @Component({
@@ -18,7 +14,6 @@ export class AdminComponent implements OnInit {
   success: boolean = false;
   constructor(
     private service: ServicesService,
-    private snackbar: MatSnackBar
   ) {
     Emitters.successDecl.subscribe(data => {
       this.success = data;
@@ -26,6 +21,32 @@ export class AdminComponent implements OnInit {
   }
 
   form: FormGroup;
+
+  first = 0;
+
+  rows = 10;
+
+ // totalRecords = 0;
+
+//   next() {
+//     this.first = this.first + this.rows;
+// }
+
+// prev() {
+//     this.first = this.first - this.rows;
+// }
+
+// reset() {
+//     this.first = 0;
+// }
+
+// isLastPage(): boolean {
+//     return this.orders ? this.first === (this.orders.length - this.rows): true;
+// }
+
+// isFirstPage(): boolean {
+//     return this.orders ? this.first === 0 : true;
+// }
 
   orders: any = [];
   partners: any = [];
@@ -95,6 +116,7 @@ export class AdminComponent implements OnInit {
     this.service.getOrder(this.lang).subscribe((res) => {
       console.log(res);
       this.orders = res;
+    //  this.totalRecords = res.length;
       this.isLoading = false;
     });
   }
@@ -114,9 +136,9 @@ export class AdminComponent implements OnInit {
 
     console.log(model);
 
-      this.snackbar.open('Status Updated', '', {
-        duration: 1000,
-      });
+      // this.snackbar.open('Status Updated', '', {
+      //   duration: 1000,
+      // });
     
     this.service.updateStatus(model).subscribe((res) => {
       console.log(res);
@@ -138,7 +160,7 @@ export class AdminComponent implements OnInit {
 
     this.service.updateDeliveryType(model).subscribe((res) => {
       console.log(res);
-      this.snackbar.open('Delivery Type Updated');
+     // this.snackbar.open('Delivery Type Updated');
     });
   }
 }

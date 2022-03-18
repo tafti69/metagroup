@@ -6,12 +6,14 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { ChamosuliComponent } from './pages/chamosuli/chamosuli.component';
 import { CityComponent } from './pages/city/city.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { CurrencyComponent } from './pages/currency/currency.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { IssuedComponent } from './pages/issued/issued.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
 import { PartnersComponent } from './pages/partners/partners.component';
@@ -63,6 +65,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: 'ontheroad',
     component: OntheroadTableComponent,
+  },
+  {
+    canActivate: [AuthGuard],
+    path: 'arrived',
+    component: ChamosuliComponent,
+  },
+  {
+    canActivate: [AuthGuard],
+    path: 'issued',
+    component: IssuedComponent,
   },
   {
     canActivate: [AuthGuard],

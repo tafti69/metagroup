@@ -12,12 +12,12 @@
     <p>გზაში</p>
     <b style="color: #3c8eed">{{ count.second }}</b>
   </div>
-  <div class="box">
+  <div [routerLink]="['/arrived']" class="box">
     <img src="/assets/3.svg" alt="" />
     <p>ჩამოსული</p>
     <b style="color: #ffba51">{{ count.third }}</b>
   </div>
-  <div class="box">
+  <div [routerLink]="['/issued']" class="box">
     <img src="/assets/4.svg" alt="" />
     <p>გაცემული</p>
     <b style="color: #35d03b">{{ count.fourth }}</b>

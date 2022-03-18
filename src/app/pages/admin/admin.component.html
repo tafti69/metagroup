@@ -21,24 +21,24 @@
     <button type="submit">Create Order</button>
   </form>
   <div>
-    <table>
-      <thead>
+    <p-table [value]="orders" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [sortOrder]="-1" responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+      <ng-template pTemplate="header">
         <tr>
-          <td>#</td>
-          <td>თრექინგი</td>
-          <td>წონა</td>
-          <td>თანხა</td>
-          <td>მაღაზია</td>
-          <td>ვალუტა</td>
-          <td>გატანა</td>
-          <td>სტატუსი</td>
-          <td>მოქმედება</td>
-          <td>ინვოისი</td>
+          <th pSortableColumn="uniqueIdentifier"># <p-sortIcon field="uniqueIdentifier"></p-sortIcon></th>
+          <th pSortableColumn="trackingId">თრექინგი <p-sortIcon field="trackingId"></p-sortIcon></th>
+          <th pSortableColumn="height">წონა <p-sortIcon field="height"></p-sortIcon></th>
+          <th pSortableColumn="paidAmount">თანხა <p-sortIcon field="paidAmount"></p-sortIcon></th>
+          <th>მაღაზია</th>
+          <th>ვალუტა</th>
+          <th>გატანა</th>
+          <th>სტატუსი</th>
+          <th>მოქმედება</th>
+          <th>ინვოისი</th>
         </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let o of orders">
+      </ng-template>
+      <ng-template pTemplate="body" let-o>
+        <tr>
           <td>{{ o.uniqueIdentifier }}</td>
           <td>{{ o.trackingId }}</td>
           <td>{{ o.height }}</td>
@@ -116,8 +116,8 @@
             </button>
           </td>
         </tr>
-      </tbody>
-      <div class="loader" *ngIf="isLoading"></div>
-    </table>
+      </ng-template>
+    </p-table>
+    <div class="loader" *ngIf="isLoading"></div>
   </div>
 </div>

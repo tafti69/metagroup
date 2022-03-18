@@ -2,9 +2,9 @@
 
 <div class="table-wrapper">
   <div class="table-header">
-    <h2>საწყობი</h2>
+    <h2>გაცემული</h2>
   </div>
-  <p-table [value]="dataRoad" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [sortOrder]="-1" responsiveLayout="scroll"
+  <p-table [value]="issued" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [sortOrder]="-1" responsiveLayout="scroll"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
       <tr>

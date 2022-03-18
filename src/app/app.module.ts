@@ -26,18 +26,22 @@ import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
 import { AdminComponent } from './pages/admin/admin.component';
 
-import { MatTabsModule } from '@angular/material/tabs';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 
-import { MatIconModule } from '@angular/material/icon';
+// import { MatIconModule } from '@angular/material/icon';
 import { CurrencyComponent } from './pages/currency/currency.component';
 import { CityComponent } from './pages/city/city.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+//import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { MatTableModule } from '@angular/material/table';
+
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+import { ChamosuliComponent } from './pages/chamosuli/chamosuli.component';
+import { IssuedComponent } from './pages/issued/issued.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +68,8 @@ import { MatTableModule } from '@angular/material/table';
     ProductsComponent,
     OntheroadTableComponent,
     NotFoundComponent,
+    ChamosuliComponent,
+    IssuedComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,10 +77,11 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatTabsModule,
-    MatIconModule,
-    MatSnackBarModule,
+    // MatIconModule,
+    // MatSnackBarModule,
     MatTableModule,
+    TableModule,
+    ButtonModule,
     BrowserAnimationsModule,
     FacebookModule.forRoot(),
   ],

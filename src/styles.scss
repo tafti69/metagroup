@@ -71,7 +71,7 @@ button {
 }
 
 button {
-  width: 200px;
+  // width: 200px;
   height: 40px;
   background: #fe8a00;
   border-radius: 6px;
@@ -189,15 +189,13 @@ button {
 }
 
 .table-wrapper {
-  width: 70%;
-  margin: 4rem auto;
+  margin-left: 240px;
+  margin-top: 60px;
+  width: 80%;
   background: #fff;
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
-  @media (max-width: 1575px) {
-    width: 80%;
-  }
   .table-header {
     margin-bottom: 10px;
     h2 {
@@ -246,14 +244,12 @@ button {
 
 .admin-dashboard {
   margin-left: 240px;
-  margin-top: 120px;
-  background: #fff;
+  margin-top: 60px;
+  // background: #fff;
   height: 100%;
   border-radius: 16px;
   width: 80%;
   padding: 16px;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 input {
@@ -319,34 +315,45 @@ select {
   }
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 9px;
-  margin-top: 10px;
-  font-size: 14px;
-  thead {
-    td {
-      color: #484c5f;
-      font-weight: 600;
-    }
-  }
+.p-paginator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
-th {
-  color: #d5dde5;
-  text-align: left;
-  vertical-align: middle;
+.p-datatable-wrapper {
+    font-size: 14px;
 }
-tr {
-  border: 1px solid #8b8ea0;
-  color: #666b85;
-  padding: 24px;
-}
+
+// table {
+//   width: 100%;
+//   border-collapse: collapse;
+//   border-radius: 9px;
+//   margin-top: 10px;
+//   font-size: 14px;
+//   thead {
+//     td {
+//       color: #484c5f;
+//       font-weight: 600;
+//     }
+//   }
+// }
+
+// th {
+//   color: #d5dde5;
+//   text-align: left;
+//   vertical-align: middle;
+// }
+// tr {
+//   border: 1px solid #8b8ea0;
+//   color: #666b85;
+//   padding: 24px;
+// }
 
 td {
-  padding: 8px;
-  border-right: 1px solid #8b8ea0;
+  // padding: 8px;
+  // border-right: 1px solid #8b8ea0;
   #curier {
     border-radius: 4px;
     padding: 4px 0;
