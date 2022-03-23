@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UpdateStatuses } from 'src/app/models/status';
-import { ServicesService } from 'src/app/services.service';
+import { UpdateStatuses } from 'app/models/status';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-ontheroad-table',
@@ -43,18 +43,12 @@ export class OntheroadTableComponent implements OnInit {
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
 
-    console.log(model);
-
-    this.service.updateDeliveryType(model).subscribe((res) => {
-      console.log(res);
-      //this.snackbar.open('Delivery Type Updated');
-    });
+    this.service.updateDeliveryType(model).subscribe((res) => {});
   }
 
   getSecond() {
-    this.isLoading = true
+    this.isLoading = true;
     this.service.getMySecond(this.lang, this.userId).subscribe((res) => {
-      console.log(res);
       this.dataRoad = res;
       this.isLoading = false;
     });
@@ -74,7 +68,6 @@ export class OntheroadTableComponent implements OnInit {
 
   getDeliveryTypes() {
     this.service.getDeliveryType(this.lang).subscribe((res) => {
-      console.log(res);
       this.deliveries = res;
     });
   }

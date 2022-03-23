@@ -1,6 +1,10 @@
 .wrap {
   margin: 8rem auto;
   width: 80%;
+  @media (max-width: 1140px) {
+    width: 90%;
+    margin: 4rem auto;
+  }
   h1 {
     font-size: 48px;
     margin: 0;
@@ -8,5 +12,13 @@
   p {
     width: 50%;
     color: #505050;
+    @media (max-width: 1140px) {
+      width: 90%;
+    }
   }
+}
+
+.l {
+  stroke: #fe8a00;
+  text-align: center;
 }

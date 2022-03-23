@@ -98,8 +98,8 @@ header {
 
 .header-container-mobile {
   display: none;
-  position: absolute;
-  top: 60px;
+  position: fixed;
+  top: 0;
   right: 0;
   z-index: 11;
   height: 100vh;
@@ -109,7 +109,7 @@ header {
   align-items: flex-start;
   justify-content: flex-start;
   background: #fff;
-
+  padding-top: 3rem;
   @media (max-width: 1200px) {
     display: block;
   }
@@ -192,6 +192,7 @@ header {
   padding: 0 12px;
   display: none;
   width: 100%;
+  z-index: 13;
   @media (max-width: 1200px) {
     display: flex;
     align-items: center;

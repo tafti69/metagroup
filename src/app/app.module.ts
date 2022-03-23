@@ -28,20 +28,22 @@ import { AdminComponent } from './pages/admin/admin.component';
 
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 
-// import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { CurrencyComponent } from './pages/currency/currency.component';
 import { CityComponent } from './pages/city/city.component';
 import { ProductsComponent } from './pages/products/products.component';
-//import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OntheroadTableComponent } from './pages/ontheroad-table/ontheroad-table.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { MatTableModule } from '@angular/material/table';
 
-import {TableModule} from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 import { ChamosuliComponent } from './pages/chamosuli/chamosuli.component';
 import { IssuedComponent } from './pages/issued/issued.component';
+
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -77,8 +79,9 @@ import { IssuedComponent } from './pages/issued/issued.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    // MatIconModule,
-    // MatSnackBarModule,
+    MatIconModule,
+    MatSnackBarModule,
+    ProgressSpinnerModule,
     MatTableModule,
     TableModule,
     ButtonModule,

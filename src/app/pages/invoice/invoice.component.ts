@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AddFileInvoice } from 'src/app/models/invoice';
-import { ServicesService } from 'src/app/services.service';
+import { AddFileInvoice } from 'app/models/invoice';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-invoice',
@@ -30,18 +30,17 @@ export class InvoiceComponent implements OnInit {
     this.form = new FormGroup({
       imageCtrl: new FormControl('', Validators.required),
     });
-    
-    this.lang = localStorage.getItem("lang");
+
+    this.lang = localStorage.getItem('lang');
     this.orderId = this.route.snapshot.params.id;
 
     this.service.getFileName(this.orderId).subscribe((res) => {
       this.file = res;
     });
-    
-    this.service.getById(this.lang, this.orderId).subscribe((res)=>{
+
+    this.service.getById(this.lang, this.orderId).subscribe((res) => {
       this.uploaded = res.documentUploaded;
     });
-   
   }
 
   onSubmit() {
@@ -51,10 +50,9 @@ export class InvoiceComponent implements OnInit {
     model.extension = this.extension;
     model.orderId = this.orderId;
 
-
     this.service.addFileForInvoice(model).subscribe((res) => {
       console.log(res);
-      // window.location.reload();
+      window.location.reload();
     });
   }
 
@@ -86,6 +84,4 @@ export class InvoiceComponent implements OnInit {
       a.dispatchEvent(newEvent);
     });
   }
-
-
 }

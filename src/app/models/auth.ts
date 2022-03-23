@@ -1,4 +1,4 @@
-import { EventEmitter } from "@angular/core";
+import { EventEmitter } from '@angular/core';
 
 export class SignUpModel {
   email: string;
@@ -19,9 +19,10 @@ export class SignInModel {
   token: string;
   isAdmin: boolean;
   name: string;
+  // userType: string;
 }
 
 export class Emitters {
-  static user = new EventEmitter<any>();
+  static user = new EventEmitter<boolean>();
   static successDecl = new EventEmitter<boolean>();
 }

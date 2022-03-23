@@ -5,23 +5,14 @@ form {
   .wrap {
     display: flex;
     width: 49%;
+    flex-wrap: wrap;
   }
   .decl-form {
     margin: 8px;
     display: flex;
     flex-direction: column;
     label {
-      margin-bottom: 6px;
-    }
-    input {
-      height: 40px;
-      border-radius: 6px;
-      padding-left: 10px;
-    }
-    select {
-      height: 44px;
-      border-radius: 6px;
-      padding-left: 10px;
+      margin-bottom: 4px;
     }
   }
   textarea {
@@ -29,5 +20,8 @@ form {
     background: #f1f3f5d7;
     border-radius: 6px;
     padding: 10px;
+  }
+  button {
+    width: 200px;
   }
 }

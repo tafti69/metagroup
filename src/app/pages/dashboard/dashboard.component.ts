@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ServicesService } from 'src/app/services.service';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,11 @@ import { ServicesService } from 'src/app/services.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router: Router, private service: ServicesService) {}
+  constructor(
+    private router: Router,
+    private service: ServicesService,
+    private snackBar: MatSnackBar
+  ) {}
 
   user;
   cols: any[];
@@ -16,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   lang: any;
   userId: any;
+  name: any;
 
   copy2(text) {
     const elem = document.createElement('textarea');
@@ -24,17 +30,16 @@ export class DashboardComponent implements OnInit {
     elem.select();
     document.execCommand('copy');
     document.body.removeChild(elem);
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    this.router.navigate(['/']);
+    this.snackBar.open('Copied to clipboard', '', {
+      duration: 1000,
+    });
   }
 
   ngOnInit(): void {
+    this.name = localStorage.getItem('name');
+
     this.cols = [
-      { header: 'სახელი / Name / Ad:', field: 'Giorgi' },
+      { header: 'სახელი / Name / Ad:', field: this.name },
       { header: 'გვარი / Surname / Soyad:', field: 'Berishvili' },
       { header: 'ტელეფონი / Telephone / Telefon:', field: '05523917530' },
       { header: 'პროვინცია / Province / İl:', field: 'Istambul' },
@@ -43,11 +48,11 @@ export class DashboardComponent implements OnInit {
       {
         header: 'მისამართი / Address / adres:',
         field:
-          'Osmanağa mah.çuhadarağa sk.Gallerium iş merkezi 23/48 kadiköy istanbul 28001106931',
+          'Aksaray Mahallesi Abdullatif Paşa sok no 21 kat 2 daire 3 Fatih İstanbul 28001106931',
       },
       {
         header: 'ელ. ფოსტა / E-mail / Email:',
-        field: 'ilkin.gojaev@gmail.com',
+        field: 'aicargo2022@gmail.com',
       },
     ];
 
@@ -58,8 +63,6 @@ export class DashboardComponent implements OnInit {
     }
 
     this.userId = localStorage.getItem('id');
-    console.log(this.userId);
-    
 
     this.getDashboardInfo();
   }
@@ -67,7 +70,6 @@ export class DashboardComponent implements OnInit {
   getDashboardInfo() {
     this.service.getDashboardInfo(this.lang, this.userId).subscribe((res) => {
       this.count = res;
-      console.log(res);
     });
   }
 }

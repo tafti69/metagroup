@@ -45,6 +45,10 @@ footer {
     img {
       margin: 0 12px;
       cursor: pointer;
+      transition: 0.15s;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UpdateStatuses } from 'src/app/models/status';
-import { ServicesService } from 'src/app/services.service';
+import { UpdateStatuses } from 'app/models/status';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-storage-table',
@@ -19,7 +19,6 @@ export class StorageTableComponent implements OnInit {
   statuses: any = [];
   deliveries: any = [];
   currencies: any = [];
-  
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -29,8 +28,6 @@ export class StorageTableComponent implements OnInit {
     }
 
     this.userId = localStorage.getItem('id');
-    console.log(this.userId);
-    
 
     this.getFirst();
     this.getDeliveryTypes();
@@ -46,24 +43,17 @@ export class StorageTableComponent implements OnInit {
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
 
-    console.log(model);
-
-    this.service.updateDeliveryType(model).subscribe((res) => {
-      console.log(res);
-      //this.snackbar.open('Delivery Type Updated');
-    });
+    this.service.updateDeliveryType(model).subscribe((res) => {});
   }
 
   getFirst() {
-    this.isLoading = true
+    this.isLoading = true;
     this.service.getMyFirst(this.lang, this.userId).subscribe((res) => {
       console.log(res);
       this.storage = res;
       this.isLoading = false;
     });
   }
-
-
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {
@@ -79,7 +69,6 @@ export class StorageTableComponent implements OnInit {
 
   getDeliveryTypes() {
     this.service.getDeliveryType(this.lang).subscribe((res) => {
-      console.log(res);
       this.deliveries = res;
     });
   }

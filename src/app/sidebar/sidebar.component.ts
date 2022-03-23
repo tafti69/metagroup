@@ -8,27 +8,25 @@ import { Emitters } from '../models/auth';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  isAdmin:boolean = false;
-  constructor(private router: Router) {Emitters.user.subscribe(data=>{this.isAdmin = data})}
+  constructor(private router: Router) {}
 
-  show = true;
+  isAdmin: boolean = false;
+  show: boolean = true;
   name: string;
-
 
   closeSidebar() {
     this.show = !this.show;
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.clear();
     this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name');
-    console.log(this.isAdmin);
-    
-  }
+    let user = localStorage.getItem('userType');
 
+    this.isAdmin = user === 'admin' ? true : false;
+  }
 }

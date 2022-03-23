@@ -17,7 +17,7 @@
     <div class="decl-form">
       <label for="a">ნივთის დასახელება</label>
       <select formControlName="productNameId">
-        <option [value]="null">აირჩიე</option>
+        <!-- <option [value]="null">აირჩიე</option> -->
         <option *ngFor="let p of products" [value]="p.id">
           {{ p.item.name }}
         </option>
@@ -26,7 +26,7 @@
     <div class="decl-form">
       <label>მაღაზია სადაც შეიძნეთ</label>
       <select formControlName="partnerId">
-        <option [value]="null">აირჩიე</option>
+        <!-- <option [value]="null">აირჩიე</option> -->
         <option *ngFor="let p of partners" [value]="p.id">
           {{ p.item.name }}
         </option>
@@ -35,12 +35,21 @@
     <div class="wrap">
       <div class="decl-form">
         <label for="a">ფასი</label>
-        <input id="a" type="text" formControlName="paidAmount" />
+        <input
+          style="width: 190px"
+          id="a"
+          type="text"
+          formControlName="paidAmount"
+        />
       </div>
       <div class="decl-form">
         <label for="a">ვალუტა</label>
-        <select name="" id="a" formControlName="currencyId">
-          <option [value]="null">აირჩიე</option>
+        <select
+          style="width: 190px"
+          name=""
+          id="a"
+          formControlName="currencyId"
+        >
           <option *ngFor="let c of currencies" [value]="c.id">
             {{ c.value }}
           </option>
@@ -57,9 +66,12 @@
         formControlName="comment"
       ></textarea>
     </div>
-    <button [style.background-color]="success ? '#52b788' : ''">
-      {{ success ? "განახლებულია" : "განახლება" }}
+    <button
+      [style.background-color]="success ? '#52b788' : ''"
+      [ngStyle]="{ display: ifPaidAmount ? 'none' : '' }"
+    >
+      {{ success ? "განახლებული" : "განახლება" }}
+      <div class="lds-ring" *ngIf="isLoading"></div>
     </button>
-    <div class="loader" *ngIf="isLoading"></div>
   </form>
 </div>

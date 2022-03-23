@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-shops',
@@ -6,22 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shops.component.scss'],
 })
 export class ShopsComponent implements OnInit {
-  constructor() {}
+  constructor(private service: ServicesService) {}
 
-  ngOnInit(): void {}
+  brands: any = [];
 
-  brands = [
-    '/assets/zara-logo-1.png',
-    '/assets/LC_Waikiki_logo.png',
-    '/assets/DeFacto.jpg',
-    '/assets/colins.png',
-    '/assets/Koton.png',
-    '/assets/bershka.png',
-    '/assets/zara-logo-1.png',
-    '/assets/LC_Waikiki_logo.png',
-    '/assets/DeFacto.jpg',
-    '/assets/colins.png',
-    '/assets/Koton.png',
-    '/assets/bershka.png',
-  ];
+  isLoading = false;
+  lang: any;
+
+  ngOnInit(): void {
+    this.lang = localStorage.getItem('lang');
+    if (this.lang === undefined || this.lang === null) {
+      this.lang = 'AZE';
+      localStorage.setItem('lang', 'AZE');
+    }
+
+    this.getPartners();
+  }
+
+  getPartners() {
+    this.isLoading = true;
+    this.service.getPartners(this.lang).subscribe((res) => {
+      this.brands = res;
+      this.isLoading = false;
+    });
+  }
 }

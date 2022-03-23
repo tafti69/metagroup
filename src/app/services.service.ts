@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { SignInModel, SignUpModel } from './models/auth';
 import { CreateCitiesModel } from './models/cities';
 import { CreateCurrency } from './models/currency';
@@ -25,21 +24,36 @@ const httpOptions = {
 export class ServicesService {
   constructor(private http: HttpClient) {}
 
-  url = 'http://webapi.aicargo.site/api/';
+  url = 'https://webapi.aicargo.site/api/';
 
   createUser(model: SignUpModel) {
     const userUrl = this.url + 'Accounts/Create';
-    return this.http.post<SignUpModel>(userUrl, model, httpOptions);
+    return this.http.post<SignUpModel>(userUrl, model);
   }
 
   loginUser(model: SignInModel) {
     const userUrl = this.url + 'Accounts/SignIn';
-    return this.http.post<SignInModel>(userUrl, model, httpOptions);
+    localStorage.setItem('expiration', (Date.now() + 11 * 3600000).toString());
+    return this.http.post<SignInModel>(userUrl, model);
+  }
+
+  refreshToken() {
+    var model = new SignInModel();
+    model.email = localStorage.getItem('email');
+    model.password = localStorage.getItem('password');
+    const userUrl = this.url + 'Accounts/SignIn';
+    this.http.post<SignInModel>(userUrl, model).subscribe((x) => {
+      localStorage.setItem('token', x.token);
+      localStorage.setItem(
+        'expiration',
+        (Date.now() + 11 * 3600000).toString()
+      );
+    });
   }
 
   createPartner(model: CreatePartner) {
     const userUrl = this.url + 'Partners/CreatePartner';
-    return this.http.post<CreatePartner>(userUrl, model, httpOptions);
+    return this.http.post<CreatePartner>(userUrl, model);
   }
 
   getPartners(lang: string) {
@@ -94,9 +108,9 @@ export class ServicesService {
     const userUrl = this.url + 'Orders/GetAll';
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
-  getById(lang: string, id:any) {
+  getById(lang: string, id: any) {
     const httpOptionsLoc = httpOptions;
-    httpOptionsLoc.params = { lang: lang, id:id };
+    httpOptionsLoc.params = { lang: lang, id: id };
     const userUrl = this.url + 'Orders/GetById';
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
@@ -123,7 +137,6 @@ export class ServicesService {
     const userUrl = this.url + `Orders/GetFileName/${orderId}`;
     return this.http.get(userUrl);
   }
-  
 
   getDeliveryType(lang: string) {
     const httpOptionsLoc = httpOptions;

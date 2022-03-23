@@ -1,175 +1,225 @@
 <app-header></app-header>
 
-<form [formGroup]="form" (ngSubmit)="signUp()">
-  <div class="wrapper">
-    <div>
-      <label for="name">სახელი და გვარი ქართულად</label>
-      <input id="name" type="text" formControlName="firstNameAndLastNameKA" />
-      <div
-        *ngIf="
-          form.controls['firstNameAndLastNameKA'].invalid &&
-          (form.controls['firstNameAndLastNameKA'].dirty ||
-            form.controls['firstNameAndLastNameKA'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['firstNameAndLastNameKA'].errors.required"
+<div class="signup-wrapper">
+  <form [formGroup]="form" (ngSubmit)="signUp()">
+    <div class="wrapper">
+      <!-- <h3>რეგისტრაცია</h3> -->
+      <div>
+        <label>სახელი და გვარი ქართულად</label>
+        <input
+          type="text"
+          formControlName="firstNameAndLastNameKA"
+          pattern="[ა-ჰ ]*"
+        />
+        <span
+          *ngIf="
+            form.controls['firstNameAndLastNameKA'].invalid &&
+            (form.controls['firstNameAndLastNameKA'].dirty ||
+              form.controls['firstNameAndLastNameKA'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['firstNameAndLastNameKA'].errors.required"
+          >
+            This field is required
+          </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['firstNameAndLastNameKA'].errors?.pattern"
+          >
+            Name must be in Georgian
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">სახელი და გვარი ლატინურად</label>
-      <input id="name" type="text" formControlName="firstNameAndLastNameEN" />
-      <div
-        *ngIf="
-          form.controls['firstNameAndLastNameEN'].invalid &&
-          (form.controls['firstNameAndLastNameEN'].dirty ||
-            form.controls['firstNameAndLastNameEN'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['firstNameAndLastNameEN'].errors.required"
+      <div>
+        <label>სახელი და გვარი ლატინურად</label>
+        <input
+          type="text"
+          formControlName="firstNameAndLastNameEN"
+          pattern="[a-zA-Z ]*"
+        />
+        <span
+          *ngIf="
+            form.controls['firstNameAndLastNameEN'].invalid &&
+            (form.controls['firstNameAndLastNameEN'].dirty ||
+              form.controls['firstNameAndLastNameEN'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['firstNameAndLastNameEN'].errors?.required"
+          >
+            This field is required
+          </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['firstNameAndLastNameEN'].errors?.pattern"
+          >
+            Name must be in English
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">ტელეფონის ნომერი</label>
-      <input id="name" type="text" formControlName="phoneNumber" />
-      <div
-        *ngIf="
-          form.controls['phoneNumber'].invalid &&
-          (form.controls['phoneNumber'].dirty ||
-            form.controls['phoneNumber'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['phoneNumber'].errors.required"
+      <div>
+        <label>ტელეფონის ნომერი</label>
+        <input type="text" formControlName="phoneNumber" />
+        <span
+          *ngIf="
+            form.controls['phoneNumber'].invalid &&
+            (form.controls['phoneNumber'].dirty ||
+              form.controls['phoneNumber'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['phoneNumber'].errors.required"
+          >
+            This field is required
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">დამატებიტი ტელ. ნომერი (Optional)</label>
-      <input id="name" type="text" formControlName="additionalPhoneNumber" />
-    </div>
-    <div>
-      <label for="name">ელ-ფოსტა</label>
-      <input id="name" type="text" formControlName="email" />
-      <div
-        *ngIf="
-          form.controls['email'].invalid &&
-          (form.controls['email'].dirty || form.controls['email'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['email'].errors.required"
+      <div>
+        <label>დამატებიტი ტელ. ნომერი (Optional)</label>
+        <input type="text" formControlName="additionalPhoneNumber" />
+      </div>
+      <div>
+        <label>ელ-ფოსტა</label>
+        <input type="email" formControlName="email" />
+        <span
+          *ngIf="
+            form.controls['email'].invalid &&
+            (form.controls['email'].dirty || form.controls['email'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['email'].errors.required"
+          >
+            This field is required
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">პირადი ნომერი</label>
-      <input id="name" type="text" formControlName="personalID" />
-      <div
-        *ngIf="
-          form.controls['personalID'].invalid &&
-          (form.controls['personalID'].dirty ||
-            form.controls['personalID'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['personalID'].errors.required"
+      <div>
+        <label>პირადი ნომერი</label>
+        <input type="text" formControlName="personalID" />
+        <span
+          *ngIf="
+            form.controls['personalID'].invalid &&
+            (form.controls['personalID'].dirty ||
+              form.controls['personalID'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['personalID'].errors.required"
+          >
+            This field is required
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">პაროლი</label>
-      <input id="name" type="password" formControlName="password" />
-      <div
-        *ngIf="
-          form.controls['password'].invalid &&
-          (form.controls['password'].dirty || form.controls['password'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['password'].errors.required"
+      <div>
+        <label>პაროლი</label>
+        <input type="password" formControlName="password" />
+        <span
+          *ngIf="
+            form.controls['password'].invalid &&
+            (form.controls['password'].dirty ||
+              form.controls['password'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['password'].errors.required"
+          >
+            This field is required
+          </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['password'].errors?.minLength"
+          >
+            Password must be at least 8 characters long.
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">გაიმეორეთ პაროლი</label>
-      <input id="name" type="text" />
-    </div>
-    <div>
-      <label for="name">ქალაქი/რეგიონი</label>
-      <select name="" id="name" formControlName="region">
-        <option *ngFor="let item of cities" value="item">
-          {{ item.name_ka }}
-        </option>
-      </select>
-      <div
-        *ngIf="
-          form.controls['region'].invalid &&
-          (form.controls['region'].dirty || form.controls['region'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['region'].errors.required"
+      <div>
+        <label>გაიმეორეთ პაროლი</label>
+        <input type="password" formControlName="confirmPassword" />
+        <span
+          *ngIf="
+            form.controls['confirmPassword'].invalid &&
+            (form.controls['confirmPassword'].dirty ||
+              form.controls['confirmPassword'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['confirmPassword'].errors.required"
+          >
+            Confirm Password is required.
+          </small>
+          <small
+            style="color: red"
+            *ngIf="
+              form.controls['confirmPassword'].errors
+                ?.passwordMatchingValidatior
+            "
+          >
+            Password and Confirm Password must be match.
+          </small>
+        </span>
       </div>
-    </div>
-    <div>
-      <label for="name">მისამართი</label>
-      <input id="name" type="text" formControlName="address" />
-      <div
-        *ngIf="
-          form.controls['address'].invalid &&
-          (form.controls['address'].dirty || form.controls['address'].touched)
-        "
-      >
-        <small
-          style="color: red"
-          *ngIf="form.controls['address'].errors.required"
+      <div>
+        <label>ქალაქი/რეგიონი</label>
+        <select formControlName="region">
+          <option *ngFor="let item of cities" value="item">
+            {{ item.name_ka }}
+          </option>
+        </select>
+        <span
+          *ngIf="
+            form.controls['region'].invalid &&
+            (form.controls['region'].dirty || form.controls['region'].touched)
+          "
         >
-          This field is required
-        </small>
+          <small
+            style="color: red"
+            *ngIf="form.controls['region'].errors.required"
+          >
+            This field is required
+          </small>
+        </span>
+      </div>
+      <div>
+        <label>მისამართი</label>
+        <input type="text" formControlName="address" />
+        <span
+          *ngIf="
+            form.controls['address'].invalid &&
+            (form.controls['address'].dirty || form.controls['address'].touched)
+          "
+        >
+          <small
+            style="color: red"
+            *ngIf="form.controls['address'].errors.required"
+          >
+            This field is required
+          </small>
+        </span>
+      </div>
+      <div style="align-items: center">
+        <button type="submit">
+          რეგისტრაცია
+          <div style="margin-top: -2px" class="lds-ring" *ngIf="isLoading">
+            <div></div>
+          </div>
+        </button>
+        <span *ngIf="errorResponse">
+          <span class="errordiv">{{ errorMsg }}</span>
+        </span>
+        <span *ngIf="!form.valid">
+          <span style="font-size: 14px" class="errordiv">{{ errorMsg }}</span>
+        </span>
       </div>
     </div>
-    <div style="align-items: center">
-      <button type="submit">
-        რეგისტრაცია
-        <div class="lds-ring" *ngIf="isLoading">
-          <div></div>
-        </div>
-      </button>
-      <div *ngIf="errorResponse">
-        <div class="errordiv">{{ errorMsg }}</div>
-      </div>
-      <div *ngIf="!form.valid">
-        <div class="errordiv">{{ errorMsg }}</div>
-      </div>
-      <div *ngIf="success">
-        <div class="successdiv">You have successfuly created an account!</div>
-      </div>
-    </div>
-  </div>
-</form>
+  </form>
+</div>

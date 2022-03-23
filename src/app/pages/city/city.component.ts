@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateCitiesModel } from 'src/app/models/cities';
-import { ServicesService } from 'src/app/services.service';
+import { CreateCitiesModel } from 'app/models/cities';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-city',

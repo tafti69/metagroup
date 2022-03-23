@@ -4,14 +4,31 @@
   <div class="table-header">
     <h2>ჩამოსული</h2>
   </div>
-  <p-table [value]="arrived" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [sortOrder]="-1" responsiveLayout="scroll"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+  <p-table
+    [value]="arrived"
+    styleClass="p-datatable-gridlines"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [sortOrder]="-1"
+    responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="uniqueIdentifier"># <p-sortIcon field="uniqueIdentifier"></p-sortIcon></th>
-        <th pSortableColumn="trackingId">თრექინგი <p-sortIcon field="trackingId"></p-sortIcon></th>
-        <th pSortableColumn="height">წონა <p-sortIcon field="height"></p-sortIcon></th>
-        <th pSortableColumn="paidAmount">თანხა <p-sortIcon field="paidAmount"></p-sortIcon></th>
+        <th pSortableColumn="uniqueIdentifier">
+          # <p-sortIcon field="uniqueIdentifier"></p-sortIcon>
+        </th>
+        <th pSortableColumn="trackingId">
+          თრექინგი <p-sortIcon field="trackingId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="height">
+          წონა <p-sortIcon field="height"></p-sortIcon>
+        </th>
+        <th pSortableColumn="paidAmount">
+          თანხა <p-sortIcon field="paidAmount"></p-sortIcon>
+        </th>
         <th>მაღაზია</th>
         <th>ვალუტა</th>
         <th>გატანა</th>
@@ -26,31 +43,27 @@
         <td>{{ o.height }}</td>
         <td>{{ o.paidAmount }}</td>
         <td>
-          <select
-            *ngIf="o.declaration.partner"
-            style="width: 120px; height: 28px"
-            id="curier"
-            [(ngModel)]="o.declaration.partner.id"
+          <span *ngIf="o.declaration.partner">
+            {{ o.declaration.partner.item.name }}</span
           >
-            <option *ngFor="let p of partners" [value]="p.id">
-              {{ p.item.name }}
-            </option>
-          </select>
+        </td>
+        <td>
+          <span *ngIf="o.declaration.currency">{{
+            o.declaration.currency.value
+          }}</span>
         </td>
 
         <td>
           <select
-            style="width: 80px; height: 28px"
+            style="width: 120px; height: 28px"
             id="curier"
-            *ngIf="o.declaration.currency"
-            [(ngModel)]="o.declaration.currency.id"
+            *ngIf="o.deliveryType === null"
+            (change)="onUpdateDelivery($event, o.id)"
           >
-            <option *ngFor="let i of currencies" [value]="i.id">
-              {{ i.value }}
+            <option *ngFor="let i of deliveries" [value]="i.id">
+              {{ i.item.name }}
             </option>
           </select>
-        </td>
-        <td>
           <select
             style="width: 120px; height: 28px"
             [(ngModel)]="o.deliveryType.id"
@@ -58,6 +71,7 @@
             *ngIf="o.deliveryType"
             (change)="onUpdateDelivery($event, o.id)"
           >
+            <option [value]="null">აირჩიე</option>
             <option *ngFor="let i of deliveries" [value]="i.id">
               {{ i.item.name }}
             </option>
@@ -67,9 +81,7 @@
           <button
             [routerLink]="['/declaration', o.id]"
             class="decl"
-            [style.background-color]="
-              o.declaration.paidAmount ? '#52b788' : ''
-            "
+            [style.background-color]="o.declaration.paidAmount ? '#52b788' : ''"
           >
             {{ o.declaration.paidAmount ? "დეკლარირებული" : "დეკლარირება" }}
           </button>
@@ -86,5 +98,5 @@
       </tr>
     </ng-template>
   </p-table>
-  <div class="loader" *ngIf="isLoading"></div>
+  <div class="l" *ngIf="isLoading">Loading...</div>
 </div>

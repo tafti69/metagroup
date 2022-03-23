@@ -1,9 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Emitters } from 'src/app/models/auth';
-import { Declaration } from 'src/app/models/orders';
-import { ServicesService } from 'src/app/services.service';
+import { Emitters } from 'app/models/auth';
+import { Declaration } from 'app/models/orders';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-declaration',
@@ -21,12 +21,12 @@ export class DeclarationComponent implements OnInit {
   trackId: any;
   lang: any;
   isLoading = false;
-    success = false;
+  success = false;
+  ifPaidAmount;
 
   currencies: any = [];
   partners: any = [];
   products: any = [];
-
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -88,7 +88,7 @@ export class DeclarationComponent implements OnInit {
       console.log(res);
       this.isLoading = false;
       this.success = true;
-      Emitters.successDecl.emit(true)
+      Emitters.successDecl.emit(true);
     });
   }
 
@@ -96,6 +96,7 @@ export class DeclarationComponent implements OnInit {
     this.isLoading = true;
     this.service.getDeclaration(this.lang, this.orderId).subscribe((res) => {
       this.trackId = res.trackingId;
+      this.ifPaidAmount = res.paidAmount;
       console.log(res);
       this.isLoading = false;
       this.form.patchValue({

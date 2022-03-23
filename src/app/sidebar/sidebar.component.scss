@@ -57,3 +57,21 @@
   color: white;
   margin-top: 3rem;
 }
+
+.mobile-header {
+  padding: 0 12px;
+  width: 100%;
+  z-index: 14;
+  background: #fff;
+  display: none;
+  @media (max-width: 940px) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .burger {
+    z-index: 15;
+    margin: 10px;
+  }
+}

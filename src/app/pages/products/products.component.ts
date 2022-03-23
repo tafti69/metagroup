@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateProductModel } from 'src/app/models/product';
-import { ServicesService } from 'src/app/services.service';
+import { CreateProductModel } from 'app/models/product';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-products',
@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
     model.kaName = form.kaProduct;
     model.ruName = form.ruProduct;
 
-    this.isLoading = true
+    this.isLoading = true;
     this.service.createProduct(model).subscribe((res) => {
       this.isLoading = false;
       window.location.reload();
@@ -51,7 +51,6 @@ export class ProductsComponent implements OnInit {
   getProduct() {
     this.service.getProduct(this.lang).subscribe((res) => {
       this.products = res;
-      
     });
   }
 }

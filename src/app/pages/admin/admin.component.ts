@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateOrder } from 'src/app/models/orders';
-import { Statuses, UpdateStatuses } from 'src/app/models/status';
-import { ServicesService } from 'src/app/services.service';
-import { Emitters } from 'src/app/models/auth';
+import { CreateOrder } from 'app/models/orders';
+import { Statuses, UpdateStatuses } from 'app/models/status';
+import { ServicesService } from 'app/services.service';
+import { Emitters } from 'app/models/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -12,12 +13,10 @@ import { Emitters } from 'src/app/models/auth';
 })
 export class AdminComponent implements OnInit {
   success: boolean = false;
-  constructor(
-    private service: ServicesService,
-  ) {
-    Emitters.successDecl.subscribe(data => {
+  constructor(private service: ServicesService, private snackBar: MatSnackBar) {
+    Emitters.successDecl.subscribe((data) => {
       this.success = data;
-    })
+    });
   }
 
   form: FormGroup;
@@ -25,28 +24,6 @@ export class AdminComponent implements OnInit {
   first = 0;
 
   rows = 10;
-
- // totalRecords = 0;
-
-//   next() {
-//     this.first = this.first + this.rows;
-// }
-
-// prev() {
-//     this.first = this.first - this.rows;
-// }
-
-// reset() {
-//     this.first = 0;
-// }
-
-// isLastPage(): boolean {
-//     return this.orders ? this.first === (this.orders.length - this.rows): true;
-// }
-
-// isFirstPage(): boolean {
-//     return this.orders ? this.first === 0 : true;
-// }
 
   orders: any = [];
   partners: any = [];
@@ -59,6 +36,7 @@ export class AdminComponent implements OnInit {
 
   lang: any;
   isLoading = false;
+  isLoading2 = false;
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -77,7 +55,6 @@ export class AdminComponent implements OnInit {
     this.getOrders();
     this.getPartners();
     this.getCurrencies();
-
   }
 
   getCurrencies() {
@@ -94,7 +71,6 @@ export class AdminComponent implements OnInit {
 
   getDeliveryTypes() {
     this.service.getDeliveryType(this.lang).subscribe((res) => {
-      console.log(res);
       this.deliveries = res;
     });
   }
@@ -106,7 +82,10 @@ export class AdminComponent implements OnInit {
     model.id = form.personalId;
     model.trackingId = form.trackingId;
 
+    this.isLoading2 = true;
+
     this.service.createOrder(model).subscribe((res) => {
+      this.isLoading2 = false;
       window.location.reload();
     });
   }
@@ -114,9 +93,7 @@ export class AdminComponent implements OnInit {
   getOrders() {
     this.isLoading = true;
     this.service.getOrder(this.lang).subscribe((res) => {
-      console.log(res);
       this.orders = res;
-    //  this.totalRecords = res.length;
       this.isLoading = false;
     });
   }
@@ -134,18 +111,11 @@ export class AdminComponent implements OnInit {
     model.orderId = id;
     model.statusId = this.selectedStatusId;
 
-    console.log(model);
-
-      // this.snackbar.open('Status Updated', '', {
-      //   duration: 1000,
-      // });
-    
-    this.service.updateStatus(model).subscribe((res) => {
-      console.log(res);
-      window.location.reload()
+    this.snackBar.open('Status Updated', '', {
+      duration: 2000,
     });
-    
 
+    this.service.updateStatus(model).subscribe((res) => {});
   }
 
   onUpdateDelivery(e: Event, id: string) {
@@ -156,11 +126,10 @@ export class AdminComponent implements OnInit {
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
 
-    console.log(model);
-
-    this.service.updateDeliveryType(model).subscribe((res) => {
-      console.log(res);
-     // this.snackbar.open('Delivery Type Updated');
+    this.snackBar.open('Delivery Updated', '', {
+      duration: 2000,
     });
+
+    this.service.updateDeliveryType(model).subscribe((res) => {});
   }
 }

@@ -7,38 +7,17 @@ div {
 form {
   display: flex;
   align-items: flex-end;
-  background: rgb(255, 255, 255);
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
-button {
-  margin-top: 10px;
-  margin-left: 10px;
-}
-input {
-  width: 400px;
-  height: 36px;
-  border-radius: 6px;
-  padding-left: 10px;
-  margin-top: 6px;
-  border: 1px solid #e7e7e7;
-  @media (max-width: 1440px) {
-    width: 360px;
-  }
-  @media (max-width: 1000px) {
-    width: 300px;
-  }
-}
-
+input,
 select {
   width: 400px;
   height: 36px;
   border-radius: 6px;
   padding-left: 10px;
-  border: 1px solid #e7e7e7;
   margin-top: 6px;
+  border: 1px solid #e7e7e7;
   @media (max-width: 1440px) {
     width: 360px;
   }

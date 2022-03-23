@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignUpModel } from 'src/app/models/auth';
-import { ServicesService } from 'src/app/services.service';
+import { SignInModel, SignUpModel } from 'app/models/auth';
+import { passwordMatchingValidatior } from 'app/models/confirmed.validator';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-signup',
@@ -292,17 +293,21 @@ export class SignupComponent implements OnInit {
   errorResponse = false;
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl('', Validators.required),
-      firstNameAndLastNameEN: new FormControl('', Validators.required),
-      firstNameAndLastNameKA: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', Validators.required),
-      additionalPhoneNumber: new FormControl(''),
-      personalID: new FormControl('', Validators.required),
-      region: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
+    this.form = new FormGroup(
+      {
+        email: new FormControl('', Validators.required),
+        firstNameAndLastNameEN: new FormControl('', Validators.required),
+        firstNameAndLastNameKA: new FormControl('', Validators.required),
+        phoneNumber: new FormControl('', Validators.required),
+        additionalPhoneNumber: new FormControl(''),
+        personalID: new FormControl('', Validators.required),
+        region: new FormControl('', Validators.required),
+        address: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required),
+        confirmPassword: new FormControl('', Validators.required),
+      },
+      { validators: passwordMatchingValidatior }
+    );
   }
 
   signUp() {
@@ -324,13 +329,26 @@ export class SignupComponent implements OnInit {
 
       this.userService.createUser(model).subscribe(
         (value) => {
-          console.log(value);
-          this.success = true;
           this.isLoading = false;
-          // localStorage.setItem('email', this.form.value.username);
-          // localStorage.setItem('password', this.form.value.password);
-          // localStorage.setItem('token', value.token);
-          this.router.navigate(['/dashboard']);
+          let model2 = new SignInModel();
+          model2.email = this.form.value.email;
+          model2.password = this.form.value.password;
+          this.isLoading = true;
+
+          this.userService.loginUser(model2).subscribe((res) => {
+            this.isLoading = false;
+            localStorage.setItem('id', res.id);
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('name', res.name);
+
+            if (res.isAdmin) {
+              localStorage.setItem('userType', 'admin');
+              this.router.navigate(['/admin']);
+            } else {
+              localStorage.setItem('userType', 'user');
+              this.router.navigate(['/dashboard']);
+            }
+          });
         },
         (errorRes) => {
           this.isLoading = false;
@@ -342,7 +360,7 @@ export class SignupComponent implements OnInit {
         }
       );
     } else {
-      this.errorMsg = 'Please fill in the forms!';
+      this.errorMsg = 'There is an error. Fill in the forms correctly!';
       return;
     }
   }

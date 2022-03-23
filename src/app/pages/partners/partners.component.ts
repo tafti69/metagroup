@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { CreatePartner } from 'src/app/models/shops';
-import { ServicesService } from 'src/app/services.service';
+import { CreatePartner } from 'app/models/shops';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-partners',

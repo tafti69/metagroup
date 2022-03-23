@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UpdateStatuses } from 'src/app/models/status';
-import { ServicesService } from 'src/app/services.service';
+import { UpdateStatuses } from 'app/models/status';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-issued',
   templateUrl: './issued.component.html',
-  styleUrls: ['./issued.component.scss']
+  styleUrls: ['./issued.component.scss'],
 })
 export class IssuedComponent implements OnInit {
-
   constructor(private service: ServicesService) {}
 
   lang: any;
@@ -20,7 +19,6 @@ export class IssuedComponent implements OnInit {
   statuses: any = [];
   deliveries: any = [];
   currencies: any = [];
-  
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -31,7 +29,6 @@ export class IssuedComponent implements OnInit {
 
     this.userId = localStorage.getItem('id');
     console.log(this.userId);
-    
 
     this.getFourth();
     this.getDeliveryTypes();
@@ -56,15 +53,13 @@ export class IssuedComponent implements OnInit {
   }
 
   getFourth() {
-    this.isLoading = true
+    this.isLoading = true;
     this.service.getMyFourth(this.lang, this.userId).subscribe((res) => {
       console.log(res);
       this.issued = res;
       this.isLoading = false;
     });
   }
-
-
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {

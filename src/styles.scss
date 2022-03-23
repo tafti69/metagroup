@@ -1,24 +1,12 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @import "~@angular/material/theming";
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $ai-cargo-primary: mat-palette($mat-indigo);
 $ai-cargo-accent: mat-palette($mat-pink, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
 $ai-cargo-warn: mat-palette($mat-red);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
 $ai-cargo-theme: mat-light-theme(
   (
     color: (
@@ -29,9 +17,6 @@ $ai-cargo-theme: mat-light-theme(
   )
 );
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include angular-material-theme($ai-cargo-theme);
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
@@ -81,52 +66,6 @@ button {
   align-items: center;
 }
 
-.loader,
-.loader:after {
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.loader {
-  margin: 60px auto;
-  font-size: 10px;
-  position: relative;
-  text-indent: -9999em;
-  border-top: 1.1em solid rgba(255, 255, 255, 0.356);
-  border-right: 1.1em solid rgba(255, 255, 255, 0.438);
-  border-bottom: 1.1em solid rgba(255, 255, 255, 0.322);
-  border-left: 1.1em solid #fe8a00;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: load8 1.1s infinite linear;
-  animation: load8 1.1s infinite linear;
-}
-@-webkit-keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
 .line {
   width: 40px;
   height: 3px;
@@ -140,15 +79,20 @@ button {
   width: 80%;
   @media (max-width: 640px) {
     width: 96%;
+    margin: 4rem 0.5rem;
   }
   h2 {
     margin: 2rem auto;
     font-size: 36px;
+    @media (max-width: 640px) {
+      font-size: 28px;
+    }
   }
   .brands {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     grid-gap: 20px;
+    justify-items: center;
     @media (max-width: 1440px) {
       grid-gap: 10px;
     }
@@ -159,7 +103,8 @@ button {
     @media (max-width: 640px) {
       display: grid;
       grid-template-columns: auto auto;
-      width: 96%;
+      width: 90%;
+      margin: 0 auto;
     }
     .box {
       width: 180px;
@@ -189,24 +134,23 @@ button {
 }
 
 .table-wrapper {
-  margin-left: 240px;
+  margin-left: 220px;
   margin-top: 60px;
   width: 80%;
   background: #fff;
   border-radius: 12px;
   padding: 16px;
   box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  @media (max-width: 640px) {
+    margin-left: 20px;
+    width: 96%;
+  }
   .table-header {
     margin-bottom: 10px;
     h2 {
       margin: 0;
     }
   }
-}
-
-.mat-tab-group.mat-primary .mat-ink-bar,
-.mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #fe8a00;
 }
 
 .button-wrapper {
@@ -220,7 +164,7 @@ button {
   position: relative;
   z-index: 0;
   display: inline-block;
-  width: 200px;
+  width: 400px;
   border: 2px dotted #fe8a00;
   border-radius: 6px;
   cursor: pointer;
@@ -228,6 +172,12 @@ button {
   padding: 10px 0;
   text-transform: uppercase;
   font-size: 16px;
+  @media (max-width: 1440px) {
+    width: 360px;
+  }
+  @media (max-width: 1000px) {
+    width: 300px;
+  }
 }
 
 #upload {
@@ -235,7 +185,7 @@ button {
   position: absolute;
   z-index: 1;
   width: 100%;
-  height: 50px;
+  height: 36px;
   top: 0;
   left: 0;
   opacity: 0;
@@ -243,28 +193,16 @@ button {
 }
 
 .admin-dashboard {
-  margin-left: 240px;
+  margin-left: 220px;
   margin-top: 60px;
-  // background: #fff;
-  height: 100%;
+  background: #fff;
   border-radius: 16px;
   width: 80%;
   padding: 16px;
 }
 
+select,
 input {
-  width: 400px;
-  height: 36px;
-  border-radius: 6px;
-  padding-left: 10px;
-  margin-top: 6px;
-  border: 1px solid #e7e7e7;
-  @media (max-width: 1000px) {
-    width: 300px;
-  }
-}
-
-select {
   width: 400px;
   height: 36px;
   border-radius: 6px;
@@ -315,45 +253,15 @@ select {
   }
 }
 
-.p-paginator {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-}
-
 .p-datatable-wrapper {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-// table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   border-radius: 9px;
-//   margin-top: 10px;
-//   font-size: 14px;
-//   thead {
-//     td {
-//       color: #484c5f;
-//       font-weight: 600;
-//     }
-//   }
-// }
-
-// th {
-//   color: #d5dde5;
-//   text-align: left;
-//   vertical-align: middle;
-// }
-// tr {
-//   border: 1px solid #8b8ea0;
-//   color: #666b85;
-//   padding: 24px;
-// }
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.8rem;
+}
 
 td {
-  // padding: 8px;
-  // border-right: 1px solid #8b8ea0;
   #curier {
     border-radius: 4px;
     padding: 4px 0;
@@ -375,6 +283,11 @@ td {
     background: #fe8a00;
   }
   .invoice {
-    background: #e94749;
+    background: #ff4144;
   }
+}
+
+.l {
+  text-align: center;
+  margin-top: 15px;
 }

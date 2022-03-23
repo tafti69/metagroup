@@ -4,35 +4,31 @@
   <div class="wrapper">
     <h3>ავტორიზაცია</h3>
     <div>
-      <label for="name">ელ-ფოსტა</label>
-      <input id="name" type="text" formControlName="email" />
-      <!-- <div
-        [hidden]="!form.controls['email'].hasError('invalid')"
-        class="alert alert-danger"
-      >
+      <label>ელ-ფოსტა</label>
+      <input type="text" formControlName="email" />
+      <span *ngIf="form.get('email').hasError('invalid')">
         Invalid E-mail. Try again!
-      </div> -->
+      </span>
     </div>
     <div>
-      <label for="name">პაროლი</label>
-      <input id="name" type="password" formControlName="password" />
-      <!-- <div
-        [hidden]="form.controls['password'].hasError('invalid')"
-        class="alert alert-danger"
-      >
+      <label>პაროლი</label>
+      <input type="password" formControlName="password" />
+      <span *ngIf="form.get('password').hasError('invalid')">
         Invalid password. Try again!
-      </div> -->
-      <span>დაგავიწყდა პაროლი?</span>
+      </span>
+      <!-- <span>დაგავიწყდა პაროლი?</span> -->
     </div>
     <button>
       შესვლა
-      <div class="lds-ring" *ngIf="isLoading"><div></div></div>
+      <div style="margin-top: -2px" class="lds-ring" *ngIf="isLoading">
+        <div></div>
+      </div>
     </button>
-    <!-- <div style="color: red; margin-top: 10px" *ngIf="!form.valid">
+    <span *ngIf="!form.valid">
       {{ err }}
-    </div> -->
-    <div style="color: red; margin-top: 10px" *ngIf="errorResponse">
+    </span>
+    <span *ngIf="errorResponse">
       {{ err }}
-    </div>
+    </span>
   </div>
 </form>

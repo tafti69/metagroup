@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UpdateStatuses } from 'src/app/models/status';
-import { ServicesService } from 'src/app/services.service';
+import { UpdateStatuses } from 'app/models/status';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-chamosuli',
   templateUrl: './chamosuli.component.html',
-  styleUrls: ['./chamosuli.component.scss']
+  styleUrls: ['./chamosuli.component.scss'],
 })
 export class ChamosuliComponent implements OnInit {
-
   constructor(private service: ServicesService) {}
 
   lang: any;
@@ -20,7 +19,6 @@ export class ChamosuliComponent implements OnInit {
   statuses: any = [];
   deliveries: any = [];
   currencies: any = [];
-  
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -31,7 +29,6 @@ export class ChamosuliComponent implements OnInit {
 
     this.userId = localStorage.getItem('id');
     console.log(this.userId);
-    
 
     this.getThird();
     this.getDeliveryTypes();
@@ -56,15 +53,13 @@ export class ChamosuliComponent implements OnInit {
   }
 
   getThird() {
-    this.isLoading = true
+    this.isLoading = true;
     this.service.getMyThird(this.lang, this.userId).subscribe((res) => {
       console.log(res);
       this.arrived = res;
       this.isLoading = false;
     });
   }
-
-
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {

@@ -6,15 +6,24 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ServicesService } from './services.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private service: ServicesService) {}
 
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    var time = parseInt(localStorage.getItem('expiration'));
+
+    if (time < Date.now()) {
+      console.log('refreshed');
+
+      this.service.refreshToken();
+    }
+
     req = req.clone({
       setHeaders: {
         'Content-Type': 'application/json; charset=utf-8',

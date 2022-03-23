@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   constructor(private facebookService: FacebookService) {}
 
   ngOnInit(): void {
-    // this.initFacebookService();
+    //  this.initFacebookService();
   }
 
   private initFacebookService(): void {

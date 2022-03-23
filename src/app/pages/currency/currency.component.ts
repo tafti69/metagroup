@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateCurrency } from 'src/app/models/currency';
-import { ServicesService } from 'src/app/services.service';
+import { CreateCurrency } from 'app/models/currency';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-currency',

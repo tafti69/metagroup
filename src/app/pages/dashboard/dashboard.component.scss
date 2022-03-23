@@ -26,7 +26,7 @@ header {
 }
 
 .dashboard-wrapper {
-  margin-left: 240px;
+  margin-left: 220px;
   margin-top: 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -37,6 +37,10 @@ header {
     width: 70%;
     display: grid;
     grid-template-columns: 1fr;
+  }
+  @media (max-width: 640px) {
+    margin-left: 20px;
+    width: 98%;
   }
 }
 
@@ -66,10 +70,10 @@ header {
 }
 
 .account-details-wrapper {
-  margin-left: 240px;
+  margin-left: 220px;
   margin-top: 4rem;
   margin-bottom: 8rem;
-  width: 68%;
+  width: 76%;
   padding: 22px;
   background: #fff;
   display: flex;
@@ -78,6 +82,10 @@ header {
   justify-content: center;
   box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   border-radius: 8px;
+  @media (max-width: 640px) {
+    margin-left: 20px;
+    width: 94%;
+  }
   .row {
     width: 100%;
     display: flex;
