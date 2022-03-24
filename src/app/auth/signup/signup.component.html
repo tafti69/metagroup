@@ -62,7 +62,7 @@
       </div>
       <div>
         <label>ტელეფონის ნომერი</label>
-        <input type="text" formControlName="phoneNumber" />
+        <input type="number" formControlName="phoneNumber" />
         <span
           *ngIf="
             form.controls['phoneNumber'].invalid &&
@@ -80,7 +80,7 @@
       </div>
       <div>
         <label>დამატებიტი ტელ. ნომერი (Optional)</label>
-        <input type="text" formControlName="additionalPhoneNumber" />
+        <input type="number" formControlName="additionalPhoneNumber" />
       </div>
       <div>
         <label>ელ-ფოსტა</label>
@@ -133,18 +133,18 @@
           >
             This field is required
           </small>
-          <small
+          <!-- <small
             style="color: red"
             *ngIf="form.controls['password'].errors?.minLength"
           >
             Password must be at least 8 characters long.
-          </small>
+          </small> -->
         </span>
       </div>
       <div>
         <label>გაიმეორეთ პაროლი</label>
         <input type="password" formControlName="confirmPassword" />
-        <span
+        <!-- <span
           *ngIf="
             form.controls['confirmPassword'].invalid &&
             (form.controls['confirmPassword'].dirty ||
@@ -155,18 +155,18 @@
             style="color: red"
             *ngIf="form.controls['confirmPassword'].errors.required"
           >
-            Confirm Password is required.
+          This field is required
           </small>
+
+        </span> -->
+        
           <small
-            style="color: red"
-            *ngIf="
-              form.controls['confirmPassword'].errors
-                ?.passwordMatchingValidatior
-            "
-          >
-            Password and Confirm Password must be match.
-          </small>
-        </span>
+          style="color: red"
+          *ngIf="form.hasError('notmatched')"
+        >
+          Passwords must match
+        </small>
+        
       </div>
       <div>
         <label>ქალაქი/რეგიონი</label>

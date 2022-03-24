@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
       { header: 'სახელი / Name / Ad:', field: this.name },
       { header: 'გვარი / Surname / Soyad:', field: 'Berishvili' },
       { header: 'ტელეფონი / Telephone / Telefon:', field: '05523917530' },
-      { header: 'პროვინცია / Province / İl:', field: 'Istambul' },
+      { header: 'პროვინცია / Province / İl:', field: 'Istanbul' },
       { header: 'რაიონი / District / lice:', field: 'Kadikoy' },
       { header: 'სამეზობლო / Neighborhood / mahalle:', field: 'Osmanaga Mah' },
       {

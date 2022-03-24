@@ -310,6 +310,10 @@ export class SignupComponent implements OnInit {
     );
   }
 
+  // get f(){
+  //   return this.form.controls;
+  // }
+
   signUp() {
     const form = this.form.value;
     if (this.form.valid) {
