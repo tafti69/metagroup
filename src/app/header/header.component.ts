@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(public translate: TranslateService) {
+    // translate.addLangs(['ru', 'ka', 'az']);
+  }
 
   show = false;
 
   lang: any;
+
+  changeLanguage(value: string) {
+    localStorage.setItem('lang', value);
+    this.translate.use(value);
+  }
+
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -48,6 +57,12 @@ export class HeaderComponent implements OnInit {
     for (let but of this.langButtons) {
       but.isClicked = false;
     }
+
+    localStorage.setItem('lang', button);
+    this.translate.use(button);
+
+    console.log(button);
+    
 
     button.isClicked = true;
     if (this.langButtons[0].isClicked) {

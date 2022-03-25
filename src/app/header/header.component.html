@@ -88,14 +88,15 @@
     </div>
     <div class="btns">
       <div style="display: flex; margin: 1rem 0">
-        <button [routerLink]="['/signin']" class="sign-in">Giriş yap</button>
-        <button [routerLink]="['/signup']" class="sign-up">Üye ol</button>
+        <button [routerLink]="['/signin']" class="sign-in">{{ 'Daxil olun' | translate}}</button>
+        <button [routerLink]="['/signup']" class="sign-up">{{ 'Qeydiyyat' | translate}}</button>
       </div>
       <div style="display: flex">
         <div
           *ngFor="let l of langButtons"
           [ngClass]="{ active: l.isClicked }"
           (click)="setActive(l)"
+          
           class="lang-wrap active"
         >
           <img src="{{ l.image }}" alt="" />

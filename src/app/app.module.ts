@@ -20,7 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
 import { FacebookModule } from 'ngx-facebook';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PartnersComponent } from './pages/partners/partners.component';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
@@ -44,6 +44,13 @@ import { ChamosuliComponent } from './pages/chamosuli/chamosuli.component';
 import { IssuedComponent } from './pages/issued/issued.component';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -87,6 +94,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ButtonModule,
     BrowserAnimationsModule,
     FacebookModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     AuthGuard,
