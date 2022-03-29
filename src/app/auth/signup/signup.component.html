@@ -101,7 +101,7 @@
       </div>
       <div>
         <label>პირადი ნომერი</label>
-        <input type="text" formControlName="personalID" />
+        <input type="number" formControlName="personalID" />
         <span
           *ngIf="
             form.controls['personalID'].invalid &&
@@ -171,6 +171,7 @@
       <div>
         <label>ქალაქი/რეგიონი</label>
         <select formControlName="region">
+          <option value="">აირჩიე</option>
           <option *ngFor="let item of cities" value="item">
             {{ item.name_ka }}
           </option>

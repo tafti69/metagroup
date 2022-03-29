@@ -47,6 +47,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LayoutModule } from '@angular/cdk/layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTableModule,
     TableModule,
     ButtonModule,
+    LayoutModule,
     BrowserAnimationsModule,
     FacebookModule.forRoot(),
     TranslateModule.forRoot({

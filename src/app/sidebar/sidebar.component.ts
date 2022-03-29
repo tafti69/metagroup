@@ -1,21 +1,29 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Emitters } from '../models/auth';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  host: {
+    "(window:click)": "onClick()"
+  }
 })
 export class SidebarComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private responsive: BreakpointObserver) {}
 
   isAdmin: boolean = false;
   show: boolean = true;
   name: string;
 
-  closeSidebar() {
+  closeSidebar($event) {
+    $event.stopPropagation();
     this.show = !this.show;
+  }
+
+  onClick() {
+    this.show = false;
   }
 
   logout() {
@@ -24,9 +32,21 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.name = localStorage.getItem('name');
     let user = localStorage.getItem('userType');
 
     this.isAdmin = user === 'admin' ? true : false;
+
+    console.log('XSmall ' + Breakpoints.XSmall);
+
+    this.responsive.observe(Breakpoints.XSmall)
+    .subscribe(result => {
+      
+      if (result.matches) {
+        console.log("screens matches HandsetLandscape");
+      }
+
+});
   }
 }
