@@ -1,51 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>AiCargo</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/logo.svg">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script type=”text/javascript” src=”https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
-</head>
-<body>
-  <app-root> <style>
-  app-root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-size: 2.5em;
-  }
-  body {
-    background: #fff;
-    margin: 0;
-    padding: 0;
-  }
+  <head>
+    <meta charset="utf-8" />
+    <title>AiCargo</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.svg" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- <script type=”text/javascript” src=”https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script> -->
+  </head>
+  <body>
+    <app-root>
+      <style>
+        app-root {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          font-size: 2.5em;
+        }
+        body {
+          background: #fff;
+          margin: 0;
+          padding: 0;
+        }
 
-  @keyframes dots {
-    50% {
-      transform: translateY(-.4rem);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
+        @keyframes dots {
+          50% {
+            transform: translateY(-0.4rem);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
 
-  .d {
-    animation: dots 1.5s ease-out infinite;
-  }
-  .d-2 {
-    animation-delay: .5s;
-  }
-  .d-3 {
-    animation-delay: 1s;
-  }
-  </style>
+        .d {
+          animation: dots 1.5s ease-out infinite;
+        }
+        .d-2 {
+          animation-delay: 0.5s;
+        }
+        .d-3 {
+          animation-delay: 1s;
+        }
+      </style>
 
-  <img src="assets/logo.svg" alt=""><span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span></app-root>
-</body>
+      <img src="assets/logo.svg" alt="" /><span class="d">.</span
+      ><span class="d d-2">.</span><span class="d d-3">.</span></app-root
+    >
+  </body>
 </html>

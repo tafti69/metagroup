@@ -8,18 +8,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
   constructor(public translate: TranslateService) {
-    // translate.addLangs(['ru', 'ka', 'az']);
+    translate.addLangs(['RU', 'KA', 'AZE']);
   }
 
   show = false;
 
   lang: any;
-
-  changeLanguage(value: string) {
-    localStorage.setItem('lang', value);
-    this.translate.use(value);
-  }
-
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -58,20 +52,18 @@ export class HeaderComponent implements OnInit {
       but.isClicked = false;
     }
 
-    localStorage.setItem('lang', button);
-    this.translate.use(button);
-
-    console.log(button);
-    
-
     button.isClicked = true;
     if (this.langButtons[0].isClicked) {
       localStorage.setItem('lang', 'AZE');
+      this.translate.use('AZE');
     } else if (this.langButtons[1].isClicked) {
       localStorage.setItem('lang', 'KA');
+      this.translate.use('KA');
     } else {
       localStorage.setItem('lang', 'RU');
+      this.translate.use('RU');
     }
-    window.location.reload();
+    console.log(button);
+    // window.location.reload();
   }
 }

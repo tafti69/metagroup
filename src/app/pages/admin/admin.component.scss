@@ -4,6 +4,10 @@ div {
   margin-top: 12px;
 }
 
+h2 {
+  margin: 0;
+}
+
 form {
   display: flex;
   align-items: flex-end;
@@ -24,4 +28,9 @@ select {
   @media (max-width: 1000px) {
     width: 300px;
   }
+}
+
+.delete {
+  background: #363636;
+  height: 30px;
 }

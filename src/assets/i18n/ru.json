@@ -1,4 +1,8 @@
 {
-    "Daxil olun": "Вход",
-    "Qeydiyyat": "Регистрация"
+  "Daxil olun": "Вход",
+  "Qeydiyyat": "Регистрация",
+  "signout": "Выйти",
+  "signin": "Войти",
+  "email": "Эл. почта",
+  "password": "Пароль"
 }

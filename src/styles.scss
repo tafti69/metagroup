@@ -136,14 +136,14 @@ button {
 .table-wrapper {
   margin-left: 220px;
   margin-top: 60px;
-  width: 80%;
   background: #fff;
   border-radius: 12px;
   padding: 16px;
+  margin-right: 16px;
   box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   @media (max-width: 640px) {
     margin-left: 20px;
-    width: 96%;
+    margin-right: 8px;
   }
   .table-header {
     margin-bottom: 10px;
@@ -197,8 +197,8 @@ button {
   margin-top: 60px;
   background: #fff;
   border-radius: 16px;
-  width: 80%;
   padding: 16px;
+  margin-right: 16px;
 }
 
 select,

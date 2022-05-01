@@ -4,14 +4,14 @@
   <div class="wrapper">
     <h3>ავტორიზაცია</h3>
     <div>
-      <label>ელ-ფოსტა</label>
+      <label>{{ "email" | translate }}</label>
       <input type="text" formControlName="email" />
       <span *ngIf="form.get('email').hasError('invalid')">
         Invalid E-mail. Try again!
       </span>
     </div>
     <div>
-      <label>პაროლი</label>
+      <label>{{ "password" | translate }}</label>
       <input type="password" formControlName="password" />
       <span *ngIf="form.get('password').hasError('invalid')">
         Invalid password. Try again!
@@ -19,7 +19,7 @@
       <!-- <span>დაგავიწყდა პაროლი?</span> -->
     </div>
     <button>
-      შესვლა
+      {{ "Daxil olun" | translate }}
       <div style="margin-top: -2px" class="lds-ring" *ngIf="isLoading">
         <div></div>
       </div>

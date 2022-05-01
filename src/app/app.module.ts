@@ -20,7 +20,11 @@ import { FooterComponent } from './footer/footer.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
 import { FacebookModule } from 'ngx-facebook';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { PartnersComponent } from './pages/partners/partners.component';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
@@ -45,8 +49,8 @@ import { IssuedComponent } from './pages/issued/issued.component';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LayoutModule } from '@angular/cdk/layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,14 +99,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonModule,
     LayoutModule,
     BrowserAnimationsModule,
-    FacebookModule.forRoot(),
+    // FacebookModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  })
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     AuthGuard,

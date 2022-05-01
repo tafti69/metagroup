@@ -24,7 +24,7 @@ const httpOptions = {
 export class ServicesService {
   constructor(private http: HttpClient) {}
 
-  url = 'https://webapi.aicargo.site/api/';
+  url = 'http://maestro2033-002-site1.ftempurl.com/api/';
 
   createUser(model: SignUpModel) {
     const userUrl = this.url + 'Accounts/Create';
@@ -126,6 +126,11 @@ export class ServicesService {
     return this.http.post<AddFileInvoice>(userUrl, model);
   }
 
+  DeleteOrder(orderId: any) {
+    const userUrl = this.url + `Orders/Delete/${orderId}`;
+    return this.http.delete(userUrl);
+  }
+
   downloadInvoiceFile(orderId: any) {
     const userUrl = this.url + `Orders/DownloadFile/${orderId}`;
     return this.http.get(userUrl, {
@@ -136,6 +141,11 @@ export class ServicesService {
   getFileName(orderId: any) {
     const userUrl = this.url + `Orders/GetFileName/${orderId}`;
     return this.http.get(userUrl);
+  }
+
+  getUserInfo(userId: any) {
+    const userUrl = this.url + `Accounts/GetUserInfo/${userId}`;
+    return this.http.get<SignUpModel>(userUrl);
   }
 
   getDeliveryType(lang: string) {

@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
 
   first = 0;
 
-  rows = 10;
+  rows = 5;
 
   orders: any = [];
   partners: any = [];
@@ -104,6 +104,13 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  onDeleteOrder(id: any) {
+    this.service.DeleteOrder(id).subscribe((res) => {
+      console.log(res);
+      window.location.reload();
+    });
+  }
+
   onStatusChange(e: Event, id: string) {
     this.selectedStatusId = (e.target as HTMLSelectElement).value;
     let model = new Statuses();
@@ -130,6 +137,8 @@ export class AdminComponent implements OnInit {
       duration: 2000,
     });
 
-    this.service.updateDeliveryType(model).subscribe((res) => {});
+    this.service.updateDeliveryType(model).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

@@ -19,7 +19,12 @@
       {{ form.value.imageCtrl }}
     </div>
 
-    <button type="submit">Add</button>
+    <button type="submit">
+      Add
+      <div style="margin-top: -12px" class="lds-ring" *ngIf="isLoading">
+        <div></div>
+      </div>
+    </button>
   </form>
 </div>
 
@@ -28,6 +33,9 @@
     <h2>ატვირთული ინვოისი</h2>
   </div>
   <div style="display: flex">
+    <div style="margin-top: -12px" class="lds-ring" *ngIf="isLoading">
+      <div></div>
+    </div>
     <div class="filename">
       {{ uploaded ? file : "there is no file" }}
     </div>

@@ -37,9 +37,10 @@ export class InvoiceComponent implements OnInit {
     this.service.getFileName(this.orderId).subscribe((res) => {
       this.file = res;
     });
-
+    this.isLoading = true;
     this.service.getById(this.lang, this.orderId).subscribe((res) => {
       this.uploaded = res.documentUploaded;
+      this.isLoading = false;
     });
   }
 

@@ -1,4 +1,3 @@
-
 <app-sidebar></app-sidebar>
 
 <div class="dashboard-wrapper">
@@ -28,7 +27,7 @@
   <div *ngFor="let col of cols" class="row">
     <div class="left">
       <p>{{ col.header }}</p>
-      <h4 id="myText">{{ col.field }}</h4>
+      <h4 *ngIf="col.field !== undefined" id="myText">{{ col.field }}</h4>
     </div>
     <div (click)="copy2(col.field)" class="copy">Copy</div>
   </div>

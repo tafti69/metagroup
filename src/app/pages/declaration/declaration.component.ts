@@ -81,11 +81,8 @@ export class DeclarationComponent implements OnInit {
     model.productNameId = val.productNameId;
     model.comment = val.comment;
 
-    console.log(model);
-
     this.isLoading = true;
     this.service.createDeclaration(model).subscribe((res) => {
-      console.log(res);
       this.isLoading = false;
       this.success = true;
       Emitters.successDecl.emit(true);

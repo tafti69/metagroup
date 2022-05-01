@@ -1,10 +1,5 @@
 <div class="mobile-header">
-  <img
-    (click)="closeSidebar()"
-    class="burger"
-    src="../../assets/menu.svg"
-    alt=""
-  />
+  <img (click)="onClick()" class="burger" src="../../assets/menu.svg" alt="" />
 </div>
 <div *ngIf="show" class="sidebar">
   <img
@@ -15,7 +10,7 @@
   />
   <div class="account">
     <img src="/assets/acc.svg" alt="" />
-    <p style="margin-left: 8px">Hello, {{ name }}</p>
+    <p style="margin-left: 8px">{{ name }}</p>
   </div>
   <ul>
     <div *ngIf="!isAdmin">
@@ -55,5 +50,7 @@
     </div>
   </ul>
 
-  <button (click)="logout()" class="sign-out">Sign Out</button>
+  <button (click)="logout()" class="sign-out">
+    {{ "signout" | translate }}
+  </button>
 </div>

@@ -10,30 +10,34 @@
           routerLinkActive="router-link-active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          Ana Sayfa
+          {{ "home" | translate }}
         </li>
         <li [routerLink]="['/about']" routerLinkActive="router-link-active">
-          Hakkimizda
+          {{ "Hakkimizda" | translate }}
         </li>
         <li
           [routerLink]="['/prohibiteditems']"
           routerLinkActive="router-link-active"
         >
-          Akrdzaluli Nivtebi
+          {{ "prohibited-items" | translate }}
         </li>
         <li [routerLink]="['/shops']" routerLinkActive="router-link-active">
-          Magazalar
+          {{ "shops" | translate }}
         </li>
         <li [routerLink]="['/contacts']" routerLinkActive="router-link-active">
-          Contact
+          {{ "contact" | translate }}
         </li>
       </ul>
 
       <!-- <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span> -->
     </div>
     <div class="btns">
-      <button [routerLink]="['/signin']" class="sign-in">Giriş yap</button>
-      <button [routerLink]="['/signup']" class="sign-up">Üye ol</button>
+      <button [routerLink]="['/signin']" class="sign-in">
+        {{ "Daxil olun" | translate }}
+      </button>
+      <button [routerLink]="['/signup']" class="sign-up">
+        {{ "Qeydiyyat" | translate }}
+      </button>
       <div
         *ngFor="let l of langButtons"
         [ngClass]="{ active: l.isClicked }"
@@ -65,22 +69,22 @@
           routerLinkActive="router-link-active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          Ana Sayfa
+          {{ "home" | translate }}
         </li>
         <li [routerLink]="['/about']" routerLinkActive="router-link-active">
-          Hakkimizda
+          {{ "Hakkimizda" | translate }}
         </li>
         <li
           [routerLink]="['/prohibiteditems']"
           routerLinkActive="router-link-active"
         >
-          Akrdzaluli Nivtebi
+          {{ "prohibited-items" | translate }}
         </li>
         <li [routerLink]="['/shops']" routerLinkActive="router-link-active">
-          Magazalar
+          {{ "shops" | translate }}
         </li>
         <li [routerLink]="['/contacts']" routerLinkActive="router-link-active">
-          Contact
+          {{ "contact" | translate }}
         </li>
       </ul>
 
@@ -88,15 +92,18 @@
     </div>
     <div class="btns">
       <div style="display: flex; margin: 1rem 0">
-        <button [routerLink]="['/signin']" class="sign-in">{{ 'Daxil olun' | translate}}</button>
-        <button [routerLink]="['/signup']" class="sign-up">{{ 'Qeydiyyat' | translate}}</button>
+        <button [routerLink]="['/signin']" class="sign-in">
+          {{ "Daxil olun" | translate }}
+        </button>
+        <button [routerLink]="['/signup']" class="sign-up">
+          {{ "Qeydiyyat" | translate }}
+        </button>
       </div>
       <div style="display: flex">
         <div
           *ngFor="let l of langButtons"
           [ngClass]="{ active: l.isClicked }"
           (click)="setActive(l)"
-          
           class="lang-wrap active"
         >
           <img src="{{ l.image }}" alt="" />

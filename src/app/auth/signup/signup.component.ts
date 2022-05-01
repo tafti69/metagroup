@@ -322,9 +322,9 @@ export class SignupComponent implements OnInit {
       model.email = form.email;
       model.firstNameAndLastNameEN = form.firstNameAndLastNameEN;
       model.firstNameAndLastNameKA = form.firstNameAndLastNameKA;
-      model.phoneNumber = form.phoneNumber;
-      model.additionalPhoneNumber = form.additionalPhoneNumber;
-      model.personalID = form.personalID;
+      model.phoneNumber = form.phoneNumber.toString();
+      model.additionalPhoneNumber = form.additionalPhoneNumber.toString();
+      model.personalID = form.personalID.toString();
       model.region = form.region;
       model.address = form.address;
       model.password = form.password;
@@ -333,6 +333,9 @@ export class SignupComponent implements OnInit {
 
       this.userService.createUser(model).subscribe(
         (value) => {
+          console.log(value);
+          console.log(model);
+
           this.isLoading = false;
           let model2 = new SignInModel();
           model2.email = this.form.value.email;
@@ -357,9 +360,9 @@ export class SignupComponent implements OnInit {
         (errorRes) => {
           this.isLoading = false;
           this.errorResponse = true;
-          if (errorRes.error[0].code === 'DuplicateUserName') {
-            this.errorMsg = errorRes.error[0].description;
-          }
+          // if (errorRes.error[0].code === 'DuplicateUserName') {
+          //   this.errorMsg = errorRes.error[0].description;
+          // }
           console.log(errorRes);
         }
       );
