@@ -4,14 +4,17 @@
   <h2>Orders Controller</h2>
   <form (ngSubmit)="onCreateOrder()" [formGroup]="form">
     <div>
-      <label for="val">Personal ID</label>
+      <label for="val">Cabinet ID</label>
       <input id="val" type="text" formControlName="personalId" />
     </div>
     <div style="margin-left: 10px">
       <label for="val">Tracking ID</label>
       <input id="val" type="text" formControlName="trackingId" />
     </div>
-
+    <div style="margin-left: 10px">
+      <label for="val">Weight</label>
+      <input id="val" type="text" formControlName="weight" />
+    </div>
     <button style="margin-left: 10px; height: 36px; width: 150px" type="submit">
       Create Order
       <div style="margin-top: -12px" class="lds-ring" *ngIf="isLoading2">
@@ -21,6 +24,7 @@
   </form>
   <div>
     <p-table
+      #dt
       [value]="orders"
       styleClass="p-datatable-gridlines"
       [paginator]="true"
@@ -30,35 +34,124 @@
       responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 15, 20]"
+      [globalFilterFields]="[
+        'cabinetId',
+        'trackingId',
+        'height',
+        'paidAmount',
+        'deliveryType.item.name'
+      ]"
     >
+      <ng-template pTemplate="caption">
+        <form
+          (ngSubmit)="onFilterDate()"
+          [formGroup]="formDate"
+          style="text-align: right"
+        >
+          <p-calendar
+            formControlName="fromDateTime"
+            dateFormat="dd.mm.yy"
+            placeholder="{{ 'startDate' | translate }}"
+          ></p-calendar>
+          <p-calendar
+            style="margin-left: 6px"
+            formControlName="toDateTime"
+            dateFormat="dd.mm.yy"
+            placeholder="{{ 'endDate' | translate }}"
+          ></p-calendar>
+          <button class="filter">Filter</button>
+        </form>
+        <div style="display: flex; flex-direction: row; margin-top: -8px">
+          <select
+            style="width: 120px; height: 36px"
+            id="curier"
+            (change)="onUpdateAllDeliveries($event)"
+          >
+            <option selected value="0">Delivery</option>
+            <option *ngFor="let i of deliveries" [value]="i.id">
+              {{ i.item.name }}
+            </option>
+          </select>
+          <select
+            style="width: 120px; height: 36px; margin-left: 6px"
+            id="curier"
+            (change)="onUpdateAllStatuses($event)"
+          >
+            <option selected value="0">Status</option>
+            <option *ngFor="let s of statuses" [value]="s.id">
+              {{ s.item.name }}
+            </option>
+          </select>
+        </div>
+        <div style="text-align: right">
+          <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
+          <input
+            type="text"
+            pInputText
+            size="50"
+            placeholder="Search"
+            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            style="width: 200px; align-self: flex-end; margin-top: -16px"
+          />
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="uniqueIdentifier">
-            # <p-sortIcon field="uniqueIdentifier"></p-sortIcon>
+          <th style="padding: 8px">
+            <input
+              style="width: 20px; background: none"
+              type="checkbox"
+              [(ngModel)]="masterSelected"
+              (change)="checkUncheckAll()"
+            />
+          </th>
+          <th pSortableColumn="createdAt">
+            Date <p-sortIcon field="createdAt"></p-sortIcon>
+          </th>
+          <th pSortableColumn="cabinetId">
+            Cabinet Id <p-sortIcon field="cabinetId"></p-sortIcon>
           </th>
           <th pSortableColumn="trackingId">
-            თრექინგი <p-sortIcon field="trackingId"></p-sortIcon>
+            {{ "tracking" | translate }}
+            <p-sortIcon field="trackingId"></p-sortIcon>
           </th>
           <th pSortableColumn="height">
-            წონა <p-sortIcon field="height"></p-sortIcon>
+            {{ "weight" | translate }} <p-sortIcon field="height"></p-sortIcon>
           </th>
           <th pSortableColumn="paidAmount">
-            თანხა <p-sortIcon field="paidAmount"></p-sortIcon>
+            {{ "paid-amont" | translate }}
+            <p-sortIcon field="paidAmount"></p-sortIcon>
           </th>
-          <th>მაღაზია</th>
-          <th>ვალუტა</th>
-          <th>გატანა</th>
-          <th>სტატუსი</th>
-          <th>დეკლარაცია</th>
-          <th>ინვოისი</th>
-          <th>წაშლა</th>
+          <th>{{ "shop" | translate }}</th>
+          <th>{{ "currency" | translate }}</th>
+          <th>{{ "delivery" | translate }}</th>
+          <th>{{ "status" | translate }}</th>
+          <th>{{ "action" | translate }}</th>
+          <th>{{ "invoice" | translate }}</th>
+          <th>{{ "delete" | translate }}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-o>
         <tr>
-          <td>{{ o.uniqueIdentifier }}</td>
+          <td>
+            <input
+              style="width: 20px"
+              type="checkbox"
+              [value]="o.isChecked"
+              [(ngModel)]="o.isChecked"
+            />
+          </td>
+          <td>{{ o.createdAt | date: "dd.MM.yyyy HH:mm:ss" }}</td>
+          <td>{{ o.cabinetId }}</td>
           <td>{{ o.trackingId }}</td>
-          <td>{{ o.height }}</td>
+          <td>
+            <input
+              style="width: 80px; height: 28px"
+              type="text"
+              [(ngModel)]="o.weight"
+              (change)="onUpdateWeight($event, o.id)"
+            />
+          </td>
           <td>{{ o.paidAmount }}</td>
           <td>
             <select

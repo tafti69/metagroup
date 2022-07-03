@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +14,8 @@ import { ServicesService } from 'app/services.service';
 export class DeclarationComponent implements OnInit {
   constructor(
     private service: ServicesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   form: FormGroup;
@@ -86,6 +88,9 @@ export class DeclarationComponent implements OnInit {
       this.isLoading = false;
       this.success = true;
       Emitters.successDecl.emit(true);
+      setTimeout(() => {
+        this.location.back();
+      }, 1000);
     });
   }
 

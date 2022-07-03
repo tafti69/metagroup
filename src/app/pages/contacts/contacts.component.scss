@@ -2,11 +2,14 @@
   width: 80%;
   margin: 8rem auto;
   h1 {
-    font-size: 48px;
+    font-size: 36px;
     margin: 0;
   }
   p {
     width: 50%;
-    color: #505050;
+    color: #d0d0d0;
+    @media (max-width: 640px) {
+      width: 94%;
+    }
   }
 }

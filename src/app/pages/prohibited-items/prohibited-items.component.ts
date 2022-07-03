@@ -17,7 +17,7 @@ export class ProhibitedItemsComponent implements OnInit {
     'Gazlı tüfekler - elektrikli pnömatik, herhangi bir kalibre ile olan ve onun aksesuarları',
     'Feinstein tüfekleri ve onların aksesuarları',
     "'bio' olarak adlandırılan her türlü tatlandırıcı, örneğin Sıfır Yerçekimi, vb",
+    "'Sprey', pompalanan balon tipi",
     'Arbalet, oklar, yay',
-    "'Sprey', pompalanan balon tipi, herhangi bir madde",
   ];
 }

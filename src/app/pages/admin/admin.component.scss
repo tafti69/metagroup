@@ -11,26 +11,32 @@ h2 {
 form {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 20px;
+}
+label {
+  color: #fff;
 }
 
 input,
 select {
-  width: 400px;
+  width: 300px;
   height: 36px;
   border-radius: 6px;
   padding-left: 10px;
   margin-top: 6px;
-  border: 1px solid #e7e7e7;
+  border: 1px solid #6c757d;
+  color: #d0d0d0;
+  background: #383c46;
+
   @media (max-width: 1440px) {
-    width: 360px;
+    width: 240px;
   }
   @media (max-width: 1000px) {
-    width: 300px;
+    width: 200px;
   }
 }
 
-.delete {
-  background: #363636;
-  height: 30px;
+.filter {
+  width: 64px;
+  height: 36px;
+  margin-left: 6px;
 }

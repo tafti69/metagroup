@@ -33,6 +33,10 @@ export class ProductsComponent implements OnInit {
     this.getProduct();
   }
 
+  // print() {
+  //   this.printedOption = this.selectedOption;
+  // }
+
   onCreateProduct() {
     const form = this.form.value;
     let model = new CreateProductModel();
@@ -51,6 +55,12 @@ export class ProductsComponent implements OnInit {
   getProduct() {
     this.service.getProduct(this.lang).subscribe((res) => {
       this.products = res;
+    });
+  }
+
+  deleteProduct(id: number) {
+    this.service.DeleteProductNames(id).subscribe((res) => {
+      window.location.reload();
     });
   }
 }

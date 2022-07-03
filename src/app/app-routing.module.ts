@@ -12,6 +12,9 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { CurrencyComponent } from './pages/currency/currency.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
+import { FlightsViewComponent } from './pages/flights-view/flights-view.component';
+import { FlightsComponent } from './pages/flights/flights.component';
+import { HowToComponent } from './pages/how-to/how-to.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { IssuedComponent } from './pages/issued/issued.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
@@ -21,10 +24,17 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProhibitedItemsComponent } from './pages/prohibited-items/prohibited-items.component';
 import { ShopsComponent } from './pages/shops/shops.component';
 import { StorageTableComponent } from './pages/storage-table/storage-table.component';
+import { TarifsComponent } from './pages/tarifs/tarifs.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
     component: MainPageComponent,
   },
   {
@@ -34,6 +44,10 @@ const routes: Routes = [
   {
     path: 'prohibiteditems',
     component: ProhibitedItemsComponent,
+  },
+  {
+    path: 'howto',
+    component: HowToComponent,
   },
   {
     path: 'shops',
@@ -87,12 +101,28 @@ const routes: Routes = [
     component: AdminComponent,
   },
   {
+    path: 'users',
+    component: UsersComponent,
+  },
+  {
     path: 'currency',
     component: CurrencyComponent,
   },
   {
     path: 'cities',
     component: CityComponent,
+  },
+  {
+    path: 'tarifs',
+    component: TarifsComponent,
+  },
+  {
+    path: 'flights',
+    component: FlightsComponent,
+  },
+  {
+    path: 'flights-view',
+    component: FlightsViewComponent,
   },
   {
     path: 'products',

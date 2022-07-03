@@ -12,7 +12,7 @@
       <input type="text" placeholder="AZ" formControlName="azNameCtrl" />
     </div>
     <div>
-      <label for="">Shop Name (RU)</label>
+      <label for="">Shop Name (EN)</label>
       <input type="text" placeholder="RU" formControlName="ruNameCtrl" />
     </div>
     <div>
@@ -33,7 +33,7 @@
       {{ form.value.imageCtrl }}
     </div>
 
-    <button type="submit">
+    <button type="submit" [disabled]="!form.valid">
       Create Partner
       <div style="margin-top: -12px" class="lds-ring" *ngIf="isLoading">
         <div></div>
@@ -46,6 +46,9 @@
   <div class="wrapper-3">
     <div class="brands">
       <div class="box" *ngFor="let p of partners">
+        <div class="delete-a" (click)="deletePartner(p.id)">
+          <i class="pi pi-times" style="font-size: 12px"></i>
+        </div>
         <a href="{{ p.item.url }}"
           ><img src="{{ p.item.imageURL }}" alt=""
         /></a>

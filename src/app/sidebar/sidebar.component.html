@@ -1,38 +1,49 @@
 <div class="mobile-header">
-  <img (click)="onClick()" class="burger" src="../../assets/menu.svg" alt="" />
-</div>
-<div *ngIf="show" class="sidebar">
   <img
-    src="/assets/logo.svg"
+    #toggleButton
+    (click)="onClick()"
+    class="burger"
+    src="../../assets/menu.svg"
     alt=""
-    [routerLink]="['/']"
-    style="cursor: pointer"
   />
-  <div class="account">
+</div>
+<div *ngIf="show" class="sidebar" #menu>
+  <img
+    (click)="logout()"
+    src="/assets/metagroup.svg"
+    alt=""
+    style="cursor: pointer; width: 80px"
+  />
+  <!-- <h2>META GROUP</h2> -->
+
+  <!-- <div class="account">
     <img src="/assets/acc.svg" alt="" />
     <p style="margin-left: 8px">{{ name }}</p>
-  </div>
+  </div> -->
   <ul>
     <div *ngIf="!isAdmin">
       <li [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
-        მთავარი
+        {{ "home" | translate }}
       </li>
       <li [routerLink]="['/storage']" routerLinkActive="router-link-active">
-        საწყობში
+        {{ "storage" | translate }}
       </li>
       <li [routerLink]="['/ontheroad']" routerLinkActive="router-link-active">
-        გზაში
+        {{ "onroad" | translate }}
       </li>
       <li [routerLink]="['/arrived']" routerLinkActive="router-link-active">
-        ჩამოსული
+        {{ "delivered" | translate }}
       </li>
       <li [routerLink]="['/issued']" routerLinkActive="router-link-active">
-        გაცემული
+        {{ "done" | translate }}
       </li>
     </div>
     <div *ngIf="isAdmin">
       <li [routerLink]="['/admin']" routerLinkActive="router-link-active">
         Orders
+      </li>
+      <li [routerLink]="['/users']" routerLinkActive="router-link-active">
+        Users
       </li>
       <li [routerLink]="['/partners']" routerLinkActive="router-link-active">
         Partners
@@ -40,6 +51,12 @@
 
       <li [routerLink]="['/products']" routerLinkActive="router-link-active">
         Products
+      </li>
+      <li [routerLink]="['/flights']" routerLinkActive="router-link-active">
+        Flights
+      </li>
+      <li [routerLink]="['/tarifs']" routerLinkActive="router-link-active">
+        Tarifs
       </li>
       <li [routerLink]="['/cities']" routerLinkActive="router-link-active">
         Cities

@@ -2,33 +2,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 6rem auto;
   width: 80%;
+  margin: 4rem auto;
+  @media (max-width: 1640px) {
+    width: 90%;
+  }
   @media (max-width: 1140px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 96%;
     margin: 2rem auto;
   }
   h1 {
-    color: #131313;
-    font-size: 54px;
+    color: #fff;
+    font-size: 36px;
     margin: 0;
     font-weight: bold;
     @media (max-width: 1140px) {
-      font-size: 42px;
-      text-align: center;
-    }
-  }
-  .illustration {
-    @media (max-width: 1140px) {
-      width: 500px;
-      margin: 3rem auto;
-    }
-    @media (max-width: 640px) {
-      width: 360px;
+      font-size: 32px;
     }
   }
 }
@@ -39,19 +31,21 @@
   justify-content: space-between;
   margin: 6rem auto;
   width: 80%;
+  @media (max-width: 1640px) {
+    width: 90%;
+  }
   @media (max-width: 1140px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
   }
   .box-left,
   .box-right {
     width: 46%;
-    height: 330px;
-    box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+    height: 270px;
+    // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
     border-radius: 8px;
-    background: #fff;
+    background: #383c46;
     padding-left: 24px;
     padding-top: 24px;
     margin: 1rem auto;
@@ -61,25 +55,29 @@
   }
   .prices {
     margin-top: 2rem;
+    color: #d0d0d0;
   }
 
   span {
     padding: 4px 8px;
     border-radius: 4px;
-    background: #eaeaea;
+    background: #2e333c;
   }
 
   .flight {
     display: flex;
     margin-top: 2rem;
+    margin-right: 2rem;
     .info {
       margin-left: 1rem;
+      color: #fff;
     }
     .some-flex {
       display: flex;
       align-items: center;
       p {
         margin-left: 8px;
+        color: #d0d0d0;
       }
     }
   }
@@ -87,6 +85,18 @@
   .vert-line {
     height: 72px;
     width: 4px;
-    background: #3b4549;
+    background: #d0d0d0;
+  }
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+  font-size: 14px;
+  color: #d0d0d0;
+  cursor: pointer;
+  &:hover {
+    color: #bc0808;
   }
 }

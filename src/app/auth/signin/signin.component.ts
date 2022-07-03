@@ -45,7 +45,7 @@ export class SigninComponent implements OnInit {
         this.isLoading = false;
         localStorage.setItem('id', res.id);
         localStorage.setItem('token', res.token);
-        localStorage.setItem('name', res.name);
+        localStorage.setItem('userName', res.userName);
 
         if (res.isAdmin) {
           localStorage.setItem('userType', 'admin');

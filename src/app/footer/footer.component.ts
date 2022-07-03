@@ -12,12 +12,12 @@ export class FooterComponent implements OnInit {
 
   footer = [
     { image: '/assets/clock.svg', text: '10:00 AM - 22:00 PM' },
-    { image: '/assets/phone.svg', text: '+995 593 39 03 01' },
-    { image: '/assets/mail.svg', text: 'aicargo2022@gmail.com' },
+    { image: '/assets/phone.svg', text: '+995 558 67 27 47' },
+    { image: '/assets/mail.svg', text: 'metagroup2022@gmail.com' },
     {
       image: '/assets/location.svg',
       head: 'Address',
-      text: 'Aksaray Mahallesi Abdullatif Paşa sok no 21 kat 2 daire 3 Fatih İstanbul',
+      text: 'MKK Pelitli Mahallesi Şelale Sokak',
     },
   ];
 }

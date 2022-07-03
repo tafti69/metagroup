@@ -1,0 +1,36 @@
+.flights-box {
+  width: 80%;
+  height: 100%;
+  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  border-radius: 12px;
+  background: #fff;
+  padding-left: 24px;
+  padding-top: 24px;
+  margin: 2rem auto;
+  @media (max-width: 1140px) {
+    width: 96%;
+    margin: 1rem auto;
+  }
+}
+
+.flight {
+  display: flex;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  .info {
+    margin-left: 1rem;
+  }
+  .some-flex {
+    display: flex;
+    align-items: center;
+    p {
+      margin-left: 8px;
+    }
+  }
+}
+
+.vert-line {
+  height: 72px;
+  width: 4px;
+  background: #3b4549;
+}

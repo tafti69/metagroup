@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreatePartner } from 'app/models/shops';
 import { ServicesService } from 'app/services.service';
 
@@ -29,11 +29,11 @@ export class PartnersComponent implements OnInit {
     }
 
     this.form = new FormGroup({
-      ruNameCtrl: new FormControl(''),
-      kaNameCtrl: new FormControl(''),
-      azNameCtrl: new FormControl(''),
-      imageCtrl: new FormControl(''),
-      urlCtrl: new FormControl(''),
+      ruNameCtrl: new FormControl('', Validators.required),
+      kaNameCtrl: new FormControl('', Validators.required),
+      azNameCtrl: new FormControl('', Validators.required),
+      imageCtrl: new FormControl('', Validators.required),
+      urlCtrl: new FormControl('', Validators.required),
     });
 
     this.getPartners();
@@ -42,9 +42,14 @@ export class PartnersComponent implements OnInit {
   getPartners() {
     this.isLoading = true;
     this.service.getPartners(this.lang).subscribe((res) => {
-      console.log(res);
       this.partners = res;
       this.isLoading = false;
+    });
+  }
+
+  deletePartner(id: number) {
+    this.service.DeletePartners(id).subscribe((res) => {
+      window.location.reload();
     });
   }
 

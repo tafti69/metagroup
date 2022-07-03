@@ -1,25 +1,28 @@
 <header>
   <div class="header-container">
-    <a [routerLink]="['/']">
+    <!-- <a [routerLink]="['/']">
       <img class="img1" src="/assets/logo.svg" alt=""
-    /></a>
+    /></a> -->
     <div class="header-text">
       <ul>
         <li
-          [routerLink]="['/']"
+          [routerLink]="['/home']"
           routerLinkActive="router-link-active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
           {{ "home" | translate }}
         </li>
-        <li [routerLink]="['/about']" routerLinkActive="router-link-active">
+        <!-- <li [routerLink]="['/about']" routerLinkActive="router-link-active">
           {{ "Hakkimizda" | translate }}
-        </li>
+        </li> -->
         <li
           [routerLink]="['/prohibiteditems']"
           routerLinkActive="router-link-active"
         >
           {{ "prohibited-items" | translate }}
+        </li>
+        <li [routerLink]="['/howto']" routerLinkActive="router-link-active">
+          {{ "how-to" | translate }}
         </li>
         <li [routerLink]="['/shops']" routerLinkActive="router-link-active">
           {{ "shops" | translate }}
@@ -32,12 +35,6 @@
       <!-- <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span> -->
     </div>
     <div class="btns">
-      <button [routerLink]="['/signin']" class="sign-in">
-        {{ "Daxil olun" | translate }}
-      </button>
-      <button [routerLink]="['/signup']" class="sign-up">
-        {{ "Qeydiyyat" | translate }}
-      </button>
       <div
         *ngFor="let l of langButtons"
         [ngClass]="{ active: l.isClicked }"
@@ -50,9 +47,9 @@
   </div>
 
   <div class="mobile-header">
-    <a [routerLink]="['/']">
-      <img class="img2" src="/assets/logo.svg" alt=""
-    /></a>
+    <!-- <a [routerLink]="['/']">
+      <img class="img2" src="/assets/l.svg" alt=""
+    /></a> -->
     <img
       (click)="openMenu()"
       class="burger"
@@ -62,6 +59,12 @@
   </div>
 
   <div *ngIf="show" class="header-container-mobile">
+    <img
+      (click)="closeMenu()"
+      class="close"
+      src="../../assets/Subtract.svg"
+      alt=""
+    />
     <div class="header-text">
       <ul>
         <li
@@ -71,14 +74,17 @@
         >
           {{ "home" | translate }}
         </li>
-        <li [routerLink]="['/about']" routerLinkActive="router-link-active">
+        <!-- <li [routerLink]="['/about']" routerLinkActive="router-link-active">
           {{ "Hakkimizda" | translate }}
-        </li>
+        </li> -->
         <li
           [routerLink]="['/prohibiteditems']"
           routerLinkActive="router-link-active"
         >
           {{ "prohibited-items" | translate }}
+        </li>
+        <li [routerLink]="['/howto']" routerLinkActive="router-link-active">
+          {{ "how-to" | translate }}
         </li>
         <li [routerLink]="['/shops']" routerLinkActive="router-link-active">
           {{ "shops" | translate }}
@@ -91,14 +97,6 @@
       <!-- <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span> -->
     </div>
     <div class="btns">
-      <div style="display: flex; margin: 1rem 0">
-        <button [routerLink]="['/signin']" class="sign-in">
-          {{ "Daxil olun" | translate }}
-        </button>
-        <button [routerLink]="['/signup']" class="sign-up">
-          {{ "Qeydiyyat" | translate }}
-        </button>
-      </div>
       <div style="display: flex">
         <div
           *ngFor="let l of langButtons"

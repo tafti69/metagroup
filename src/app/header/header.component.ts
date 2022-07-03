@@ -38,13 +38,17 @@ export class HeaderComponent implements OnInit {
   }
 
   openMenu() {
-    this.show = !this.show;
+    this.show = true;
+  }
+
+  closeMenu() {
+    this.show = false;
   }
 
   langButtons = [
     { image: '/assets/aze.svg', isClicked: true },
     { image: '/assets/geo.svg', isClicked: false },
-    { image: '/assets/russ.svg', isClicked: false },
+    { image: '/assets/usa.svg', isClicked: false },
   ];
 
   setActive(button: any): void {
@@ -63,7 +67,6 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('lang', 'RU');
       this.translate.use('RU');
     }
-    console.log(button);
     // window.location.reload();
   }
 }

@@ -1,29 +1,50 @@
 <app-sidebar></app-sidebar>
-<div class="admin-dashboard">
-  <h2>City Controller</h2>
-  <form (ngSubmit)="onCreateCity()" [formGroup]="form">
+<div style="display: flex; flex-direction: row" class="admin-dashboard">
+  <div style="width: 48%">
+    <h2>City Controller</h2>
+    <form (ngSubmit)="onCreateCity()" [formGroup]="form">
+      <div>
+        <label for="val">City name (KA)</label>
+        <input id="val" type="text" formControlName="kaCity" />
+      </div>
+      <div>
+        <label for="val">City name (AZ)</label>
+        <input id="val" type="text" formControlName="azCity" />
+      </div>
+      <div>
+        <label for="val">City name (EN)</label>
+        <input id="val" type="text" formControlName="ruCity" />
+      </div>
+      <button
+        style="margin-top: 10px; width: 200px"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Create City
+      </button>
+    </form>
+  </div>
+  <div *ngIf="cities.length > 0" style="width: 48%">
+    <h3>Created Cities</h3>
     <div>
-      <label for="val">City name (KA)</label>
-      <input id="val" type="text" formControlName="kaCity" />
+      <p class="flex-p" *ngFor="let city of cities">
+        {{ city.item.name }}
+        <button class="delete-p">
+          <i
+            (click)="onDeleteCity(city.id)"
+            class="pi pi-times"
+            style="font-size: 12px"
+          ></i>
+        </button>
+      </p>
     </div>
-    <div>
-      <label for="val">City name (AZ)</label>
-      <input id="val" type="text" formControlName="azCity" />
-    </div>
-    <div>
-      <label for="val">City name (RU)</label>
-      <input id="val" type="text" formControlName="ruCity" />
-    </div>
-    <button style="margin-top: 10px; width: 200px" type="submit">
-      Create City
-    </button>
-  </form>
-  <div>
+  </div>
+  <!-- <div>
     <label for="sul">Created Cities</label>
     <select name="sul" id="sul">
       <option *ngFor="let city of cities" value="city">
         {{ city.item.name }}
       </option>
     </select>
-  </div>
+  </div> -->
 </div>

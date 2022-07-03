@@ -28,6 +28,6 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    return this.router.createUrlTree(['/signin']);
+    return this.router.createUrlTree(['/home']);
   }
 }

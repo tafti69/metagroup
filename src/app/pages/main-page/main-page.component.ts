@@ -10,6 +10,8 @@ export class MainPageComponent implements OnInit {
   constructor(private service: ServicesService) {}
 
   brands: any = [];
+  flights: any = [];
+  tarifs: any = [];
 
   isLoading = false;
   lang: any;
@@ -22,6 +24,20 @@ export class MainPageComponent implements OnInit {
     }
 
     this.getPartners();
+    this.getFlights();
+    this.getTarifs();
+  }
+
+  getFlights() {
+    this.service.getFlights().subscribe((res) => {
+      this.flights = res.slice(0, 3);
+    });
+  }
+
+  getTarifs() {
+    this.service.getTarifs().subscribe((res) => {
+      this.tarifs = res.slice(0, 3);
+    });
   }
 
   getPartners() {

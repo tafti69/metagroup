@@ -66,11 +66,12 @@
         formControlName="comment"
       ></textarea>
     </div>
+    <!-- [ngStyle]="{ display: ifPaidAmount ? 'none' : '' }" -->
     <button
+      style="margin-left: 8px"
       [style.background-color]="success ? '#52b788' : ''"
-      [ngStyle]="{ display: ifPaidAmount ? 'none' : '' }"
     >
-      {{ success ? "განახლებული" : "განახლება" }}
+      {{ success ? "განახლებულია" : "განახლება" }}
       <div class="lds-ring" *ngIf="isLoading"></div>
     </button>
   </form>

@@ -2,14 +2,18 @@ import { EventEmitter } from '@angular/core';
 
 export class SignUpModel {
   email: string;
-  firstNameAndLastNameEN: string;
-  firstNameAndLastNameKA: string;
+  firstNameEN: string;
+  firstNameKA: string;
+  lastNameEN: string;
+  lastNameKA: string;
   phoneNumber: string;
-  additionalPhoneNumber: string;
+  whatsAppNumber: string;
   personalID: string;
   region: string;
   address: string;
   password: string;
+  cabinetId: string;
+  isOrganization: boolean;
 }
 
 export class SignInModel {
@@ -18,7 +22,7 @@ export class SignInModel {
   id: string;
   token: string;
   isAdmin: boolean;
-  name: string;
+  userName: string;
   // userType: string;
 }
 

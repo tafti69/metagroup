@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateOrder } from 'app/models/orders';
+import {
+  CreateOrder,
+  OrdersDTO,
+  UpdateAll,
+  WeightModel,
+} from 'app/models/orders';
 import { Statuses, UpdateStatuses } from 'app/models/status';
 import { ServicesService } from 'app/services.service';
 import { Emitters } from 'app/models/auth';
@@ -20,19 +25,25 @@ export class AdminComponent implements OnInit {
   }
 
   form: FormGroup;
+  formDate: FormGroup;
 
   first = 0;
 
   rows = 5;
 
-  orders: any = [];
+  orders: OrdersDTO[] = [];
   partners: any = [];
   statuses: any = [];
   deliveries: any = [];
   currencies: any = [];
   selectedStatusId: any;
+  weight: any;
 
   updated = false;
+  selectedOrderIds: any = [];
+  masterSelected: boolean = false;
+
+  isChecked: any;
 
   lang: any;
   isLoading = false;
@@ -48,6 +59,12 @@ export class AdminComponent implements OnInit {
     this.form = new FormGroup({
       trackingId: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
+      weight: new FormControl('', Validators.required),
+    });
+
+    this.formDate = new FormGroup({
+      fromDateTime: new FormControl('', Validators.required),
+      toDateTime: new FormControl('', Validators.required),
     });
 
     this.getDeliveryTypes();
@@ -75,12 +92,70 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  onFilterDate() {
+    const form = this.formDate.value;
+    console.log(form);
+
+    this.service
+      .filterRangeByDate(this.lang, form.fromDateTime, form.toDateTime)
+      .subscribe((res: any) => {
+        this.orders = res;
+      });
+  }
+
+  checkUncheckAll() {
+    for (var i = 0; i < this.orders.length; i++) {
+      this.orders[i].isChecked = this.masterSelected;
+    }
+  }
+
+  onUpdateAllStatuses(e: Event) {
+    this.selectedOrderIds = this.orders.filter((x) => x.isChecked === true);
+    let model = new UpdateAll();
+    let newIds: string[] = [];
+
+    if (this.selectedOrderIds.length !== 0) {
+      this.selectedOrderIds.forEach((element) => {
+        let newId: string = element.id;
+        newIds.push(newId);
+      });
+    }
+    const statusId = (e.target as HTMLSelectElement).value;
+    model.statusId = statusId;
+    model.orderIds = newIds;
+
+    this.service.updateAll(model).subscribe((res) => {
+      window.location.reload();
+    });
+  }
+
+  onUpdateAllDeliveries(e: Event) {
+    this.selectedOrderIds = this.orders.filter((x) => x.isChecked === true);
+    let model = new UpdateAll();
+    let newIds: string[] = [];
+
+    if (this.selectedOrderIds.length !== 0) {
+      this.selectedOrderIds.forEach((element) => {
+        let newId: string = element.id;
+        newIds.push(newId);
+      });
+    }
+    const deliveryId = (e.target as HTMLSelectElement).value;
+    model.deliveryTypeId = deliveryId;
+    model.orderIds = newIds;
+
+    this.service.updateAll(model).subscribe((res) => {
+      window.location.reload();
+    });
+  }
+
   onCreateOrder() {
     const form = this.form.value;
     let model = new CreateOrder();
 
     model.id = form.personalId;
     model.trackingId = form.trackingId;
+    model.weight = form.weight;
 
     this.isLoading2 = true;
 
@@ -95,6 +170,7 @@ export class AdminComponent implements OnInit {
     this.service.getOrder(this.lang).subscribe((res) => {
       this.orders = res;
       this.isLoading = false;
+      console.log(res);
     });
   }
 
@@ -106,7 +182,6 @@ export class AdminComponent implements OnInit {
 
   onDeleteOrder(id: any) {
     this.service.DeleteOrder(id).subscribe((res) => {
-      console.log(res);
       window.location.reload();
     });
   }
@@ -141,4 +216,24 @@ export class AdminComponent implements OnInit {
       console.log(res);
     });
   }
+
+  onUpdateWeight(e: Event, id: string) {
+    this.weight = (e.target as HTMLSelectElement).value;
+    let model = new WeightModel();
+
+    model.orderId = id;
+    model.weight = this.weight;
+
+    this.snackBar.open('Weight Updated', '', {
+      duration: 2000,
+    });
+
+    this.service.updateWeight(model).subscribe((res) => {
+      console.log(res, 'weight');
+    });
+  }
+}
+
+class Checked {
+  isChecked: boolean;
 }

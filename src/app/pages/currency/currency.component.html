@@ -1,20 +1,41 @@
 <app-sidebar></app-sidebar>
 
-<div class="admin-dashboard">
-  <h2>Currency Controller</h2>
-  <form (ngSubmit)="onCreateCurrency()" [formGroup]="form">
+<div style="display: flex; flex-direction: row" class="admin-dashboard">
+  <div style="width: 48%">
+    <h2>Currency Controller</h2>
+    <form (ngSubmit)="onCreateCurrency()" [formGroup]="form">
+      <div>
+        <label for="val">Currency name</label>
+        <input id="val" type="text" formControlName="currencyName" />
+      </div>
+      <button
+        style="margin-top: 10px; width: 200px"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Create Currency
+      </button>
+    </form>
+  </div>
+  <div *ngIf="currencies.length > 0" style="width: 48%">
+    <h3>Created Currencies</h3>
     <div>
-      <label for="val">Currency name</label>
-      <input id="val" type="text" formControlName="currencyName" />
+      <p class="flex-p" *ngFor="let c of currencies">
+        {{ c.value }}
+        <button class="delete-p">
+          <i
+            (click)="deleteCurrency(c.id)"
+            class="pi pi-times"
+            style="font-size: 12px"
+          ></i>
+        </button>
+      </p>
     </div>
-    <button style="margin-top: 10px; width: 200px" type="submit">
-      Create Currency
-    </button>
-  </form>
-  <div>
+  </div>
+  <!-- <div>
     <label for="sel">Created Currencies</label>
     <select name="sel" id="sel">
       <option *ngFor="let i of currencies" value="i">{{ i.value }}</option>
     </select>
-  </div>
+  </div> -->
 </div>

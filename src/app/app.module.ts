@@ -48,10 +48,16 @@ import { ChamosuliComponent } from './pages/chamosuli/chamosuli.component';
 import { IssuedComponent } from './pages/issued/issued.component';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CalendarModule } from 'primeng/calendar';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LayoutModule } from '@angular/cdk/layout';
+import { UsersComponent } from './pages/users/users.component';
+import { FlightsComponent } from './pages/flights/flights.component';
+import { TarifsComponent } from './pages/tarifs/tarifs.component';
+import { FlightsViewComponent } from './pages/flights-view/flights-view.component';
+import { HowToComponent } from './pages/how-to/how-to.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -84,6 +90,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundComponent,
     ChamosuliComponent,
     IssuedComponent,
+    UsersComponent,
+    FlightsComponent,
+    TarifsComponent,
+    FlightsViewComponent,
+    HowToComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,11 +106,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     ProgressSpinnerModule,
     MatTableModule,
+    CalendarModule,
     TableModule,
     ButtonModule,
     LayoutModule,
     BrowserAnimationsModule,
-    // FacebookModule.forRoot(),
+    FacebookModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

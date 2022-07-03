@@ -1,28 +1,54 @@
 <app-sidebar></app-sidebar>
 <div *ngIf="isLoading" class="loader"></div>
-<div class="admin-dashboard">
-  <h2>Products Controller</h2>
-  <form (ngSubmit)="onCreateProduct()" [formGroup]="form">
-    <div>
-      <label for="val">Product Name (KA)</label>
-      <input id="val" type="text" formControlName="kaProduct" />
-    </div>
-    <div>
-      <label for="val">Product Name (AZ)</label>
-      <input id="val" type="text" formControlName="azProduct" />
-    </div>
-    <div>
-      <label for="val">Product Name (RU)</label>
-      <input id="val" type="text" formControlName="ruProduct" />
-    </div>
-    <button style="width: 200px" type="submit">Create Product</button>
-  </form>
-  <div>
-    <label for="sol">Created Product Categories</label>
-    <select id="sol">
-      <option *ngFor="let p of products" value="p">
-        {{ p.item.name }}
-      </option>
-    </select>
+<div style="display: flex; flex-direction: row" class="admin-dashboard">
+  <div style="width: 48%">
+    <h2>Products Controller</h2>
+    <form (ngSubmit)="onCreateProduct()" [formGroup]="form">
+      <div>
+        <label for="val">Product Name (KA)</label>
+        <input id="val" type="text" formControlName="kaProduct" />
+      </div>
+      <div>
+        <label for="val">Product Name (AZ)</label>
+        <input id="val" type="text" formControlName="azProduct" />
+      </div>
+      <div>
+        <label for="val">Product Name (EN)</label>
+        <input id="val" type="text" formControlName="ruProduct" />
+      </div>
+      <button
+        style="width: 200px; margin-top: 10px"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Create Product
+      </button>
+    </form>
   </div>
+  <div *ngIf="products.length > 0" style="width: 48%">
+    <h3>Created Product Categories</h3>
+    <div>
+      <p class="flex-p" *ngFor="let p of products">
+        {{ p.item.name }}
+        <button class="delete-p">
+          <i
+            (click)="deleteProduct(p.id)"
+            class="pi pi-times"
+            style="font-size: 12px"
+          ></i>
+        </button>
+      </p>
+    </div>
+  </div>
+  <!-- <div>
+    <label for="sol">Created Product Categories</label>
+    <select [(ngModel)]="selectedOption" id="sol">
+      <option *ngFor="let p of products">{{ p.item.name }}</option>
+    </select>
+    <button (click)="print()">Print</button>
+    <div>
+      <p>output: {{ printedOption }}</p>
+      <i class="pi pi-times" style="font-size: 12px"></i>
+    </div>
+  </div> -->
 </div>

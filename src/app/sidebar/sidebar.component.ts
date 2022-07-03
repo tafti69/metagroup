@@ -1,5 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,17 +17,18 @@ import { Router } from '@angular/router';
   // },
 })
 export class SidebarComponent implements OnInit {
-  constructor(private router: Router, private responsive: BreakpointObserver) {}
+  @ViewChild('toggleButton') toggleButton: ElementRef;
+  @ViewChild('menu') menu: ElementRef;
 
   isAdmin: boolean = false;
   show: boolean = true;
-  show2: boolean = true;
   name: string;
 
-  // closeSidebar($event) {
-  //   $event.stopPropagation();
-  //   this.show2 = false;
-  // }
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private responsive: BreakpointObserver
+  ) {}
 
   onClick() {
     this.show = !this.show;
@@ -32,18 +39,30 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  main() {
+    this.router.navigate(['/']);
+  }
+
   ngOnInit(): void {
-    this.name = localStorage.getItem('name');
+    this.name = localStorage.getItem('userName');
     let user = localStorage.getItem('userType');
 
     this.isAdmin = user === 'admin' ? true : false;
 
     // console.log('XSmall ' + Breakpoints.XSmall);
 
-    // this.responsive.observe(Breakpoints.XSmall).subscribe((result) => {
-    //   if (result.matches) {
-    //     console.log('screens matches HandsetLandscape');
-    //   }
-    // });
+    this.responsive.observe(Breakpoints.XSmall).subscribe((result) => {
+      if (result.matches) {
+        this.show = false;
+        this.renderer.listen('window', 'click', (e: Event) => {
+          if (
+            e.target !== this.toggleButton.nativeElement &&
+            e.target !== this.menu.nativeElement
+          ) {
+            this.show = false;
+          }
+        });
+      }
+    });
   }
 }

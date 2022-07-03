@@ -37,4 +37,10 @@ export class CurrencyComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  deleteCurrency(id) {
+    this.service.DeleteCuurency(id).subscribe((res) => {
+      window.location.reload();
+    });
+  }
 }

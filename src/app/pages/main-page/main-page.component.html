@@ -1,57 +1,69 @@
 <app-header></app-header>
-
-<div class="wrapper">
-  <div class="text">
-    <h1><span style="color: #fe8a00">AI</span> CARGO -</h1>
-    <h1>FAST AND RELIABLE</h1>
-    <H1>SERVICE</H1>
-  </div>
-  <img class="illustration" src="/assets/delivery.svg" alt="" />
-</div>
-<app-custom></app-custom>
-
-<div class="wrapper-3">
-  <h2>Brands <span style="color: #fe8a00">We</span> Work With</h2>
-  <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
-  <div class="brands">
-    <div class="box" *ngFor="let b of brands">
-      <a target="_blank" href="{{ b.item.url }}"
-        ><img src="{{ b.item.imageURL }}" alt=""
-      /></a>
+<app-signin></app-signin>
+<div class="wrapper-mother">
+  <div class="wrapper">
+    <div class="text">
+      <div class="line"></div>
+      <h1>{{ "Hakkimizda" | translate }}</h1>
+      <p style="color: #d0d0d0">
+        {{ "about" | translate }}
+      </p>
     </div>
+    <!-- <img class="illustration" src="/assets/delivery.svg" alt="" /> -->
   </div>
-</div>
+  <app-custom></app-custom>
 
-<div class="wrapper-4">
-  <div class="box-left">
-    <div class="line"></div>
-    <h3>Tarifs</h3>
-    <div class="prices">
-      <p>0.5 Kg - <span> $2</span></p>
-      <p>0.5 Kg - 1 Kg - <span> $3</span></p>
-      <p>1 kg < her 100 gr - <span> $0.3</span></p>
-    </div>
-  </div>
-  <div class="box-right">
-    <div class="line"></div>
-    <h3>Flights</h3>
-    <div class="flight">
-      <div class="vert-line"></div>
-      <div class="info">
-        <p style="font-weight: 500; margin: 0">TR192501</p>
-        <div class="some-flex">
-          <img src="/assets/calendar.svg" alt="" />
-          <p>14-01-2022</p>
-        </div>
+  <div class="wrapper-3">
+    <h2>Brands <span style="color: #bc0808">We</span> Work With</h2>
+    <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
+    <div class="brands">
+      <div class="box" *ngFor="let b of brands">
+        <a target="_blank" href="{{ b.item.url }}"
+          ><img src="{{ b.item.imageURL }}" alt=""
+        /></a>
       </div>
     </div>
-    <div class="flight">
-      <div class="vert-line"></div>
-      <div class="info">
-        <p style="font-weight: 500; margin: 0">TR192501</p>
-        <div class="some-flex">
-          <img src="/assets/calendar.svg" alt="" />
-          <p>14-01-2022</p>
+  </div>
+
+  <div class="wrapper-4">
+    <div class="box-left">
+      <div class="line"></div>
+      <h3>Tarifs</h3>
+      <div class="prices" *ngFor="let item of tarifs">
+        <p>
+          {{ item.kg }} Kg - <span> ${{ item.price }}</span>
+        </p>
+        <!-- <p>0.5 Kg - 1 Kg - <span> $3</span></p>
+      <p>1 kg < her 100 gr - <span> $0.3</span></p> -->
+      </div>
+    </div>
+    <div class="box-right">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        "
+      >
+        <div>
+          <div class="line"></div>
+          <h3>Flights</h3>
+        </div>
+        <div [routerLink]="['/flights-view']" class="more">
+          <p>View All</p>
+          <i style="margin-left: 8px" class="pi pi-arrow-right"></i>
+        </div>
+      </div>
+      <div style="display: flex">
+        <div class="flight" *ngFor="let item of flights">
+          <div class="vert-line"></div>
+          <div class="info">
+            <p style="font-weight: 500; margin: 0">{{ item.code }}</p>
+            <div class="some-flex">
+              <img src="/assets/calendar.svg" alt="" />
+              <p>{{ item.date }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

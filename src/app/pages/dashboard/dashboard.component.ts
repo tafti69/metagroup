@@ -23,8 +23,12 @@ export class DashboardComponent implements OnInit {
   lang: any;
   userId: any;
   name: any;
+  surname: any;
   phone: any;
   personalId: any;
+  cabinetId: any;
+  city: any;
+  email: any;
 
   copy2(text) {
     const elem = document.createElement('textarea');
@@ -43,34 +47,49 @@ export class DashboardComponent implements OnInit {
     this.userId = localStorage.getItem('id');
 
     this.service.getUserInfo(this.userId).subscribe((res) => {
-      this.name =
-        res.firstNameAndLastNameEN + ', ' + res.firstNameAndLastNameKA;
+      console.log(res);
+      this.cabinetId = res.cabinetId;
+      this.name = res.firstNameEN;
+      this.surname = res.lastNameEN;
       this.phone = res.phoneNumber;
       this.personalId = res.personalID;
+      this.city = res.region;
+      this.email = res.email;
       this.cols = [
         {
-          header: 'სახელი, გვარი / Name, Surname / Ad, Soyad:',
-          field: this.name,
+          header: 'Name:',
+          field: this.city + ' ' + this.name,
         },
-        { header: 'ტელეფონი / Telephone / Telefon:', field: this.phone },
         {
-          header: 'პირადი ნომერი / Personal Id / Piradi No:',
-          field: this.personalId,
+          header: 'Surname:',
+          field: this.surname,
         },
-        { header: 'პროვინცია / Province / İl:', field: 'Istanbul' },
-        { header: 'რაიონი / District / lice:', field: 'Kadikoy' },
+        { header: 'ტელეფონი / Telephone / Telefon:', field: '5349110518' },
+        // {
+        //   header: 'პირადი ნომერი / Personal Id / Piradi No:',
+        //   field: this.personalId,
+        // },
+        { header: 'პროვინცია / Province / İl:', field: 'Trabzon' },
+        { header: 'რაიონი / District / lice:', field: 'Ortahisar' },
         {
           header: 'სამეზობლო / Neighborhood / mahalle:',
-          field: 'Osmanaga Mah',
+          field: 'Pelitli Mah',
         },
         {
           header: 'მისამართი / Address / adres:',
-          field:
-            'Aksaray Mahallesi Abdullatif Paşa sok no 21 kat 2 daire 3 Fatih İstanbul',
+          field: `MKK Pelitli Mahallesi Şelale Sokak No: 35A / ${this.cabinetId}`,
+        },
+        {
+          header: 'Adres Başliqi:',
+          field: `Meta Group`,
         },
         {
           header: 'ელ. ფოსტა / E-mail / Email:',
-          field: 'aicargo2022@gmail.com',
+          field: this.email,
+        },
+        {
+          header: 'Zip / Postal Code',
+          field: '61010',
         },
       ];
     });
@@ -83,8 +102,6 @@ export class DashboardComponent implements OnInit {
 
     this.getDashboardInfo();
   }
-
-  getUserInfo() {}
 
   getDashboardInfo() {
     this.service.getDashboardInfo(this.lang, this.userId).subscribe((res) => {

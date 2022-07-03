@@ -17,12 +17,11 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     var time = parseInt(localStorage.getItem('expiration'));
+    // if (time < Date.now()) {
+    //   console.log('refreshed');
 
-    if (time < Date.now()) {
-      console.log('refreshed');
-
-      this.service.refreshToken();
-    }
+    //   this.service.refreshToken();
+    // }
 
     req = req.clone({
       setHeaders: {

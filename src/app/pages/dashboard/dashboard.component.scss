@@ -5,7 +5,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background: #fff;
-  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   @media (max-width: 768px) {
     height: 60px;
   }
@@ -48,12 +48,12 @@ header {
   width: 96%;
   height: 180px;
   padding: 12px;
-  background: #fff;
+  background: #383c46;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.12s ease-out;
@@ -63,58 +63,9 @@ header {
   p {
     font-size: 18px;
     font-weight: 500;
+    color: #fff;
   }
   b {
     font-size: 24px;
-  }
-}
-
-.account-details-wrapper {
-  margin-left: 220px;
-  margin-top: 4rem;
-  margin-bottom: 8rem;
-  width: 76%;
-  padding: 22px;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
-  border-radius: 8px;
-  @media (max-width: 640px) {
-    margin-left: 20px;
-    width: 94%;
-  }
-  .row {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 8px 0;
-    .left {
-      p {
-        margin: 0;
-        color: #505050;
-      }
-      h4 {
-        margin: 0;
-        font-weight: 500;
-      }
-    }
-    .copy {
-      padding: 8px;
-      background: #e7e7e7;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: 0.15s ease-out;
-      &:hover {
-        background: #dadada;
-      }
-      &:active {
-        background: #26bd6a;
-      }
-    }
   }
 }

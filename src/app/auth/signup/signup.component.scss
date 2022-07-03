@@ -10,8 +10,8 @@
 }
 
 .wrapper {
-  background: #fff;
-  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  background: #383c46;
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   border-radius: 12px;
   width: 960px;
   padding: 2rem;
@@ -35,6 +35,7 @@
   label {
     margin-bottom: 4px;
     font-size: 15px;
+    color: #fff;
   }
   input,
   select {
@@ -42,8 +43,8 @@
     height: 36px;
     border-radius: 6px;
     padding-left: 10px;
-    border: 1px solid #e7e7e7;
     margin: 0;
+    background: #383c46;
     @media (max-width: 1440px) {
       width: 360px;
     }
@@ -55,25 +56,28 @@
     padding: 4px;
   }
   button {
-    width: 200px;
+    width: 400px;
     height: 40px;
-    background: #fe8a00;
+    background: #bc0808;
     border-radius: 6px;
     margin-top: 2rem;
     margin-bottom: 0;
     color: #fff;
-    &:disabled {
-      background: #adadad;
+    @media (max-width: 1440px) {
+      width: 360px;
+    }
+    @media (max-width: 1000px) {
+      width: 300px;
     }
   }
 }
 
 .errordiv {
   margin-top: 10px;
-  color: red;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fd7b7b;
 }
 
 .successdiv {
@@ -84,9 +88,22 @@
 small {
   margin: 0;
   padding: 0;
+  color: #fd7b7b;
+}
+.check {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  margin: 8px;
+  @media (max-width: 1440px) {
+    width: 360px;
+  }
+  @media (max-width: 1000px) {
+    width: 300px;
+  }
 }
 
 input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        display: none;
-      }
+input::-webkit-inner-spin-button {
+  display: none;
+}

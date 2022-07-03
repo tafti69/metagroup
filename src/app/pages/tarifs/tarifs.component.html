@@ -1,0 +1,50 @@
+<app-sidebar></app-sidebar>
+<div *ngIf="isLoading" class="loader"></div>
+<div style="display: flex; flex-direction: row" class="admin-dashboard">
+  <div style="width: 48%">
+    <h2>Tarifs Controller</h2>
+    <form (ngSubmit)="onCreateTarif()" [formGroup]="form">
+      <div>
+        <label for="val">Kg</label>
+        <input id="val" type="text" formControlName="kg" />
+      </div>
+      <div>
+        <label for="val">Price</label>
+        <input id="val" type="number" formControlName="price" />
+      </div>
+      <button
+        style="width: 200px; margin-top: 10px"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Create Tarif
+      </button>
+    </form>
+  </div>
+  <div *ngIf="tarifs.length > 0" style="width: 48%">
+    <h3>Created Tarifs</h3>
+    <div>
+      <p class="flex-p" *ngFor="let t of tarifs">
+        {{ t.kg }} kg - ${{ t.price }}
+        <button class="delete-p">
+          <i
+            (click)="deleteTarif(t.id)"
+            class="pi pi-times"
+            style="font-size: 12px"
+          ></i>
+        </button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="admin-dashboard">
+  <div>
+    <label for="val">Current Rate (GEL)</label>
+    <input id="val" type="text" [(ngModel)]="USD" />
+  </div>
+  <button style="width: 200px; margin-top: 10px" (click)="createUSD()">
+    Save
+  </button>
+  <p>Current Rate: ${{ USD }}</p>
+</div>

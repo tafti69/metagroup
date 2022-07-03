@@ -74,7 +74,6 @@ export class InvoiceComponent implements OnInit {
   downloadInvoiceFile() {
     this.isLoading = true;
     this.service.downloadInvoiceFile(this.orderId).subscribe((resp) => {
-      console.log(resp);
       this.isLoading = false;
       const blob = new Blob([resp], { type: 'octet/stream' });
       const object = URL.createObjectURL(blob);

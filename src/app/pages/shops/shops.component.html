@@ -1,20 +1,24 @@
 <app-header></app-header>
-<div class="wrap">
-  <div class="line"></div>
-  <h1>Shops</h1>
-  <p>
-    These are the brands and shops that where you can find your favourite items
-    for shopping and we'll make it possible to deliver it right to your door!
-  </p>
-</div>
+<app-signin></app-signin>
+<div class="wrapper-mother">
+  <div class="wrap">
+    <div class="line"></div>
+    <h1>{{ "shops" | translate }}</h1>
+    <p>
+      Meta Groupla sifariş edilməsi mümkün olan istənilən mağazadan sifariş
+      qəbul edirik və bunların ən papulyarlarından bir neçəsini sizinlə
+      paylaşırıq!
+    </p>
+  </div>
 
-<div class="wrapper-3">
-  <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
-  <div class="brands">
-    <div class="box" *ngFor="let b of brands">
-      <a target="_blank" href="{{ b.item.url }}"
-        ><img src="{{ b.item.imageURL }}" alt=""
-      /></a>
+  <div class="wrapper-3">
+    <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
+    <div class="brands">
+      <div class="box" *ngFor="let b of brands">
+        <a target="_blank" href="{{ b.item.url }}"
+          ><img src="{{ b.item.imageURL }}" alt=""
+        /></a>
+      </div>
     </div>
   </div>
 </div>

@@ -28,12 +28,12 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background: #f7f6f5;
+  background: #282c33;
 }
 
 a {
   text-decoration: none;
-  color: #131313;
+  color: #f8f8f8;
   cursor: pointer;
 }
 
@@ -41,12 +41,21 @@ li {
   list-style: none;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  color: #fff;
+}
+
 select,
 input,
 textarea {
   outline: none;
-  background: #f1f3f5d7;
-  border: 1px solid #f0f0f0;
+  background: none;
+  border: 1px solid #6c757d;
+  color: white;
+  background: #383c46;
 }
 
 button {
@@ -58,7 +67,7 @@ button {
 button {
   // width: 200px;
   height: 40px;
-  background: #fe8a00;
+  background: #bc0808;
   border-radius: 6px;
   color: #fff;
   display: flex;
@@ -69,14 +78,31 @@ button {
 .line {
   width: 40px;
   height: 3px;
-  background: #fe8a00;
+  background: #bc0808;
   margin: 1rem 0;
+}
+
+.wrapper-mother {
+  position: relative;
+  margin-right: 380px;
+  padding-bottom: 2rem;
+  @media (max-width: 1340px) {
+    margin-right: 360px;
+  }
+  @media (max-width: 1200px) {
+    margin-right: 0;
+    padding-bottom: 0;
+    margin-top: 10%;
+  }
 }
 
 .wrapper-3 {
   text-align: center;
   margin: 8rem auto;
   width: 80%;
+  @media (max-width: 1640px) {
+    width: 90%;
+  }
   @media (max-width: 640px) {
     width: 96%;
     margin: 4rem 0.5rem;
@@ -107,14 +133,15 @@ button {
       margin: 0 auto;
     }
     .box {
+      position: relative;
       width: 180px;
       height: 80px;
       padding: 12px;
-      background: #fff;
+      background: #383c46;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+      // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
       border-radius: 8px;
       @media (max-width: 1440px) {
         width: 140px;
@@ -136,21 +163,27 @@ button {
 .table-wrapper {
   margin-left: 220px;
   margin-top: 60px;
-  background: #fff;
+  background: #383c46;
   border-radius: 12px;
   padding: 16px;
   margin-right: 16px;
-  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
-  @media (max-width: 640px) {
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  @media (max-width: 940px) {
     margin-left: 20px;
     margin-right: 8px;
   }
   .table-header {
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
     h2 {
       margin: 0;
     }
   }
+}
+
+label {
+  color: #fff;
 }
 
 .button-wrapper {
@@ -165,10 +198,10 @@ button {
   z-index: 0;
   display: inline-block;
   width: 400px;
-  border: 2px dotted #fe8a00;
+  border: 2px dotted #bc0808;
   border-radius: 6px;
   cursor: pointer;
-  color: #131313;
+  color: #fff;
   padding: 10px 0;
   text-transform: uppercase;
   font-size: 16px;
@@ -195,7 +228,7 @@ button {
 .admin-dashboard {
   margin-left: 220px;
   margin-top: 60px;
-  background: #fff;
+  background: #383c46;
   border-radius: 16px;
   padding: 16px;
   margin-right: 16px;
@@ -207,13 +240,65 @@ input {
   height: 36px;
   border-radius: 6px;
   padding-left: 10px;
-  border: 1px solid #e7e7e7;
+  border: 1px solid #6c757d;
   margin-top: 6px;
+  color: #fff;
   @media (max-width: 1440px) {
     width: 360px;
   }
   @media (max-width: 1000px) {
     width: 300px;
+  }
+}
+
+.account-details-wrapper {
+  margin-left: 220px;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+  width: 76%;
+  padding: 22px;
+  background: #383c46;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  border-radius: 8px;
+  @media (max-width: 640px) {
+    margin-left: 20px;
+    width: 94%;
+  }
+  .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+    .left {
+      p {
+        margin: 0;
+        color: #d0d0d0;
+      }
+      h4 {
+        margin: 0;
+        font-weight: 500;
+      }
+    }
+    .copy {
+      padding: 8px;
+      background: #2e333c;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.15s ease-out;
+      &:hover {
+        background: #3a414e;
+      }
+      &:active {
+        background: #26bd6a;
+      }
+    }
   }
 }
 
@@ -253,8 +338,25 @@ input {
   }
 }
 
+.flex-p {
+  border-bottom: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px;
+}
+
+.delete-p {
+  background: #969696;
+  padding: 3px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  height: 24px;
+  width: 26px;
+}
+
 .p-datatable-wrapper {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
@@ -265,10 +367,10 @@ td {
   #curier {
     border-radius: 4px;
     padding: 4px 0;
-    color: #666b85;
+    color: #d0d0d0;
     option {
       padding: 6px;
-      color: #666b85;
+      color: #d0d0d0;
     }
   }
   .decl,
@@ -278,6 +380,10 @@ td {
     height: 30px;
     border-radius: 4px;
     color: white;
+    @media (max-width: 1440px) {
+      width: 110px;
+      font-size: 12px;
+    }
   }
   .decl {
     background: #fe8a00;
@@ -290,4 +396,78 @@ td {
 .l {
   text-align: center;
   margin-top: 15px;
+  color: #d0d0d0;
+}
+
+.delete {
+  background: #363636;
+  height: 30px;
+}
+
+button:disabled {
+  background-color: #88888848;
+  cursor: not-allowed;
+}
+
+.wp {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: #373c47;
+  margin: 0 6px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.p-datatable .p-datatable-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.p-calendar .p-datepicker {
+  width: 360px;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  background-color: #383c46;
+  color: #fff;
+  border: 1px solid #6c757d;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: #383c46;
+  color: #d0d0d0;
+  border: 1px solid #6c757d;
+}
+
+.p-paginator {
+  background-color: #383c46;
+  color: #d0d0d0;
+  border: 1px solid #6c757d;
+  @media (max-width: 940px) {
+    font-size: 12px;
+  }
+}
+.p-paginator .p-paginator-current {
+  color: #d0d0d0;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #2e333c;
+  color: #fff;
+}
+
+.p-datatable .p-datatable-header {
+  border: 1px solid #6c757d;
+  background: #383c46;
+}
+
+.p-calendar .p-inputtext {
+  border: 1px solid #6c757d;
+  background: #383c46;
 }

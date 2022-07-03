@@ -1,0 +1,97 @@
+<app-sidebar></app-sidebar>
+
+<div class="admin-dashboard">
+  <h2>Users Controller</h2>
+  <div>
+    <p-table
+      #dt
+      [value]="users"
+      styleClass="p-datatable-gridlines"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [sortOrder]="-1"
+      responsiveLayout="scroll"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10, 15, 20]"
+      [globalFilterFields]="[
+        'cabinetId',
+        'firstNameAndLastNameEN',
+        'phoneNumber',
+        'additionalPhoneNumber',
+        'email',
+        'address',
+        'personalID'
+      ]"
+    >
+      <ng-template pTemplate="caption">
+        <div style="text-align: right">
+          <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
+          <input
+            type="text"
+            pInputText
+            size="50"
+            placeholder="Search"
+            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            style="width: 300px; margin-top: -16px"
+          />
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="cabinetId">
+            Cabinet Id <p-sortIcon field="cabinetId"></p-sortIcon>
+          </th>
+          <th pSortableColumn="personalID">
+            {{ "personalid" | translate }}
+            <p-sortIcon field="personalID"></p-sortIcon>
+          </th>
+          <th pSortableColumn="firstNameAndLastNameEN">
+            {{ "namesurname" | translate }}
+            <p-sortIcon field="firstNameAndLastNameEN"></p-sortIcon>
+          </th>
+          <th pSortableColumn="phoneNumber">
+            {{ "phone-number" | translate }}
+            <p-sortIcon field="phoneNumber"></p-sortIcon>
+          </th>
+          <th pSortableColumn="additionalPhoneNumber">
+            {{ "whatsapp-number" | translate }}
+            <p-sortIcon field="additionalPhoneNumber"></p-sortIcon>
+          </th>
+          <th pSortableColumn="email">
+            {{ "email" | translate }} <p-sortIcon field="email"></p-sortIcon>
+          </th>
+          <th pSortableColumn="region">
+            {{ "city-region" | translate }}
+            <p-sortIcon field="region"></p-sortIcon>
+          </th>
+          <th pSortableColumn="address">
+            {{ "address" | translate }}
+            <p-sortIcon field="address"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-o>
+        <tr>
+          <td
+            [ngStyle]="{
+              'background-color': o.isOrganization ? '#1569c9' : ''
+            }"
+          >
+            {{ o.cabinetId }}
+          </td>
+          <td>{{ o.personalID }}</td>
+          <td>{{ o.firstNameEN }} {{ o.lastNameEN }}</td>
+          <td>{{ o.phoneNumber }}</td>
+          <td>{{ o.whatsAppNumber }}</td>
+          <td>{{ o.email }}</td>
+
+          <td>{{ o.region }}</td>
+
+          <td>{{ o.address }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="l" *ngIf="isLoading">Loading...</div>
+  </div>
+</div>

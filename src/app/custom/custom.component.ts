@@ -19,13 +19,13 @@ export class CustomComponent implements OnInit {
     {
       image: '/assets/phone.svg',
       head: 'contacts',
-      text: '+995 593 39 03 01',
-      text2: 'aicargo2022@gmail.com',
+      text: '+995 558 67 27 47',
+      text2: '2022metagroup@gmail.com',
     },
     {
       image: '/assets/location.svg',
       head: 'address',
-      text: 'Aksaray Mahallesi Abdullatif Paşa sok no 21 kat 2 daire 3 Fatih İstanbul',
+      text: 'Marneuli Rustavelis Qucha 62B, Tbilisi Gabriel Salosis 15 ADD',
     },
   ];
 }

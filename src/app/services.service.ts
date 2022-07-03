@@ -1,10 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SignInModel, SignUpModel } from './models/auth';
 import { CreateCitiesModel } from './models/cities';
 import { CreateCurrency } from './models/currency';
+import { FlightModel, TarifModel } from './models/flightandtarif';
 import { AddFileInvoice } from './models/invoice';
-import { CreateOrder, Declaration } from './models/orders';
+import {
+  CreateOrder,
+  Declaration,
+  OrdersDTO,
+  UpdateAll,
+  WeightModel,
+} from './models/orders';
 import { CreateProductModel } from './models/product';
 import { CreatePartner } from './models/shops';
 import { Statuses, UpdateStatuses } from './models/status';
@@ -33,6 +41,8 @@ export class ServicesService {
 
   loginUser(model: SignInModel) {
     const userUrl = this.url + 'Accounts/SignIn';
+    // localStorage.setItem('email', model.email);
+    // localStorage.setItem('password', model.password);
     localStorage.setItem('expiration', (Date.now() + 11 * 3600000).toString());
     return this.http.post<SignInModel>(userUrl, model);
   }
@@ -102,7 +112,7 @@ export class ServicesService {
     return this.http.post<CreateOrder>(userUrl, model);
   }
 
-  getOrder(lang: string) {
+  getOrder(lang: string): Observable<any> {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang };
     const userUrl = this.url + 'Orders/GetAll';
@@ -131,6 +141,26 @@ export class ServicesService {
     return this.http.delete(userUrl);
   }
 
+  DeletePartners(partnerId: any) {
+    const userUrl = this.url + `Partners/Delete/${partnerId}`;
+    return this.http.delete(userUrl);
+  }
+
+  DeleteProductNames(productId: any) {
+    const userUrl = this.url + `ProductNames/Delete/${productId}`;
+    return this.http.delete(userUrl);
+  }
+
+  DeleteCuurency(id: any) {
+    const userUrl = this.url + `Currencies/Delete/${id}`;
+    return this.http.delete(userUrl);
+  }
+
+  DeleteCities(cityId: any) {
+    const userUrl = this.url + `Cities/Delete/${cityId}`;
+    return this.http.delete(userUrl);
+  }
+
   downloadInvoiceFile(orderId: any) {
     const userUrl = this.url + `Orders/DownloadFile/${orderId}`;
     return this.http.get(userUrl, {
@@ -148,6 +178,11 @@ export class ServicesService {
     return this.http.get<SignUpModel>(userUrl);
   }
 
+  getUsers() {
+    const userUrl = this.url + `Accounts/GetUsers`;
+    return this.http.get<any>(userUrl);
+  }
+
   getDeliveryType(lang: string) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang };
@@ -160,9 +195,61 @@ export class ServicesService {
     return this.http.post<Statuses>(userUrl, model);
   }
 
+  updateWeight(model: WeightModel) {
+    const userUrl = this.url + 'Orders/UpdateWeight';
+    return this.http.post<WeightModel>(userUrl, model);
+  }
+
   createDeclaration(model: Declaration) {
     const userUrl = this.url + 'Declarations/CreateDeclaration';
     return this.http.post<Declaration>(userUrl, model);
+  }
+
+  createFlight(model: FlightModel) {
+    const userUrl = this.url + 'Flights/Create';
+    return this.http.post<FlightModel>(userUrl, model);
+  }
+
+  getFlights() {
+    const userUrl = this.url + `Flights/GetAll`;
+    return this.http.get<any>(userUrl);
+  }
+
+  DeleteFlight(id: any) {
+    const userUrl = this.url + `Flights/Delete/${id}`;
+    return this.http.delete(userUrl);
+  }
+
+  createTarif(kg: string, price: number) {
+    var obj = {
+      kg: kg,
+      price: price,
+    };
+    console.log(JSON.stringify(obj));
+
+    const userUrl = this.url + 'Tarifs/Create';
+    return this.http.post<any>(userUrl, JSON.stringify(obj));
+  }
+
+  getTarifs() {
+    const userUrl = this.url + 'Tarifs/GetAll';
+    return this.http.get<any>(userUrl);
+  }
+
+  getUSD() {
+    const userUrl = this.url + 'USD/GetCurrentUSD';
+    return this.http.get<any>(userUrl);
+  }
+
+  updateUSD(id: string, price: number) {
+    var obj = { id: id, price: price };
+    const userUrl = this.url + 'USD/UpdateCurrentUSD';
+    return this.http.post(userUrl, JSON.stringify(obj));
+  }
+
+  DeleteTarif(id: any) {
+    const userUrl = this.url + `Tarifs/Delete/${id}`;
+    return this.http.delete(userUrl);
   }
 
   getDeclaration(lang: string, id: string) {
@@ -175,6 +262,17 @@ export class ServicesService {
   updateDeliveryType(model: UpdateStatuses) {
     const userUrl = this.url + 'Orders/UpdateDeliveryType';
     return this.http.post<UpdateStatuses>(userUrl, model);
+  }
+
+  filterRangeByDate(lang, from, to) {
+    var obj = { Lang: lang, from: from, to: to };
+    const userUrl = this.url + 'Orders/FilterByRange';
+    return this.http.post(userUrl, JSON.stringify(obj));
+  }
+
+  updateAll(model: UpdateAll) {
+    const userUrl = this.url + 'Orders/UpdateStatusesRange';
+    return this.http.post(userUrl, JSON.stringify(model));
   }
 
   getDashboardInfo(lang: string, id: string) {

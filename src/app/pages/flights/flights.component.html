@@ -1,0 +1,39 @@
+<app-sidebar></app-sidebar>
+<div *ngIf="isLoading" class="loader"></div>
+<div style="display: flex; flex-direction: row" class="admin-dashboard">
+  <div style="width: 48%">
+    <h2>Flights Controller</h2>
+    <form (ngSubmit)="onCreateFlight()" [formGroup]="form">
+      <div>
+        <label for="val">Code</label>
+        <input id="val" type="text" formControlName="code" />
+      </div>
+      <div>
+        <label for="val">Date</label>
+        <input id="val" type="date" formControlName="date" />
+      </div>
+      <button
+        style="width: 200px; margin-top: 10px"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Create
+      </button>
+    </form>
+  </div>
+  <div *ngIf="flights.length > 0" style="width: 48%">
+    <h3>Created Flights</h3>
+    <div>
+      <p class="flex-p" *ngFor="let f of flights">
+        {{ f.code }} | {{ f.date }}
+        <button class="delete-p">
+          <i
+            (click)="deleteFlight(f.id)"
+            class="pi pi-times"
+            style="font-size: 12px"
+          ></i>
+        </button>
+      </p>
+    </div>
+  </div>
+</div>

@@ -5,63 +5,79 @@
     <div class="wrapper">
       <!-- <h3>რეგისტრაცია</h3> -->
       <div>
-        <label>სახელი და გვარი ქართულად</label>
-        <input
-          type="text"
-          formControlName="firstNameAndLastNameKA"
-          pattern="[ა-ჰ ]*"
-        />
+        <label>{{ "name-ka" | translate }}</label>
+        <input type="text" formControlName="firstNameKA" pattern="[ა-ჰ ]*" />
         <span
           *ngIf="
-            form.controls['firstNameAndLastNameKA'].invalid &&
-            (form.controls['firstNameAndLastNameKA'].dirty ||
-              form.controls['firstNameAndLastNameKA'].touched)
+            form.controls['firstNameKA'].invalid &&
+            (form.controls['firstNameKA'].dirty ||
+              form.controls['firstNameKA'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['firstNameAndLastNameKA'].errors.required"
-          >
+          <small *ngIf="form.controls['firstNameKA'].errors.required">
             This field is required
           </small>
-          <small
-            style="color: red"
-            *ngIf="form.controls['firstNameAndLastNameKA'].errors?.pattern"
-          >
+          <small *ngIf="form.controls['firstNameKA'].errors?.pattern">
             Name must be in Georgian
           </small>
         </span>
       </div>
       <div>
-        <label>სახელი და გვარი ლატინურად</label>
-        <input
-          type="text"
-          formControlName="firstNameAndLastNameEN"
-          pattern="[a-zA-Z ]*"
-        />
+        <label>{{ "surname-ka" | translate }}</label>
+        <input type="text" formControlName="lastNameKA" pattern="[ა-ჰ ]*" />
         <span
           *ngIf="
-            form.controls['firstNameAndLastNameEN'].invalid &&
-            (form.controls['firstNameAndLastNameEN'].dirty ||
-              form.controls['firstNameAndLastNameEN'].touched)
+            form.controls['lastNameKA'].invalid &&
+            (form.controls['lastNameKA'].dirty ||
+              form.controls['lastNameKA'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['firstNameAndLastNameEN'].errors?.required"
-          >
+          <small *ngIf="form.controls['lastNameKA'].errors?.required">
             This field is required
           </small>
-          <small
-            style="color: red"
-            *ngIf="form.controls['firstNameAndLastNameEN'].errors?.pattern"
-          >
+          <small *ngIf="form.controls['lastNameKA'].errors?.pattern">
+            Name must be in Georgian
+          </small>
+        </span>
+      </div>
+      <div>
+        <label>{{ "name-en" | translate }}</label>
+        <input type="text" formControlName="firstNameEN" pattern="[a-zA-Z ]*" />
+        <span
+          *ngIf="
+            form.controls['firstNameEN'].invalid &&
+            (form.controls['firstNameEN'].dirty ||
+              form.controls['firstNameEN'].touched)
+          "
+        >
+          <small *ngIf="form.controls['firstNameEN'].errors?.required">
+            This field is required
+          </small>
+          <small *ngIf="form.controls['firstNameEN'].errors?.pattern">
             Name must be in English
           </small>
         </span>
       </div>
       <div>
-        <label>ტელეფონის ნომერი</label>
+        <label>{{ "surname-en" | translate }}</label>
+        <input type="text" formControlName="lastNameEN" pattern="[a-zA-Z ]*" />
+        <span
+          *ngIf="
+            form.controls['lastNameEN'].invalid &&
+            (form.controls['lastNameEN'].dirty ||
+              form.controls['lastNameEN'].touched)
+          "
+        >
+          <small *ngIf="form.controls['lastNameEN'].errors?.required">
+            This field is required
+          </small>
+          <small *ngIf="form.controls['lastNameEN'].errors?.pattern">
+            Name must be in English
+          </small>
+        </span>
+      </div>
+      <div>
+        <label> {{ "phone-number" | translate }}</label>
         <input type="number" formControlName="phoneNumber" />
         <span
           *ngIf="
@@ -70,20 +86,28 @@
               form.controls['phoneNumber'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['phoneNumber'].errors.required"
-          >
+          <small *ngIf="form.controls['phoneNumber'].errors.required">
             This field is required
           </small>
         </span>
       </div>
       <div>
-        <label>დამატებიტი ტელ. ნომერი (Optional)</label>
-        <input type="number" formControlName="additionalPhoneNumber" />
+        <label>{{ "whatsapp-number" | translate }}</label>
+        <input type="number" formControlName="whatsAppNumber" />
+        <span
+          *ngIf="
+            form.controls['whatsAppNumber'].invalid &&
+            (form.controls['whatsAppNumber'].dirty ||
+              form.controls['whatsAppNumber'].touched)
+          "
+        >
+          <small *ngIf="form.controls['whatsAppNumber'].errors.required">
+            This field is required
+          </small>
+        </span>
       </div>
       <div>
-        <label>ელ-ფოსტა</label>
+        <label>{{ "email" | translate }}</label>
         <input type="email" formControlName="email" />
         <span
           *ngIf="
@@ -91,17 +115,20 @@
             (form.controls['email'].dirty || form.controls['email'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['email'].errors.required"
-          >
+          <small *ngIf="form.controls['email'].errors.required">
             This field is required
           </small>
         </span>
       </div>
       <div>
-        <label>პირადი ნომერი</label>
-        <input type="number" formControlName="personalID" />
+        <label>{{ "personalid" | translate }}</label>
+        <input
+          type="text"
+          formControlName="personalID"
+          maxlength="11"
+          minlength="11"
+          (keydown)="onlyNumbers($event)"
+        />
         <span
           *ngIf="
             form.controls['personalID'].invalid &&
@@ -109,16 +136,19 @@
               form.controls['personalID'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['personalID'].errors.required"
-          >
+          <small *ngIf="form.controls['personalID'].errors.required">
             This field is required
           </small>
         </span>
+        <!-- <small
+          style="color: red"
+          *ngIf="form.controls['personalID'].errors.maxLength"
+        >
+          ID must be max 11 and characters.
+        </small> -->
       </div>
       <div>
-        <label>პაროლი</label>
+        <label>{{ "password" | translate }}</label>
         <input type="password" formControlName="password" />
         <span
           *ngIf="
@@ -127,10 +157,7 @@
               form.controls['password'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['password'].errors.required"
-          >
+          <small *ngIf="form.controls['password'].errors.required">
             This field is required
           </small>
           <!-- <small
@@ -142,7 +169,7 @@
         </span>
       </div>
       <div>
-        <label>გაიმეორეთ პაროლი</label>
+        <label>{{ "repeatpassword" | translate }}</label>
         <input type="password" formControlName="confirmPassword" />
         <!-- <span
           *ngIf="
@@ -160,16 +187,16 @@
 
         </span> -->
 
-        <small style="color: red" *ngIf="form.hasError('notmatched')">
+        <small *ngIf="form.hasError('notmatched')">
           Passwords must match
         </small>
       </div>
       <div>
-        <label>ქალაქი/რეგიონი</label>
+        <label> {{ "city-region" | translate }} </label>
         <select formControlName="region">
-          <option value="">აირჩიე</option>
-          <option *ngFor="let item of cities" value="item">
-            {{ item.name_ka }}
+          <option value="">{{ "city-region" | translate }}</option>
+          <option *ngFor="let item of cities" [value]="item.item.name">
+            {{ item.item.name }}
           </option>
         </select>
         <span
@@ -178,16 +205,13 @@
             (form.controls['region'].dirty || form.controls['region'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['region'].errors.required"
-          >
+          <small *ngIf="form.controls['region'].errors.required">
             This field is required
           </small>
         </span>
       </div>
       <div>
-        <label>მისამართი</label>
+        <label> {{ "address" | translate }}</label>
         <input type="text" formControlName="address" />
         <span
           *ngIf="
@@ -195,14 +219,27 @@
             (form.controls['address'].dirty || form.controls['address'].touched)
           "
         >
-          <small
-            style="color: red"
-            *ngIf="form.controls['address'].errors.required"
-          >
+          <small *ngIf="form.controls['address'].errors.required">
             This field is required
           </small>
         </span>
       </div>
+      <span class="check">
+        <input
+          style="width: 20px"
+          type="radio"
+          formControlName="isOrg"
+          id="o1"
+          value="organisation"
+        /><label style="margin-left: 4px" for="o1"> იურიდიული პირი</label><br />
+        <input
+          style="width: 20px; margin-left: 20px"
+          type="radio"
+          formControlName="isOrg"
+          id="o2"
+          value="individual"
+        /><label style="margin-left: 4px" for="o2"> ფიზიკური პირი</label><br />
+      </span>
       <div style="align-items: center">
         <button type="submit">
           რეგისტრაცია

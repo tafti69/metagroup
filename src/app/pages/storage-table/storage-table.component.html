@@ -2,7 +2,17 @@
 
 <div class="table-wrapper">
   <div class="table-header">
-    <h2>საწყობი</h2>
+    <h2>{{ "storage" | translate }}</h2>
+    <select
+      style="width: 120px; height: 36px"
+      id="curier"
+      (change)="onUpdateAllDeliveries($event)"
+    >
+      <option selected value="0">Delivery</option>
+      <option *ngFor="let i of deliveries" [value]="i.id">
+        {{ i.item.name }}
+      </option>
+    </select>
   </div>
   <p-table
     [value]="storage"
@@ -17,30 +27,49 @@
   >
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="uniqueIdentifier">
-          # <p-sortIcon field="uniqueIdentifier"></p-sortIcon>
+        <th style="padding: 8px">
+          <input
+            style="width: 20px; background: none"
+            type="checkbox"
+            [(ngModel)]="masterSelected"
+            (change)="checkUncheckAll()"
+          />
+        </th>
+        <th pSortableColumn="cabinetId">
+          Cabinet Id <p-sortIcon field="cabinetId"></p-sortIcon>
         </th>
         <th pSortableColumn="trackingId">
-          თრექინგი <p-sortIcon field="trackingId"></p-sortIcon>
+          {{ "tracking" | translate }}
+          <p-sortIcon field="trackingId"></p-sortIcon>
         </th>
         <th pSortableColumn="height">
-          წონა <p-sortIcon field="height"></p-sortIcon>
+          {{ "weight" | translate }} <p-sortIcon field="height"></p-sortIcon>
         </th>
         <th pSortableColumn="paidAmount">
-          თანხა <p-sortIcon field="paidAmount"></p-sortIcon>
+          {{ "paid-amont" | translate }}
+          <p-sortIcon field="paidAmount"></p-sortIcon>
         </th>
-        <th>მაღაზია</th>
-        <th>ვალუტა</th>
-        <th>გატანა</th>
-        <th>მოქმედება</th>
-        <th>ინვოისი</th>
+        <th>{{ "shop" | translate }}</th>
+        <th>{{ "currency" | translate }}</th>
+        <th>{{ "comment" | translate }}</th>
+        <th>{{ "delivery" | translate }}</th>
+        <th>{{ "action" | translate }}</th>
+        <th>{{ "invoice" | translate }}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-o>
       <tr>
-        <td>{{ o.uniqueIdentifier }}</td>
+        <td>
+          <input
+            style="width: 20px"
+            type="checkbox"
+            [value]="o.isChecked"
+            [(ngModel)]="o.isChecked"
+          />
+        </td>
+        <td>{{ o.cabinetId }}</td>
         <td>{{ o.trackingId }}</td>
-        <td>{{ o.height }}</td>
+        <td>{{ o.weight }}</td>
         <td>{{ o.paidAmount }}</td>
         <td>
           <span *ngIf="o.declaration.partner">
@@ -50,6 +79,11 @@
         <td>
           <span *ngIf="o.declaration.currency">{{
             o.declaration.currency.value
+          }}</span>
+        </td>
+        <td>
+          <span *ngIf="o.declaration.comment">{{
+            o.declaration.comment | slice: 0:31
           }}</span>
         </td>
         <td>
@@ -97,4 +131,5 @@
     </ng-template>
   </p-table>
   <div class="l" *ngIf="isLoading">Loading...</div>
+  <p style="color: white">Delivery Price: {{ deliveryPrice2 }} GEL</p>
 </div>
