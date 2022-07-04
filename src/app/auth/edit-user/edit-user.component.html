@@ -1,0 +1,131 @@
+<app-sidebar></app-sidebar>
+<div class="signup-wrapper">
+  <form [formGroup]="form" (ngSubmit)="updateUser()">
+    <div class="wrapper-register">
+      <div>
+        <label>{{ "name-ka" | translate }}</label>
+        <input type="text" formControlName="firstNameKA" pattern="[ა-ჰ ]*" />
+      </div>
+      <div>
+        <label>{{ "surname-ka" | translate }}</label>
+        <input type="text" formControlName="lastNameKA" pattern="[ა-ჰ ]*" />
+      </div>
+      <div>
+        <label>{{ "name-en" | translate }}</label>
+        <input type="text" formControlName="firstNameEN" pattern="[a-zA-Z ]*" />
+      </div>
+      <div>
+        <label>{{ "surname-en" | translate }}</label>
+        <input type="text" formControlName="lastNameEN" pattern="[a-zA-Z ]*" />
+      </div>
+      <div>
+        <label> {{ "phone-number" | translate }}</label>
+        <input type="number" formControlName="phoneNumber" />
+      </div>
+      <div>
+        <label>{{ "whatsapp-number" | translate }}</label>
+        <input type="number" formControlName="whatsAppNumber" />
+      </div>
+      <div>
+        <label>{{ "email" | translate }}</label>
+        <input type="email" formControlName="email" />
+      </div>
+      <div>
+        <label>{{ "personalid" | translate }}</label>
+        <input
+          type="text"
+          formControlName="personalID"
+          maxlength="11"
+          minlength="11"
+          (keydown)="onlyNumbers($event)"
+        />
+        <span
+          *ngIf="
+            form.controls['personalID'].invalid &&
+            (form.controls['personalID'].dirty ||
+              form.controls['personalID'].touched)
+          "
+        >
+          <small *ngIf="form.controls['personalID'].errors.required">
+            This field is required
+          </small>
+        </span>
+        <!-- <small
+          style="color: red"
+          *ngIf="form.controls['personalID'].errors.maxLength"
+        >
+          ID must be max 11 and characters.
+        </small> -->
+      </div>
+      <!-- <div>
+        <label>{{ "password" | translate }}</label>
+        <input type="password" formControlName="password" />
+        <span
+          *ngIf="
+            form.controls['password'].invalid &&
+            (form.controls['password'].dirty ||
+              form.controls['password'].touched)
+          "
+        >
+          <small *ngIf="form.controls['password'].errors.required">
+            This field is required
+          </small>
+        </span>
+      </div>
+      <div>
+        <label>{{ "repeatpassword" | translate }}</label>
+        <input type="password" formControlName="confirmPassword" />
+        <small *ngIf="form.hasError('notmatched')">
+          Passwords must match
+        </small>
+      </div> -->
+      <div>
+        <label> {{ "city-region" | translate }} </label>
+        <select formControlName="region">
+          <option value="">{{ "city-region" | translate }}</option>
+          <option *ngFor="let item of cities" [value]="item.item.name">
+            {{ item.item.name }}
+          </option>
+        </select>
+        <span
+          *ngIf="
+            form.controls['region'].invalid &&
+            (form.controls['region'].dirty || form.controls['region'].touched)
+          "
+        >
+          <small *ngIf="form.controls['region'].errors.required">
+            This field is required
+          </small>
+        </span>
+      </div>
+      <div>
+        <label> {{ "address" | translate }}</label>
+        <input type="text" formControlName="address" />
+      </div>
+      <span class="check">
+        <input
+          style="width: 20px"
+          type="radio"
+          formControlName="isOrg"
+          id="o1"
+          value="organisation"
+        /><label style="margin-left: 4px" for="o1"> იურიდიული პირი</label><br />
+        <input
+          style="width: 20px; margin-left: 20px"
+          type="radio"
+          formControlName="isOrg"
+          id="o2"
+          value="individual"
+        /><label style="margin-left: 4px" for="o2"> ფიზიკური პირი</label><br />
+      </span>
+      <div style="align-items: center">
+        <button type="submit">
+          Save
+          <!-- <div style="margin-top: -2px" class="lds-ring" *ngIf="isLoading">
+            <div></div>
+          </div> -->
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

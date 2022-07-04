@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-prohibited-items',
@@ -6,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prohibited-items.component.scss'],
 })
 export class ProhibitedItemsComponent implements OnInit {
-  constructor() {}
+  constructor(private service: ServicesService) {}
 
-  ngOnInit(): void {}
+  userId: any;
+  userName: any;
+
+  ngOnInit(): void {
+    this.userId = localStorage.getItem('id');
+
+    this.getUser();
+  }
+
+  getUser() {
+    this.service.getUserInfo(this.userId).subscribe((res) => {
+      this.userName = res.firstNameEN + ' ' + res.lastNameEN;
+    });
+  }
 
   items = [
     'Ateşli Silah Parçaları ve Aksesuarları',

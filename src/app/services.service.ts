@@ -39,6 +39,11 @@ export class ServicesService {
     return this.http.post<SignUpModel>(userUrl, model);
   }
 
+  updateUser(model: SignUpModel) {
+    const userUrl = this.url + 'Accounts/UpdateUserInfo';
+    return this.http.post<SignUpModel>(userUrl, model);
+  }
+
   loginUser(model: SignInModel) {
     const userUrl = this.url + 'Accounts/SignIn';
     // localStorage.setItem('email', model.email);

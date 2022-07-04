@@ -1,3 +1,10 @@
+.admin-dashboard {
+  display: block;
+  @media (max-width: 840px) {
+    display: none;
+  }
+}
+
 div {
   display: flex;
   flex-direction: column;

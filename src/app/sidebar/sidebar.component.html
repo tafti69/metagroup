@@ -9,17 +9,17 @@
 </div>
 <div *ngIf="show" class="sidebar" #menu>
   <img
-  [routerLink]="['/home']"
+    [routerLink]="['/home']"
     src="/assets/metagroup.svg"
     alt=""
     style="cursor: pointer; width: 80px"
   />
   <!-- <h2>META GROUP</h2> -->
 
-  <!-- <div class="account">
+  <div class="account" [routerLink]="['/edituser']">
     <img src="/assets/acc.svg" alt="" />
-    <p style="margin-left: 8px">{{ name }}</p>
-  </div> -->
+    <p>{{ name }}</p>
+  </div>
   <ul>
     <div *ngIf="!isAdmin">
       <li [routerLink]="['/dashboard']" routerLinkActive="router-link-active">

@@ -14,6 +14,7 @@ export class SignUpModel {
   password: string;
   cabinetId: string;
   isOrganization: boolean;
+  userId?: string;
 }
 
 export class SignInModel {

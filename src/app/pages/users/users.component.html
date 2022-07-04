@@ -16,7 +16,8 @@
       [rowsPerPageOptions]="[10, 15, 20]"
       [globalFilterFields]="[
         'cabinetId',
-        'firstNameAndLastNameEN',
+        'firstNameEN',
+        'lastNameEN',
         'phoneNumber',
         'additionalPhoneNumber',
         'email',
@@ -46,9 +47,9 @@
             {{ "personalid" | translate }}
             <p-sortIcon field="personalID"></p-sortIcon>
           </th>
-          <th pSortableColumn="firstNameAndLastNameEN">
+          <th pSortableColumn="firstNameEN">
             {{ "namesurname" | translate }}
-            <p-sortIcon field="firstNameAndLastNameEN"></p-sortIcon>
+            <p-sortIcon field="firstNameEN"></p-sortIcon>
           </th>
           <th pSortableColumn="phoneNumber">
             {{ "phone-number" | translate }}

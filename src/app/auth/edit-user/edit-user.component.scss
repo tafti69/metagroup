@@ -1,0 +1,109 @@
+.signup-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+  @media (max-width: 700px) {
+    padding-top: 1rem;
+  }
+}
+
+.wrapper-register {
+  background: #383c46;
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  border-radius: 12px;
+  width: 960px;
+  padding: 2rem;
+  margin-left: 28px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  @media (max-width: 1440px) {
+    width: 860px;
+    padding: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    width: 94%;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+  }
+  label {
+    margin-bottom: 4px;
+    font-size: 15px;
+    color: #fff;
+  }
+  input,
+  select {
+    width: 400px;
+    height: 36px;
+    border-radius: 6px;
+    padding-left: 10px;
+    margin: 0;
+    background: #383c46;
+    @media (max-width: 1440px) {
+      width: 360px;
+    }
+    @media (max-width: 1000px) {
+      width: 300px;
+    }
+  }
+  option {
+    padding: 4px;
+  }
+  button {
+    width: 400px;
+    height: 40px;
+    background: #bc0808;
+    border-radius: 6px;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    color: #fff;
+    @media (max-width: 1440px) {
+      width: 360px;
+    }
+    @media (max-width: 1000px) {
+      width: 300px;
+    }
+  }
+}
+
+.errordiv {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fd7b7b;
+}
+
+.successdiv {
+  margin-top: 10px;
+  color: green;
+}
+
+small {
+  margin: 0;
+  padding: 0;
+  color: #fd7b7b;
+}
+.check {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  margin: 8px;
+  @media (max-width: 1440px) {
+    width: 360px;
+  }
+  @media (max-width: 1000px) {
+    width: 300px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}

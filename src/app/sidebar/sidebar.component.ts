@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,11 +24,13 @@ export class SidebarComponent implements OnInit {
   isAdmin: boolean = false;
   show: boolean = true;
   name: string;
+  userId: any;
 
   constructor(
     private router: Router,
     private renderer: Renderer2,
-    private responsive: BreakpointObserver
+    private responsive: BreakpointObserver,
+    private service: ServicesService
   ) {}
 
   onClick() {
@@ -39,13 +42,9 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  main() {
-    this.router.navigate(['/']);
-  }
-
   ngOnInit(): void {
-    this.name = localStorage.getItem('userName');
     let user = localStorage.getItem('userType');
+    this.userId = localStorage.getItem('id');
 
     this.isAdmin = user === 'admin' ? true : false;
 
@@ -63,6 +62,14 @@ export class SidebarComponent implements OnInit {
           }
         });
       }
+    });
+
+    this.getUser();
+  }
+
+  getUser() {
+    this.service.getUserInfo(this.userId).subscribe((res) => {
+      this.name = res.firstNameEN + ' ' + res.lastNameEN;
     });
   }
 }

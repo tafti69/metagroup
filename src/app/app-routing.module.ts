@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { EditUserComponent } from './auth/edit-user/edit-user.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -64,6 +65,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    canActivate: [AuthGuard],
+    path: 'edituser',
+    component: EditUserComponent,
   },
   {
     canActivate: [AuthGuard],
