@@ -15,6 +15,8 @@ export class MainPageComponent implements OnInit {
 
   isLoading = false;
   lang: any;
+  userId: any;
+  userName: any;
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -23,9 +25,18 @@ export class MainPageComponent implements OnInit {
       localStorage.setItem('lang', 'AZE');
     }
 
+    this.userId = localStorage.getItem('id');
+
     this.getPartners();
     this.getFlights();
     this.getTarifs();
+    this.getUser();
+  }
+
+  getUser() {
+    this.service.getUserInfo(this.userId).subscribe(res => {
+        this.userName = res.firstNameEN + " " + res.lastNameEN;
+    })
   }
 
   getFlights() {

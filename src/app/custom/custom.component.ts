@@ -25,7 +25,8 @@ export class CustomComponent implements OnInit {
     {
       image: '/assets/location.svg',
       head: 'address',
-      text: 'Marneuli Rustavelis Qucha 62B, Tbilisi Gabriel Salosis 15 ADD',
+      text: 'Marneuli Rustavelis Qucha 62B,',
+      text3: 'Tbilisi Gabriel Salosis 15',
     },
   ];
 }

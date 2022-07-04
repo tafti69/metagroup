@@ -9,7 +9,7 @@
 </div>
 <div *ngIf="show" class="sidebar" #menu>
   <img
-    (click)="logout()"
+  [routerLink]="['/home']"
     src="/assets/metagroup.svg"
     alt=""
     style="cursor: pointer; width: 80px"

@@ -1,7 +1,59 @@
 <app-header></app-header>
-<app-signin></app-signin>
-<div class="wrapper-mother">
+<div *ngIf="!userId"><app-signin></app-signin></div>
+<div *ngIf="userId">
   <div class="wrapper">
+    <a [routerLink]="['/']">
+      <img class="img1" src="/assets/metagroup.svg" alt="" />
+    </a>
+    
+    <div>
+      <p style="text-align: center;">{{ userName }}</p>
+      <button [routerLink]="['/signin']">
+        {{ "Daxil olun" | translate }}
+      </button>
+      <button [routerLink]="['/signup']" style="background: #373c47">
+        {{ "Qeydiyyat" | translate }}
+      </button>
+    </div>
+    <span class="wpwp">
+      <div class="wp">
+        <a
+          href="https://wa.me/995558672747"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="../../../assets/whatsapp.svg" alt=""
+        /></a>
+      </div>
+      <div class="wp">
+        <a
+          href="https://www.facebook.com/Meta-Group-103977615502117/"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="../assets/Icon awesome-facebook.svg" alt=""
+        /></a>
+      </div>
+      <div class="wp">
+        <a
+          href="https://www.instagram.com/metagroup_/"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img src="../assets/Icon awesome-instagram.svg" alt=""
+        /></a>
+      </div>
+      <div class="wp">
+        <a
+          href="https://www.youtube.com/channel/UCCNCVP7BvdOhRx5r_py6lHw/videos"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img style="height: 24px" src="../assets/yotube.svg" alt=""
+        /></a>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="wrapper-mother">
+  <div class="wrapper-home">
     <div class="text">
       <div class="line"></div>
       <h1>{{ "Hakkimizda" | translate }}</h1>
@@ -31,10 +83,8 @@
       <h3>Tarifs</h3>
       <div class="prices" *ngFor="let item of tarifs">
         <p>
-          {{ item.kg }} Kg - <span> ${{ item.price }}</span>
+          {{ item.kg }} Kg - <span style="color: #d0d0d0;"> ${{ item.price }}</span>
         </p>
-        <!-- <p>0.5 Kg - 1 Kg - <span> $3</span></p>
-      <p>1 kg < her 100 gr - <span> $0.3</span></p> -->
       </div>
     </div>
     <div class="box-right">

@@ -409,6 +409,104 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #282c33;
+  // box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
+  width: 380px;
+  height: 100%;
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+  z-index: 2222;
+  border-left: 1px solid #505050;
+  @media (max-width: 1340px) {
+    width: 360px;
+  }
+  @media (max-width: 1200px) {
+    width: 100%;
+    height: 45%;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: #18171a;
+  }
+  a {
+    text-align: center;
+  }
+  .img1 {
+    width: 120px;
+    @media (max-width: 1000px) {
+      width: 64px;
+    }
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    span {
+      align-self: flex-end;
+      margin-top: 8px;
+      color: red;
+      font-size: 14px;
+    }
+  }
+  label {
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+  input {
+    width: 300px;
+    height: 48px;
+    border-radius: 4px;
+    padding-left: 10px;
+    border: 1px solid #6c757d;
+    margin: 0;
+    background: none;
+    color: white;
+    @media (max-width: 1200px) {
+      height: 36px;
+    }
+  }
+  button {
+    width: 300px;
+    height: 40px;
+    background: #bc0808;
+    border-radius: 6px;
+    margin-top: 12px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    height: 56px;
+    &:hover {
+      opacity: 0.8;
+    }
+    @media (max-width: 1200px) {
+      height: 36px;
+    }
+  }
+}
+
+// span {
+//   margin-top: 8px;
+//   color: red;
+//   font-size: 14px;
+// }
+
+.wpwp {
+  display: flex;
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+
 .wp {
   display: flex;
   width: 48px;
