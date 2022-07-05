@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   success = false;
   isLoading = false;
   errorResponse = false;
+  isValidFormSubmitted = null;
 
   cities: any = [];
   lang: any;
@@ -38,7 +39,7 @@ export class SignupComponent implements OnInit {
         lastNameKA: new FormControl('', Validators.required),
         phoneNumber: new FormControl('', Validators.required),
         whatsAppNumber: new FormControl('', Validators.required),
-        personalID: new FormControl('', [Validators.required]),
+        personalID: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), ]),
         region: new FormControl('', Validators.required),
         address: new FormControl('', Validators.required),
         password: new FormControl('', Validators.required),
@@ -54,6 +55,10 @@ export class SignupComponent implements OnInit {
   // get f(){
   //   return this.form.controls;
   // }
+
+  get personalID() {
+    return this.form.get('personalID');
+} 
 
   getCity() {
     this.userService.getCity(this.lang).subscribe((res) => {
@@ -72,6 +77,7 @@ export class SignupComponent implements OnInit {
 
   signUp() {
     const form = this.form.value;
+    this.isValidFormSubmitted = false;
     if (this.form.valid) {
       let model = new SignUpModel();
 
@@ -96,6 +102,7 @@ export class SignupComponent implements OnInit {
 
       this.userService.createUser(model).subscribe(
         (value) => {
+          this.isValidFormSubmitted = true;
           this.isLoading = false;
           let model2 = new SignInModel();
           model2.email = this.form.value.email;

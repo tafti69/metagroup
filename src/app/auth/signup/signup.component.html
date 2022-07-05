@@ -140,12 +140,13 @@
             This field is required
           </small>
         </span>
-        <!-- <small
-          style="color: red"
-          *ngIf="form.controls['personalID'].errors.maxLength"
-        >
-          ID must be max 11 and characters.
-        </small> -->
+        <span
+        *ngIf="personalID.errors && isValidFormSubmitted != null && !isValidFormSubmitted"
+      >
+      <small *ngIf="personalID.errors.minlength">ID must be 11 characters.</small>
+        
+      </span>
+       
       </div>
       <div>
         <label>{{ "password" | translate }}</label>
@@ -253,6 +254,7 @@
         <span *ngIf="!form.valid">
           <span style="font-size: 14px" class="errordiv">{{ errorMsg }}</span>
         </span>
+        
       </div>
     </div>
   </form>
