@@ -59,6 +59,7 @@ import { TarifsComponent } from './pages/tarifs/tarifs.component';
 import { FlightsViewComponent } from './pages/flights-view/flights-view.component';
 import { HowToComponent } from './pages/how-to/how-to.component';
 import { EditUserComponent } from './auth/edit-user/edit-user.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -97,6 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlightsViewComponent,
     HowToComponent,
     EditUserComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,

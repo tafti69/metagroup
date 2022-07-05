@@ -3,6 +3,7 @@
   padding-top: 5rem;
   @media (max-width: 700px) {
     padding-top: 1rem;
+    margin-left: 0;
   }
 }
 
@@ -20,9 +21,9 @@
     width: 860px;
     padding: 1rem;
   }
-
   @media (max-width: 900px) {
     width: 94%;
+    margin: 0 auto;
   }
   div {
     display: flex;

@@ -17,12 +17,15 @@
       [globalFilterFields]="[
         'cabinetId',
         'firstNameEN',
+        'firstNameKA',
         'lastNameEN',
+        'lastNameKA',
         'phoneNumber',
         'additionalPhoneNumber',
         'email',
         'address',
-        'personalID'
+        'personalID',
+        'region'
       ]"
     >
       <ng-template pTemplate="caption">
@@ -48,7 +51,11 @@
             <p-sortIcon field="personalID"></p-sortIcon>
           </th>
           <th pSortableColumn="firstNameEN">
-            {{ "namesurname" | translate }}
+            {{ "namesurname" | translate }} (EN)
+            <p-sortIcon field="firstNameEN"></p-sortIcon>
+          </th>
+          <th pSortableColumn="firstNameEN">
+            {{ "namesurname" | translate }} (KA)
             <p-sortIcon field="firstNameEN"></p-sortIcon>
           </th>
           <th pSortableColumn="phoneNumber">
@@ -83,6 +90,7 @@
           </td>
           <td>{{ o.personalID }}</td>
           <td>{{ o.firstNameEN }} {{ o.lastNameEN }}</td>
+          <td>{{ o.firstNameKA }} {{ o.lastNameKA }}</td>
           <td>{{ o.phoneNumber }}</td>
           <td>{{ o.whatsAppNumber }}</td>
           <td>{{ o.email }}</td>

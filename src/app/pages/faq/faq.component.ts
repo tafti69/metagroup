@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'app/services.service';
 
 @Component({
-  selector: 'app-flights-view',
-  templateUrl: './flights-view.component.html',
-  styleUrls: ['./flights-view.component.scss'],
+  selector: 'app-faq',
+  templateUrl: './faq.component.html',
+  styleUrls: ['./faq.component.scss'],
 })
-export class FlightsViewComponent implements OnInit {
+export class FaqComponent implements OnInit {
   constructor(private service: ServicesService) {}
 
-  flights: any = [];
   userId: any;
   userName: any;
 
@@ -17,18 +16,11 @@ export class FlightsViewComponent implements OnInit {
     this.userId = localStorage.getItem('id');
 
     this.getUser();
-    this.getFlights();
   }
 
   getUser() {
     this.service.getUserInfo(this.userId).subscribe((res) => {
       this.userName = res.firstNameEN + ' ' + res.lastNameEN;
-    });
-  }
-
-  getFlights() {
-    this.service.getFlights().subscribe((res) => {
-      this.flights = res;
     });
   }
 }

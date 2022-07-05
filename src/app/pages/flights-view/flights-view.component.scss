@@ -1,9 +1,8 @@
 .flights-box {
-  width: 80%;
+  width: 96%;
   height: 100%;
-  box-shadow: rgba(180, 187, 194, 0.2) 0px 8px 24px;
   border-radius: 12px;
-  background: #fff;
+  background: #383c46;
   padding-left: 24px;
   padding-top: 24px;
   margin: 2rem auto;
@@ -19,6 +18,7 @@
   margin-right: 2rem;
   .info {
     margin-left: 1rem;
+    color: white;
   }
   .some-flex {
     display: flex;

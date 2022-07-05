@@ -13,6 +13,7 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { CurrencyComponent } from './pages/currency/currency.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DeclarationComponent } from './pages/declaration/declaration.component';
+import { FaqComponent } from './pages/faq/faq.component';
 import { FlightsViewComponent } from './pages/flights-view/flights-view.component';
 import { FlightsComponent } from './pages/flights/flights.component';
 import { HowToComponent } from './pages/how-to/how-to.component';
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'shops',
     component: ShopsComponent,
+  },
+  {
+    path: 'faq',
+    component: FaqComponent,
   },
   {
     path: 'contacts',

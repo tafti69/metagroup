@@ -6,9 +6,12 @@
     </a>
     <div>
       <div>
-        <label>{{ "email" | translate }}</label>
+        <label>{{ "email" | translate }} / ID</label>
         <input type="text" formControlName="email" />
-        <span *ngIf="form.get('email').hasError('invalid')">
+        <span
+          style="text-align: center"
+          *ngIf="form.get('email').hasError('invalid')"
+        >
           Invalid E-mail. Try again!
         </span>
       </div>
