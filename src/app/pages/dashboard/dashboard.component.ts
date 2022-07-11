@@ -47,7 +47,6 @@ export class DashboardComponent implements OnInit {
     this.userId = localStorage.getItem('id');
 
     this.service.getUserInfo(this.userId).subscribe((res) => {
-      console.log(res);
       this.cabinetId = res.cabinetId;
       this.name = res.firstNameEN;
       this.surname = res.lastNameEN;

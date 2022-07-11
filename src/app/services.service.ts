@@ -46,8 +46,8 @@ export class ServicesService {
 
   loginUser(model: SignInModel) {
     const userUrl = this.url + 'Accounts/SignIn';
-    // localStorage.setItem('email', model.email);
-    // localStorage.setItem('password', model.password);
+    localStorage.setItem('email', model.email);
+    localStorage.setItem('password', model.password);
     localStorage.setItem('expiration', (Date.now() + 11 * 3600000).toString());
     return this.http.post<SignInModel>(userUrl, model);
   }

@@ -10,6 +10,7 @@ import { Statuses, UpdateStatuses } from 'app/models/status';
 import { ServicesService } from 'app/services.service';
 import { Emitters } from 'app/models/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -23,6 +24,8 @@ export class AdminComponent implements OnInit {
       this.success = data;
     });
   }
+
+  subjectKey = new Subject<any>();
 
   form: FormGroup;
   formDate: FormGroup;
@@ -38,6 +41,8 @@ export class AdminComponent implements OnInit {
   currencies: any = [];
   selectedStatusId: any;
   weight: any;
+  deliveryPrice: number = 0;
+  metaValue;
 
   updated = false;
   selectedOrderIds: any = [];
@@ -58,8 +63,9 @@ export class AdminComponent implements OnInit {
 
     this.form = new FormGroup({
       trackingId: new FormControl('', Validators.required),
-      personalId: new FormControl('', Validators.required),
+      personalId: new FormControl('Meta-', Validators.required),
       weight: new FormControl('', Validators.required),
+      turkishCargo: new FormControl('', Validators.required),
     });
 
     this.formDate = new FormGroup({
@@ -72,6 +78,11 @@ export class AdminComponent implements OnInit {
     this.getOrders();
     this.getPartners();
     this.getCurrencies();
+
+    // this.subjectKey.subscribe((res) => {
+    //   console.log(res);
+    //   this.getOrders(res)
+    // });
   }
 
   getCurrencies() {
@@ -156,6 +167,7 @@ export class AdminComponent implements OnInit {
     model.id = form.personalId;
     model.trackingId = form.trackingId;
     model.weight = form.weight;
+    model.turkishCargo = form.turkishCargo;
 
     this.isLoading2 = true;
 
@@ -169,8 +181,11 @@ export class AdminComponent implements OnInit {
     this.isLoading = true;
     this.service.getOrder(this.lang).subscribe((res) => {
       this.orders = res;
+      console.log(res, 'orders');
+      this.orders.forEach((item) => {
+        this.deliveryPrice += item.deliveryPrice;
+      });
       this.isLoading = false;
-      console.log(res);
     });
   }
 
@@ -212,9 +227,7 @@ export class AdminComponent implements OnInit {
       duration: 2000,
     });
 
-    this.service.updateDeliveryType(model).subscribe((res) => {
-      console.log(res);
-    });
+    this.service.updateDeliveryType(model).subscribe((res) => {});
   }
 
   onUpdateWeight(e: Event, id: string) {
@@ -228,12 +241,28 @@ export class AdminComponent implements OnInit {
       duration: 2000,
     });
 
-    this.service.updateWeight(model).subscribe((res) => {
-      console.log(res, 'weight');
-    });
+    this.service.updateWeight(model).subscribe((res) => {});
   }
-}
 
-class Checked {
-  isChecked: boolean;
+  onChangeMeta(e) {
+    let val = (e.target as HTMLSelectElement).value;
+    console.log(val, 'val');
+
+    this.subjectKey.next(val);
+
+    // this.orders.filter = val.trim().toLowerCase();
+
+    // if (this.metaValue) {
+    //   this.isLoading = true;
+    //   this.service.getOrder(this.lang).subscribe((res) => {
+    //     res.filter((item) => {
+    //       if (this.metaValue === item.cabinetId) {
+    //         this.orders = res;
+    //         console.log(res, 'orders-2');
+    //       }
+    //     });
+    //     this.isLoading = false;
+    //   });
+    // }
+  }
 }

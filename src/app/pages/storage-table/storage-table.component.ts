@@ -34,10 +34,10 @@ export class StorageTableComponent implements OnInit {
     this.userId = localStorage.getItem('id');
 
     this.getFirst();
+    // this.getUSD();
     this.getDeliveryTypes();
     this.getPartners();
     this.getCurrencies();
-    this.getUSD();
   }
 
   checkUncheckAll() {
@@ -81,22 +81,19 @@ export class StorageTableComponent implements OnInit {
     this.isLoading = true;
 
     this.service.getMyFirst(this.lang, this.userId).subscribe((res) => {
-      console.log(res);
-
       this.storage = res;
       this.isLoading = false;
       this.storage.forEach((item) => {
-        this.deliveryPrice += +item.weight;
+        this.deliveryPrice += item.deliveryPrice;
       });
     });
   }
 
-  getUSD() {
-    this.service.getUSD().subscribe((res) => {
-      this.deliveryPrice2 = this.deliveryPrice * res.price;
-      console.log(res, 'usd');
-    });
-  }
+  // getUSD() {
+  //   this.service.getUSD().subscribe((res) => {
+  //     this.deliveryPrice2 = this.deliveryPrice * res.price;
+  //   });
+  // }
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {

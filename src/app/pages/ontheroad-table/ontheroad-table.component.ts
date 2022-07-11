@@ -38,7 +38,7 @@ export class OntheroadTableComponent implements OnInit {
     this.getDeliveryTypes();
     this.getPartners();
     this.getCurrencies();
-    this.getUSD();
+    // this.getUSD();
   }
 
   checkUncheckAll() {
@@ -83,14 +83,17 @@ export class OntheroadTableComponent implements OnInit {
     this.service.getMySecond(this.lang, this.userId).subscribe((res) => {
       this.dataRoad = res;
       this.isLoading = false;
+      this.dataRoad.forEach((item) => {
+        this.deliveryPrice += item.deliveryPrice;
+      });
     });
   }
 
-  getUSD() {
-    this.service.getUSD().subscribe((res) => {
-      this.deliveryPrice2 = this.deliveryPrice * res.price;
-    });
-  }
+  // getUSD() {
+  //   this.service.getUSD().subscribe((res) => {
+  //     this.deliveryPrice2 = this.deliveryPrice * res.price;
+  //   });
+  // }
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {

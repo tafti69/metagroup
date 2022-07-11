@@ -5,16 +5,26 @@
   <form (ngSubmit)="onCreateOrder()" [formGroup]="form">
     <div>
       <label for="val">Cabinet ID</label>
-      <input id="val" type="text" formControlName="personalId" />
+      <input
+        id="val"
+        type="text"
+        formControlName="personalId"
+        placeholder="Meta-"
+      />
     </div>
     <div style="margin-left: 10px">
-      <label for="val">Tracking ID</label>
+      <label for="val">Tracking ID / Turkish Cargo</label>
       <input id="val" type="text" formControlName="trackingId" />
     </div>
     <div style="margin-left: 10px">
       <label for="val">Weight</label>
       <input id="val" type="text" formControlName="weight" />
     </div>
+    <div style="margin-left: 10px">
+      <label for="val">{{ "Additional Info" | translate }}</label>
+      <input id="val" type="text" formControlName="turkishCargo" />
+    </div>
+
     <button style="margin-left: 10px; height: 36px; width: 150px" type="submit">
       Create Order
       <div style="margin-top: -12px" class="lds-ring" *ngIf="isLoading2">
@@ -85,6 +95,12 @@
         </div>
         <div style="text-align: right">
           <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
+          <input
+            type="text"
+            (keyup)="onChangeMeta($event)"
+            placeholder="Cabinet Id"
+            style="width: 100px; align-self: flex-end; margin-top: -16px"
+          />
           <input
             type="text"
             pInputText
@@ -243,5 +259,8 @@
       </ng-template>
     </p-table>
     <div class="l" *ngIf="isLoading">Loading...</div>
+    <p style="color: white">
+      Delivery Price: {{ deliveryPrice | number: "1.2-2" }} GEL
+    </p>
   </div>
 </div>

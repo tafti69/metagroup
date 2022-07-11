@@ -44,7 +44,7 @@ export class ChamosuliComponent implements OnInit {
     this.getDeliveryTypes();
     this.getPartners();
     this.getCurrencies();
-    this.getUSD();
+    // this.getUSD();
   }
 
   onUpdateDelivery(e: Event, id: string) {
@@ -94,14 +94,17 @@ export class ChamosuliComponent implements OnInit {
     this.service.getMyThird(this.lang, this.userId).subscribe((res) => {
       this.arrived = res;
       this.isLoading = false;
+      this.arrived.forEach((item) => {
+        this.deliveryPrice += item.deliveryPrice;
+      });
     });
   }
 
-  getUSD() {
-    this.service.getUSD().subscribe((res) => {
-      this.deliveryPrice2 = this.deliveryPrice * res.price;
-    });
-  }
+  // getUSD() {
+  //   this.service.getUSD().subscribe((res) => {
+  //     this.deliveryPrice2 = this.deliveryPrice * res.price;
+  //   });
+  // }
 
   getCurrencies() {
     this.service.getCurrency().subscribe((res) => {

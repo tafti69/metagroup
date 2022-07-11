@@ -15,6 +15,15 @@
       />
     </div>
     <div class="decl-form">
+      <label>{{ "Additional Info" | translate }}</label>
+      <input
+        type="text"
+        formControlName="turkishCargo"
+        [value]="turkCargo"
+        [readonly]="user !== 'admin'"
+      />
+    </div>
+    <div class="decl-form">
       <label for="a">ნივთის დასახელება</label>
       <select formControlName="productNameId">
         <!-- <option [value]="null">აირჩიე</option> -->

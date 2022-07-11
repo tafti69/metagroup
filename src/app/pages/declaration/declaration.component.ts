@@ -21,6 +21,8 @@ export class DeclarationComponent implements OnInit {
   form: FormGroup;
   orderId: any;
   trackId: any;
+  turkCargo;
+  user;
   lang: any;
   isLoading = false;
   success = false;
@@ -43,8 +45,11 @@ export class DeclarationComponent implements OnInit {
       currencyId: new FormControl('', Validators.required),
       partnerId: new FormControl('', Validators.required),
       productNameId: new FormControl('', Validators.required),
+      turkishCargo: new FormControl(''),
       comment: new FormControl(''),
     });
+
+    this.user = localStorage.getItem('userType');
 
     this.orderId = this.route.snapshot.params.id;
 
@@ -81,6 +86,7 @@ export class DeclarationComponent implements OnInit {
     model.currencyId = val.currencyId;
     model.partnerId = val.partnerId;
     model.productNameId = val.productNameId;
+    model.turkishCargo = val.turkishCargo;
     model.comment = val.comment;
 
     this.isLoading = true;
@@ -98,8 +104,8 @@ export class DeclarationComponent implements OnInit {
     this.isLoading = true;
     this.service.getDeclaration(this.lang, this.orderId).subscribe((res) => {
       this.trackId = res.trackingId;
+      this.turkCargo = res.turkishCargo;
       this.ifPaidAmount = res.paidAmount;
-      console.log(res);
       this.isLoading = false;
       this.form.patchValue({
         trackingId: this.trackId,
@@ -107,6 +113,7 @@ export class DeclarationComponent implements OnInit {
         currencyId: res.currency.id,
         partnerId: res.partner.id,
         productNameId: res.productName.id,
+        turkishCargo: res.turkishCargo.id,
         comment: res.comment,
       });
     });

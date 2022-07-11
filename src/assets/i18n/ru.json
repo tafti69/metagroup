@@ -27,6 +27,7 @@
   "action": "Action",
   "invoice": "Invoice",
   "tracking": "Tracking",
+  "add-info": "Additional Info",
   "delete": "Delete",
   "done": "Done",
   "how-to": "Order",

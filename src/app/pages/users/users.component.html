@@ -16,12 +16,10 @@
       [rowsPerPageOptions]="[10, 15, 20]"
       [globalFilterFields]="[
         'cabinetId',
-        'firstNameEN',
-        'firstNameKA',
-        'lastNameEN',
-        'lastNameKA',
+        'fullNameEN',
+        'fullNameKA',
         'phoneNumber',
-        'additionalPhoneNumber',
+        'whatsAppNumber',
         'email',
         'address',
         'personalID',
@@ -32,12 +30,23 @@
         <div style="text-align: right">
           <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
           <input
+            appendTo="body"
             type="text"
             pInputText
             size="50"
             placeholder="Search"
             (input)="dt.filterGlobal($any($event.target).value, 'contains')"
             style="width: 300px; margin-top: -16px"
+          />
+          <input
+            pInputText
+            type="text"
+            (input)="
+              dt.filter($any($event.target).value, 'cabinetId', 'endsWith')
+            "
+            placeholder="Cabinet Id"
+            style="width: 150px; margin-left: 10px"
+            class="p-column-filter"
           />
         </div>
       </ng-template>
@@ -54,17 +63,17 @@
             {{ "namesurname" | translate }} (EN)
             <p-sortIcon field="firstNameEN"></p-sortIcon>
           </th>
-          <th pSortableColumn="firstNameEN">
+          <th pSortableColumn="firstNameKA">
             {{ "namesurname" | translate }} (KA)
-            <p-sortIcon field="firstNameEN"></p-sortIcon>
+            <p-sortIcon field="firstNameKA"></p-sortIcon>
           </th>
           <th pSortableColumn="phoneNumber">
             {{ "phone-number" | translate }}
             <p-sortIcon field="phoneNumber"></p-sortIcon>
           </th>
-          <th pSortableColumn="additionalPhoneNumber">
+          <th pSortableColumn="whatsAppNumber">
             {{ "whatsapp-number" | translate }}
-            <p-sortIcon field="additionalPhoneNumber"></p-sortIcon>
+            <p-sortIcon field="whatsAppNumber"></p-sortIcon>
           </th>
           <th pSortableColumn="email">
             {{ "email" | translate }} <p-sortIcon field="email"></p-sortIcon>
@@ -89,8 +98,8 @@
             {{ o.cabinetId }}
           </td>
           <td>{{ o.personalID }}</td>
-          <td>{{ o.firstNameEN }} {{ o.lastNameEN }}</td>
-          <td>{{ o.firstNameKA }} {{ o.lastNameKA }}</td>
+          <td>{{ o.fullNameEN }}</td>
+          <td>{{ o.fullNameKA }}</td>
           <td>{{ o.phoneNumber }}</td>
           <td>{{ o.whatsAppNumber }}</td>
           <td>{{ o.email }}</td>

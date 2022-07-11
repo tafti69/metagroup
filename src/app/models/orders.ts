@@ -2,6 +2,7 @@ export class CreateOrder {
   trackingId: string;
   id: string;
   weight: string;
+  turkishCargo: string;
 }
 
 export class Declaration {
@@ -13,6 +14,7 @@ export class Declaration {
   productNameId: string;
   comment: string;
   weight: string;
+  turkishCargo: string;
 }
 
 export class WeightModel {
@@ -40,4 +42,5 @@ export class OrdersDTO {
   password: string;
   cabinetId: string;
   isChecked: boolean;
+  deliveryPrice: number;
 }

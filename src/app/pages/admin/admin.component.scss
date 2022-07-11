@@ -21,11 +21,12 @@ form {
 }
 label {
   color: #fff;
+  font-size: 14px;
 }
 
 input,
 select {
-  width: 300px;
+  width: 240px;
   height: 36px;
   border-radius: 6px;
   padding-left: 10px;
@@ -35,10 +36,10 @@ select {
   background: #383c46;
 
   @media (max-width: 1440px) {
-    width: 240px;
+    width: 200px;
   }
   @media (max-width: 1000px) {
-    width: 200px;
+    width: 160px;
   }
 }
 

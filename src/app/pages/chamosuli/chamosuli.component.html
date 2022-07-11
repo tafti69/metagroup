@@ -132,7 +132,9 @@
     </ng-template>
   </p-table>
   <div class="l" *ngIf="isLoading">Loading...</div>
-  <p style="color: white">Delivery Price: {{ deliveryPrice2 }} GEL</p>
+  <p style="color: white">
+    Delivery Price: {{ deliveryPrice | number: "1.2-2" }} GEL
+  </p>
 </div>
 
 <div class="account-details-wrapper">
