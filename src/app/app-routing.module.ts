@@ -4,6 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { EditUserComponent } from './auth/edit-user/edit-user.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'shops',
     component: ShopsComponent,
+  },
+  {
+    path: 'forgotpassword',
+    component: ForgotPasswordComponent,
   },
   {
     path: 'faq',

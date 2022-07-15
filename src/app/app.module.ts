@@ -60,6 +60,7 @@ import { FlightsViewComponent } from './pages/flights-view/flights-view.componen
 import { HowToComponent } from './pages/how-to/how-to.component';
 import { EditUserComponent } from './auth/edit-user/edit-user.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -99,6 +100,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HowToComponent,
     EditUserComponent,
     FaqComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

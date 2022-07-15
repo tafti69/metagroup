@@ -24,7 +24,6 @@ export class OntheroadTableComponent implements OnInit {
   currencies: any = [];
   masterSelected: boolean = false;
   deliveryPrice: number = 0;
-  deliveryPrice2: number = 0;
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');

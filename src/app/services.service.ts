@@ -286,6 +286,11 @@ export class ServicesService {
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
 
+  sendVerificationCode(phoneNumber: any) {
+    const userUrl = this.url + `Accounts/SendVerificationCode/${phoneNumber}`;
+    return this.http.get<any>(userUrl);
+  }
+
   getMyFirst(lang: string, id: string) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { Id: id, Lang: lang };

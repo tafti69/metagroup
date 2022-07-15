@@ -28,6 +28,11 @@
   a {
     text-align: center;
   }
+  p {
+    font-size: 14px;
+    text-align: end;
+    cursor: pointer;
+  }
   .img1 {
     width: 120px;
     @media (max-width: 1000px) {
