@@ -291,6 +291,11 @@ export class ServicesService {
     return this.http.get<any>(userUrl);
   }
 
+  forgotPassword(model: SignInModel) {
+    const userUrl = this.url + 'Accounts/ForgotPassword';
+    return this.http.post<SignInModel>(userUrl, model);
+  }
+
   getMyFirst(lang: string, id: string) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { Id: id, Lang: lang };

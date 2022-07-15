@@ -61,6 +61,7 @@ import { HowToComponent } from './pages/how-to/how-to.component';
 import { EditUserComponent } from './auth/edit-user/edit-user.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -101,6 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditUserComponent,
     FaqComponent,
     ForgotPasswordComponent,
+    NewPasswordComponent,
   ],
   imports: [
     BrowserModule,
