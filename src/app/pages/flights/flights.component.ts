@@ -43,7 +43,6 @@ export class FlightsComponent implements OnInit {
   getFlights() {
     this.service.getFlights().subscribe((res) => {
       this.flights = res;
-      console.log(res);
     });
   }
 

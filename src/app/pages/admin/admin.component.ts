@@ -105,7 +105,6 @@ export class AdminComponent implements OnInit {
 
   onFilterDate() {
     const form = this.formDate.value;
-    console.log(form);
 
     this.service
       .filterRangeByDate(this.lang, form.fromDateTime, form.toDateTime)
@@ -244,25 +243,24 @@ export class AdminComponent implements OnInit {
     this.service.updateWeight(model).subscribe((res) => {});
   }
 
-  onChangeMeta(e) {
-    let val = (e.target as HTMLSelectElement).value;
-    console.log(val, 'val');
+  // onChangeMeta(e) {
+  //   let val = (e.target as HTMLSelectElement).value;
+  //   console.log(val, 'val');
 
-    this.subjectKey.next(val);
+  //   this.subjectKey.next(val);
 
-    // this.orders.filter = val.trim().toLowerCase();
+  //   let newOrders = [];
 
-    // if (this.metaValue) {
-    //   this.isLoading = true;
-    //   this.service.getOrder(this.lang).subscribe((res) => {
-    //     res.filter((item) => {
-    //       if (this.metaValue === item.cabinetId) {
-    //         this.orders = res;
-    //         console.log(res, 'orders-2');
-    //       }
-    //     });
-    //     this.isLoading = false;
-    //   });
-    // }
-  }
+  //   if (val) {
+  //     this.isLoading = true;
+  //     this.service.getOrder(this.lang).subscribe((res) => {
+  //       this.orders.filter(el => {
+  //         if(val === el.cabinetId) {
+  //           this.orders.push(el)
+  //         }
+  //       });
+  //       this.isLoading = false;
+  //     });
+  //   }
+  // }
 }

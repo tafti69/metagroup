@@ -52,7 +52,6 @@ export class InvoiceComponent implements OnInit {
     model.orderId = this.orderId;
 
     this.service.addFileForInvoice(model).subscribe((res) => {
-      console.log(res);
       window.location.reload();
     });
   }

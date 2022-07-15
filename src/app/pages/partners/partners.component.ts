@@ -66,7 +66,6 @@ export class PartnersComponent implements OnInit {
     model.extension = this.extension;
     this.isLoading = true;
     this.service.createPartner(model).subscribe((res) => {
-      console.log(res);
       this.isLoading = false;
       window.location.reload();
     }),

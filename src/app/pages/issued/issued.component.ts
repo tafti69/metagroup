@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UpdateStatuses } from 'app/models/status';
 import { ServicesService } from 'app/services.service';
 
@@ -8,7 +9,7 @@ import { ServicesService } from 'app/services.service';
   styleUrls: ['./issued.component.scss'],
 })
 export class IssuedComponent implements OnInit {
-  constructor(private service: ServicesService) {}
+  constructor(private service: ServicesService, private snackBar: MatSnackBar) {}
 
   lang: any;
   userId: any;
@@ -28,7 +29,6 @@ export class IssuedComponent implements OnInit {
     }
 
     this.userId = localStorage.getItem('id');
-    console.log(this.userId);
 
     this.getFourth();
     this.getDeliveryTypes();
@@ -44,18 +44,14 @@ export class IssuedComponent implements OnInit {
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
 
-    console.log(model);
-
     this.service.updateDeliveryType(model).subscribe((res) => {
-      console.log(res);
-      //this.snackbar.open('Delivery Type Updated');
+      this.snackBar.open('Delivery Type Updated');
     });
   }
 
   getFourth() {
     this.isLoading = true;
     this.service.getMyFourth(this.lang, this.userId).subscribe((res) => {
-      console.log(res);
       this.issued = res;
       this.isLoading = false;
     });
@@ -75,7 +71,6 @@ export class IssuedComponent implements OnInit {
 
   getDeliveryTypes() {
     this.service.getDeliveryType(this.lang).subscribe((res) => {
-      console.log(res);
       this.deliveries = res;
     });
   }

@@ -95,12 +95,12 @@
         </div>
         <div style="text-align: right">
           <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
-          <input
+          <!-- <input
             type="text"
-            (keyup)="onChangeMeta($event)"
+            (change)="onChangeMeta($event)"
             placeholder="Cabinet Id"
             style="width: 100px; align-self: flex-end; margin-top: -16px"
-          />
+          /> -->
           <input
             type="text"
             pInputText
@@ -139,6 +139,8 @@
             <p-sortIcon field="paidAmount"></p-sortIcon>
           </th>
           <th>{{ "shop" | translate }}</th>
+          <th>{{ "product-name" | translate }}</th>
+          <th>{{ "comment" | translate }}</th>
           <th>{{ "currency" | translate }}</th>
           <th>{{ "delivery" | translate }}</th>
           <th>{{ "status" | translate }}</th>
@@ -181,7 +183,16 @@
               </option>
             </select>
           </td>
-
+          <td>
+            <span *ngIf="o.declaration.productName">{{
+              o.declaration.productName.item.name
+            }}</span>
+          </td>
+          <td>
+            <span *ngIf="o.declaration.comment">{{
+              o.declaration.comment | slice: 0:31
+            }}</span>
+          </td>
           <td>
             <select
               style="width: 80px; height: 28px"

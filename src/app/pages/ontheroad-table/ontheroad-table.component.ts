@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UpdateAll } from 'app/models/orders';
 import { UpdateStatuses } from 'app/models/status';
 import { ServicesService } from 'app/services.service';
@@ -9,7 +10,7 @@ import { ServicesService } from 'app/services.service';
   styleUrls: ['./ontheroad-table.component.scss'],
 })
 export class OntheroadTableComponent implements OnInit {
-  constructor(private service: ServicesService) {}
+  constructor(private service: ServicesService, private snackBar: MatSnackBar) {}
 
   lang: any;
   userId: any;
@@ -75,7 +76,9 @@ export class OntheroadTableComponent implements OnInit {
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
 
-    this.service.updateDeliveryType(model).subscribe((res) => {});
+    this.service.updateDeliveryType(model).subscribe((res) => {
+      this.snackBar.open('Delivery Type Updated');
+    }); 
   }
 
   getSecond() {

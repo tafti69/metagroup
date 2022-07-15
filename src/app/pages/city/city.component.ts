@@ -49,7 +49,6 @@ export class CityComponent implements OnInit {
   getCity() {
     this.service.getCity(this.lang).subscribe((res) => {
       this.cities = res;
-      console.log(res);
     });
   }
 

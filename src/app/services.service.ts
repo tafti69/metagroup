@@ -230,7 +230,6 @@ export class ServicesService {
       kg: kg,
       price: price,
     };
-    console.log(JSON.stringify(obj));
 
     const userUrl = this.url + 'Tarifs/Create';
     return this.http.post<any>(userUrl, JSON.stringify(obj));

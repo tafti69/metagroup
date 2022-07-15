@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit {
   cities: any = [];
   userId: any;
   userDTO: SignUpModel;
+  loading: boolean = false;
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -61,6 +62,7 @@ export class EditUserComponent implements OnInit {
 
   getUser() {
     this.userService.getUserInfo(this.userId).subscribe((value) => {
+      
       this.userDTO = value;
       this.form.patchValue({
         userId: this.userId,
@@ -91,6 +93,8 @@ export class EditUserComponent implements OnInit {
   }
 
   updateUser() {
+
+    this.loading = true;
     const form = this.form.value;
     let model = new SignUpModel();
 
@@ -129,10 +133,16 @@ export class EditUserComponent implements OnInit {
         password: value.password,
         isOrg: value.isOrganization,
       });
-
+       this.loading = false;
+        
+    }, error => {
+      console.log(error);
+      
     });
+
     setTimeout(() => {
       window.location.reload();
-    }, 1000)
+    }, 2000)
+    
   }
 }

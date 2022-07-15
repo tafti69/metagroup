@@ -38,7 +38,6 @@ export class ChamosuliComponent implements OnInit {
     }
 
     this.userId = localStorage.getItem('id');
-    console.log(this.userId);
 
     this.getThird();
     this.getDeliveryTypes();
@@ -55,11 +54,9 @@ export class ChamosuliComponent implements OnInit {
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
 
-    console.log(model);
 
     this.service.updateDeliveryType(model).subscribe((res) => {
-      console.log(res);
-      //this.snackbar.open('Delivery Type Updated');
+      this.snackBar.open('Delivery Type Updated');
     });
   }
 
@@ -120,7 +117,6 @@ export class ChamosuliComponent implements OnInit {
 
   getDeliveryTypes() {
     this.service.getDeliveryType(this.lang).subscribe((res) => {
-      console.log(res);
       this.deliveries = res;
     });
   }
