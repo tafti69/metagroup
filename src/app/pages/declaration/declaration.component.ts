@@ -90,6 +90,7 @@ export class DeclarationComponent implements OnInit {
     model.comment = val.comment;
 
     this.isLoading = true;
+
     this.service.createDeclaration(model).subscribe((res) => {
       this.isLoading = false;
       this.success = true;

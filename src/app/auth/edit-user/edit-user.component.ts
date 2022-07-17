@@ -18,6 +18,8 @@ export class EditUserComponent implements OnInit {
   userId: any;
   userDTO: SignUpModel;
   loading: boolean = false;
+  errorResponse: boolean = false;
+  err: string = '';
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -62,8 +64,9 @@ export class EditUserComponent implements OnInit {
 
   getUser() {
     this.userService.getUserInfo(this.userId).subscribe((value) => {
-      
       this.userDTO = value;
+      console.log(value);
+
       this.form.patchValue({
         userId: this.userId,
         email: value.email,
@@ -78,10 +81,12 @@ export class EditUserComponent implements OnInit {
         address: value.address,
         password: value.password,
         confirmPassword: value.password,
-        isOrg: value.isOrganization === true ? 'organisation'
-        : value.isOrganization === false
-        ? 'individual'
-        : null,
+        isOrg:
+          value.isOrganization === true
+            ? 'organisation'
+            : value.isOrganization === false
+            ? 'individual'
+            : null,
       });
     });
   }
@@ -93,7 +98,6 @@ export class EditUserComponent implements OnInit {
   }
 
   updateUser() {
-
     this.loading = true;
     const form = this.form.value;
     let model = new SignUpModel();
@@ -117,32 +121,36 @@ export class EditUserComponent implements OnInit {
         ? false
         : null;
 
-    this.userService.updateUser(model).subscribe((value) => {
-      this.form.patchValue({
-        userId: this.userId,
-        email: value.email,
-        firstNameEN: value.firstNameEN,
-        firtsNameKA: value.firstNameKA,
-        lastNameEN: value.lastNameEN,
-        lastNameKA: value.lastNameKA,
-        phoneNumber: value.phoneNumber.toString(),
-        whatsAppNumber: value.whatsAppNumber.toString(),
-        personalID: value.personalID.toString(),
-        region: value.region,
-        address: value.address,
-        password: value.password,
-        isOrg: value.isOrganization,
-      });
-       this.loading = false;
-        
-    }, error => {
-      console.log(error);
-      
-    });
+    console.log(model);
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000)
-    
+    this.userService.updateUser(model).subscribe(
+      (value) => {
+        this.form.patchValue({
+          userId: this.userId,
+          email: value.email,
+          firstNameEN: value.firstNameEN,
+          firtsNameKA: value.firstNameKA,
+          lastNameEN: value.lastNameEN,
+          lastNameKA: value.lastNameKA,
+          phoneNumber: value.phoneNumber.toString(),
+          whatsAppNumber: value.whatsAppNumber.toString(),
+          personalID: value.personalID.toString(),
+          region: value.region,
+          address: value.address,
+          password: value.password,
+          isOrg: value.isOrganization,
+        });
+        this.loading = false;
+      },
+      (error) => {
+        console.log(error);
+        this.errorResponse = true;
+        this.err = error;
+      }
+    );
+
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000)
   }
 }

@@ -37,13 +37,15 @@
       #dt
       [value]="orders"
       styleClass="p-datatable-gridlines"
+      [lazy]="true"
+      (onLazyLoad)="pageEvent($event)"
       [paginator]="true"
-      [rows]="5"
+      [rows]="numRows"
+      [totalRecords]="totalRecords"
       [showCurrentPageReport]="true"
       [sortOrder]="-1"
       responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 15, 20]"
       [globalFilterFields]="[
         'cabinetId',
         'trackingId',
@@ -62,9 +64,10 @@
             formControlName="fromDateTime"
             dateFormat="dd.mm.yy"
             placeholder="{{ 'startDate' | translate }}"
+            style="width: 120px"
           ></p-calendar>
           <p-calendar
-            style="margin-left: 6px"
+            style="margin-left: 6px; width: 120px"
             formControlName="toDateTime"
             dateFormat="dd.mm.yy"
             placeholder="{{ 'endDate' | translate }}"
@@ -93,21 +96,30 @@
             </option>
           </select>
         </div>
-        <div style="text-align: right">
+        <div style="display: flex; flex-direction: row">
           <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
           <!-- <input
             type="text"
-            (change)="onChangeMeta($event)"
+            (input)="
+              dt.filter($any($event.target).value, 'cabinetId', 'equals')
+            "
+            
             placeholder="Cabinet Id"
-            style="width: 100px; align-self: flex-end; margin-top: -16px"
+            style="width: 120px; align-self: flex-end; margin-top: -16px"
           /> -->
           <input
             type="text"
             pInputText
             size="50"
             placeholder="Search"
-            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-            style="width: 200px; align-self: flex-end; margin-top: -16px"
+            (input)="dt.filterGlobal($any($event.target).value, 'equals')"
+            (change)="searchByCabinetId($any($event.target).value)"
+            style="
+              width: 180px;
+              align-self: flex-end;
+              margin-top: -16px;
+              margin-left: 4px;
+            "
           />
         </div>
       </ng-template>

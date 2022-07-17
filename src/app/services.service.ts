@@ -123,6 +123,63 @@ export class ServicesService {
     const userUrl = this.url + 'Orders/GetAll';
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
+
+  getUsersPaging(pageIndex: number, pageSize: number): Observable<any> {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = { pageIndex: pageIndex, pageSize: pageSize };
+    const userUrl = this.url + `Accounts/GetUsersWithPaging`;
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  searchUsers(
+    cabinetId: string,
+    pageIndex: number,
+    pageSize: number,
+    lang: string
+  ): Observable<any> {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = {
+      CabinetId: cabinetId,
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      Lang: lang,
+    };
+    const userUrl = this.url + 'Accounts/Search';
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  getOrderPaging(
+    pageIndex: number,
+    pageSize: number,
+    lang: string
+  ): Observable<any> {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = {
+      lang: lang,
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+    };
+    const userUrl = this.url + 'Orders/GetAllWithPaging';
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
+  searchByCabinetId(
+    cabinetId: string,
+    pageIndex: number,
+    pageSize: number,
+    lang: string
+  ): Observable<any> {
+    const httpOptionsLoc = httpOptions;
+    httpOptionsLoc.params = {
+      lang: lang,
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      cabinetId: cabinetId,
+    };
+    const userUrl = this.url + 'Orders/GetAllWithCabinetId';
+    return this.http.get<any>(userUrl, httpOptionsLoc);
+  }
+
   getById(lang: string, id: any) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { lang: lang, id: id };

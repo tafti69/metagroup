@@ -2,18 +2,21 @@
 
 <div class="admin-dashboard">
   <h2>Users Controller</h2>
+  <!-- [rowsPerPageOptions]="[10, 15, 20]" -->
   <div>
     <p-table
       #dt
       [value]="users"
       styleClass="p-datatable-gridlines"
+      [lazy]="true"
+      (onLazyLoad)="pageEvent($event)"
       [paginator]="true"
       [rows]="10"
+      [totalRecords]="totalRecords"
       [showCurrentPageReport]="true"
       [sortOrder]="-1"
       responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[10, 15, 20]"
       [globalFilterFields]="[
         'cabinetId',
         'fullNameEN',
@@ -26,8 +29,9 @@
         'region'
       ]"
     >
+      <!-- (input)="dt.filterGlobal($any($event.target).value, 'contains')" -->
       <ng-template pTemplate="caption">
-        <div style="text-align: right">
+        <div style="display: flex">
           <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
           <input
             appendTo="body"
@@ -35,19 +39,25 @@
             pInputText
             size="50"
             placeholder="Search"
-            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-            style="width: 300px; margin-top: -16px"
+            [(ngModel)]="cabId"
+            style="width: 300px; margin-top: 0"
           />
-          <input
+          <button
+            style="height: 36px; margin-left: 6px"
+            (click)="searchUser(cabId)"
+          >
+            Search
+          </button>
+          <!-- <input
             pInputText
             type="text"
             (input)="
-              dt.filter($any($event.target).value, 'cabinetId', 'endsWith')
+              dt.filter($any($event.target).value, 'cabinetId', 'equals')
             "
             placeholder="Cabinet Id"
             style="width: 150px; margin-left: 10px"
             class="p-column-filter"
-          />
+          /> -->
         </div>
       </ng-template>
       <ng-template pTemplate="header">

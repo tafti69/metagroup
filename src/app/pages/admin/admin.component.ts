@@ -30,9 +30,9 @@ export class AdminComponent implements OnInit {
   form: FormGroup;
   formDate: FormGroup;
 
-  first = 0;
-
-  rows = 5;
+  startPage: number = 1;
+  numRows: number = 5;
+  totalRecords: number;
 
   orders: OrdersDTO[] = [];
   partners: any = [];
@@ -75,7 +75,8 @@ export class AdminComponent implements OnInit {
 
     this.getDeliveryTypes();
     this.getStatuses();
-    this.getOrders();
+    // this.getOrders();
+    this.getOrderPaging();
     this.getPartners();
     this.getCurrencies();
 
@@ -176,16 +177,50 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  getOrders() {
+  // getOrders() {
+  //   this.isLoading = true;
+  //   this.service.getOrder(this.lang).subscribe((res) => {
+  //     this.orders = res;
+  //     res.forEach((item) => {
+  //       this.deliveryPrice += item.deliveryPrice;
+  //     });
+  //     this.isLoading = false;
+  //   });
+  // }
+
+  searchByCabinetId(cabinetId: string) {
+    const cabinetId2 = cabinetId.charAt(0).toUpperCase() + cabinetId.slice(1);
     this.isLoading = true;
-    this.service.getOrder(this.lang).subscribe((res) => {
-      this.orders = res;
-      console.log(res, 'orders');
-      this.orders.forEach((item) => {
-        this.deliveryPrice += item.deliveryPrice;
+    // if (cabinetId === '') {
+    //   this.getOrderPaging();
+    // }
+    this.service
+      .searchByCabinetId(cabinetId2, this.startPage, this.numRows, this.lang)
+      .subscribe((res) => {
+        this.orders = res.items;
+        this.deliveryPrice = res.totalDeliveryPrice;
+        this.isLoading = false;
       });
-      this.isLoading = false;
-    });
+  }
+
+  getOrderPaging() {
+    this.isLoading = true;
+    this.service
+      .getOrderPaging(this.startPage, this.numRows, this.lang)
+      .subscribe((res) => {
+        this.orders = res.items;
+        this.totalRecords = res.totalCount;
+        this.deliveryPrice = res.totalDeliveryPrice;
+        this.isLoading = false;
+      });
+  }
+
+  public pageEvent(event) {
+    if (event === null || event === undefined) {
+      return;
+    }
+    this.startPage = event.first / 5;
+    this.getOrderPaging();
   }
 
   getPartners() {
