@@ -11,6 +11,7 @@ import { ServicesService } from 'app/services.service';
 import { Emitters } from 'app/models/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
@@ -49,10 +50,16 @@ export class AdminComponent implements OnInit {
   masterSelected: boolean = false;
 
   isChecked: any;
-
+  sortFieldName;
+  sortFieldOrder;
   lang: any;
   isLoading = false;
   isLoading2 = false;
+  cabId: any;
+  ifSearch: boolean = false;
+  ifFilter: boolean = false;
+
+  ordersForCheck: any;
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang');
@@ -69,9 +76,11 @@ export class AdminComponent implements OnInit {
     });
 
     this.formDate = new FormGroup({
-      fromDateTime: new FormControl('', Validators.required),
-      toDateTime: new FormControl('', Validators.required),
+      fromDateTime: new FormControl(''),
+      toDateTime: new FormControl(''),
     });
+
+    // this.setDates();
 
     this.getDeliveryTypes();
     this.getStatuses();
@@ -106,18 +115,42 @@ export class AdminComponent implements OnInit {
 
   onFilterDate() {
     const form = this.formDate.value;
+    let sortField = '';
+    if (this.sortFieldName !== null && this.sortFieldName !== undefined) {
+      sortField = this.sortFieldName;
+    }
+    let sortOrder = 0;
+    if (this.sortFieldOrder != null && this.sortFieldOrder !== undefined) {
+      sortOrder = this.sortFieldOrder;
+    }
+    console.log(form.fromDateTime + '' + form.toDateTime);
 
     this.service
-      .filterRangeByDate(this.lang, form.fromDateTime, form.toDateTime)
+      .filterRangeByDate(
+        this.lang,
+        form.fromDateTime,
+        form.toDateTime,
+        this.startPage,
+        this.numRows,
+        sortOrder,
+        sortField
+      )
       .subscribe((res: any) => {
-        this.orders = res;
+        this.ifFilter = true;
+        this.orders = res.items;
+        this.totalRecords = res.totalCount;
+        this.deliveryPrice = res.totalDeliveryPrice;
       });
   }
 
-  checkUncheckAll() {
-    for (var i = 0; i < this.orders.length; i++) {
-      this.orders[i].isChecked = this.masterSelected;
-    }
+  checkUncheckAll(m) {
+    this.masterSelected = m;
+    this.masterSelected === true;
+    console.log(this.masterSelected);
+
+    // for (var i = 0; i < this.orders.length; i++) {
+    //   this.orders[i].isChecked = this.masterSelected;
+    // }
   }
 
   onUpdateAllStatuses(e: Event) {
@@ -134,9 +167,11 @@ export class AdminComponent implements OnInit {
     const statusId = (e.target as HTMLSelectElement).value;
     model.statusId = statusId;
     model.orderIds = newIds;
+    model.allSellected = this.masterSelected;
 
     this.service.updateAll(model).subscribe((res) => {
-      window.location.reload();
+      // window.location.reload();
+      this.searchByCabinetId2();
     });
   }
 
@@ -154,9 +189,11 @@ export class AdminComponent implements OnInit {
     const deliveryId = (e.target as HTMLSelectElement).value;
     model.deliveryTypeId = deliveryId;
     model.orderIds = newIds;
+    model.allSellected = this.masterSelected;
 
     this.service.updateAll(model).subscribe((res) => {
-      window.location.reload();
+      // window.location.reload();
+      this.searchByCabinetId2();
     });
   }
 
@@ -189,36 +226,102 @@ export class AdminComponent implements OnInit {
   // }
 
   searchByCabinetId(cabinetId: string) {
-    const cabinetId2 = cabinetId.charAt(0).toUpperCase() + cabinetId.slice(1);
+    const form = this.formDate.value;
+    const dash = this.dashboardDTO;
+    let sortField = '';
+    if (this.sortFieldName !== null && this.sortFieldName !== undefined) {
+      sortField = this.sortFieldName;
+    }
+    let sortOrder = 0;
+    if (this.sortFieldOrder != null && this.sortFieldOrder !== undefined) {
+      sortOrder = this.sortFieldOrder;
+    }
+    this.cabId = cabinetId.charAt(0).toUpperCase() + cabinetId.slice(1);
     this.isLoading = true;
     if (cabinetId === '') {
       this.getOrderPaging();
+    } else {
+      this.service
+        .searchByCabinetId(
+          this.cabId,
+          sortOrder,
+          sortField,
+          this.startPage,
+          this.numRows,
+          this.lang,
+          dash.fromDateTime,
+          dash.toDateTime
+        )
+        .subscribe((res) => {
+          console.log(res);
+
+          this.orders = res.items;
+          this.deliveryPrice = res.totalDeliveryPrice;
+          this.isLoading = false;
+          this.totalRecords = res.totalCount;
+        });
     }
-   else {
+  }
+
+  searchByCabinetId2() {
+    const dash = this.dashboardDTO;
+    const val = this.formDate.value;
+    let sortField = '';
+    if (this.sortFieldName !== null && this.sortFieldName !== undefined) {
+      sortField = this.sortFieldName;
+    }
+    let sortOrder = 0;
+    if (this.sortFieldOrder != null && this.sortFieldOrder !== undefined) {
+      sortOrder = this.sortFieldOrder;
+    }
+    // this.cabId = cabinetId.charAt(0).toUpperCase() + cabinetId.slice(1);
+    this.isLoading = true;
+
     this.service
-    .searchByCabinetId(cabinetId2, this.startPage, this.numRows, this.lang)
-    .subscribe((res) => {
-      this.orders = res.items;
-      this.deliveryPrice = res.totalDeliveryPrice;
-      this.isLoading = false;
-      console.log(res);
-      this.totalRecords = res.totalCount;
-      
-    });
-   }
+      .searchByCabinetId(
+        dash.cabinetId,
+        sortOrder,
+        sortField,
+        this.startPage,
+        this.numRows,
+        this.lang,
+        dash.fromDateTime,
+        dash.toDateTime
+      )
+      .subscribe((res) => {
+        this.ifSearch = true;
+        this.orders = res.items;
+        this.deliveryPrice = res.totalDeliveryPrice;
+        this.isLoading = false;
+        this.totalRecords = res.totalCount;
+      });
   }
 
   getOrderPaging() {
+    let sortField = '';
+    if (this.sortFieldName !== null && this.sortFieldName !== undefined) {
+      sortField = this.sortFieldName;
+    }
+    let sortOrder = 0;
+    if (this.sortFieldOrder != null && this.sortFieldOrder !== undefined) {
+      sortOrder = this.sortFieldOrder;
+    }
     this.isLoading = true;
     this.service
-      .getOrderPaging(this.startPage, this.numRows, this.lang)
+      .getOrderPaging(
+        this.startPage,
+        this.numRows,
+        sortOrder,
+        sortField,
+        this.lang
+      )
       .subscribe((res) => {
         this.orders = res.items;
+        this.ordersForCheck = res;
         this.totalRecords = res.totalCount;
         this.deliveryPrice = res.totalDeliveryPrice;
         this.isLoading = false;
-        console.log(res);
-        
+        console.log(this.ordersForCheck);
       });
   }
 
@@ -226,8 +329,48 @@ export class AdminComponent implements OnInit {
     if (event === null || event === undefined) {
       return;
     }
-    this.startPage = (event.first / 5) + 1;
-    this.getOrderPaging();
+
+    this.startPage = event.first / 5 + 1;
+
+    if (
+      event.multiSortMeta !== null &&
+      event.multiSortMeta !== undefined &&
+      event.multiSortMeta.length > 0
+    ) {
+      const meta = event.multiSortMeta[0];
+      if (meta !== null || meta !== undefined) {
+        const field = meta.field;
+        if (field !== null && field !== undefined) {
+          this.sortFieldName = field;
+        }
+        const order = meta.order;
+        if (order !== null && order !== undefined) {
+          this.sortFieldOrder = order;
+        }
+      }
+    }
+
+    this.searchByCabinetId2();
+
+    // if (this.ifFilter === true) {
+    //   this.onFilterDate();
+    // }
+    // this.getOrderPaging();
+  }
+
+  get dashboardDTO() {
+    //  new Date(form.fromDateTime).getTime()
+
+    const form = this.formDate.value;
+    return {
+      cabinetId: this.cabId ? this.cabId : '',
+      fromDateTime: +new Date(form.fromDateTime).getTime()
+        ? +new Date(form.fromDateTime).getTime()
+        : '',
+      toDateTime: +new Date(form.toDateTime).getTime()
+        ? +new Date(form.toDateTime).getTime()
+        : '',
+    };
   }
 
   getPartners() {
@@ -284,25 +427,4 @@ export class AdminComponent implements OnInit {
 
     this.service.updateWeight(model).subscribe((res) => {});
   }
-
-  // onChangeMeta(e) {
-  //   let val = (e.target as HTMLSelectElement).value;
-  //   console.log(val, 'val');
-
-  //   this.subjectKey.next(val);
-
-  //   let newOrders = [];
-
-  //   if (val) {
-  //     this.isLoading = true;
-  //     this.service.getOrder(this.lang).subscribe((res) => {
-  //       this.orders.filter(el => {
-  //         if(val === el.cabinetId) {
-  //           this.orders.push(el)
-  //         }
-  //       });
-  //       this.isLoading = false;
-  //     });
-  //   }
-  // }
 }

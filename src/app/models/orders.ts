@@ -26,6 +26,7 @@ export class UpdateAll {
   orderIds: string[];
   statusId: string;
   deliveryTypeId: string;
+  allSellected: boolean;
 }
 
 export class OrdersDTO {

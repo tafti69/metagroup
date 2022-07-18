@@ -113,7 +113,8 @@
             pInputText
             size="50"
             placeholder="Search"
-            (keyup.enter)="searchByCabinetId($any($event.target).value)"
+            [(ngModel)]="cabId"
+            (keyup.enter)="searchByCabinetId(cabId)"
             style="
               width: 180px;
               align-self: flex-end;
@@ -130,7 +131,7 @@
               style="width: 20px; background: none"
               type="checkbox"
               [(ngModel)]="masterSelected"
-              (change)="checkUncheckAll()"
+              (change)="checkUncheckAll(masterSelected)"
             />
           </th>
           <th pSortableColumn="createdAt">

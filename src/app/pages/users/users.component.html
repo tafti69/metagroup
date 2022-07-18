@@ -12,9 +12,9 @@
       (onLazyLoad)="pageEvent($event)"
       [paginator]="true"
       [rows]="10"
+      sortMode="multiple"
       [totalRecords]="totalRecords"
       [showCurrentPageReport]="true"
-      [sortOrder]="-1"
       responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="[

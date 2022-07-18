@@ -124,15 +124,29 @@ export class ServicesService {
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
 
-  getUsersPaging(pageIndex: number, pageSize: number): Observable<any> {
+  getUsersPaging(
+    pageIndex: number,
+    pageSize: number,
+    sortOrder,
+    fieldName,
+    lang
+  ): Observable<any> {
     const httpOptionsLoc = httpOptions;
-    httpOptionsLoc.params = { pageIndex: pageIndex, pageSize: pageSize };
+    httpOptionsLoc.params = {
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+      sortOrder: sortOrder,
+      fieldName: fieldName,
+      Lang: lang,
+    };
     const userUrl = this.url + `Accounts/GetUsersWithPaging`;
     return this.http.get<any>(userUrl, httpOptionsLoc);
   }
 
   searchUsers(
     cabinetId: string,
+    sortOrder,
+    fieldName,
     pageIndex: number,
     pageSize: number,
     lang: string
@@ -140,6 +154,8 @@ export class ServicesService {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = {
       CabinetId: cabinetId,
+      sortOrder: sortOrder,
+      fieldName: fieldName,
       pageIndex: pageIndex,
       pageSize: pageSize,
       Lang: lang,
@@ -151,11 +167,15 @@ export class ServicesService {
   getOrderPaging(
     pageIndex: number,
     pageSize: number,
+    sortOrder,
+    fieldName,
     lang: string
   ): Observable<any> {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = {
       lang: lang,
+      sortOrder: sortOrder,
+      fieldName: fieldName,
       pageIndex: pageIndex,
       pageSize: pageSize,
     };
@@ -165,16 +185,24 @@ export class ServicesService {
 
   searchByCabinetId(
     cabinetId: string,
+    sortOrder,
+    fieldName,
     pageIndex: number,
     pageSize: number,
-    lang: string
+    lang: string,
+    from,
+    to
   ): Observable<any> {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = {
       lang: lang,
+      sortOrder: sortOrder,
+      fieldName: fieldName,
       pageIndex: pageIndex,
       pageSize: pageSize,
       cabinetId: cabinetId,
+      from: from,
+      to: to,
     };
     const userUrl = this.url + 'Orders/GetAllWithCabinetId';
     return this.http.get<any>(userUrl, httpOptionsLoc);
@@ -325,10 +353,26 @@ export class ServicesService {
     return this.http.post<UpdateStatuses>(userUrl, model);
   }
 
-  filterRangeByDate(lang, from, to) {
-    var obj = { Lang: lang, from: from, to: to };
+  filterRangeByDate(
+    lang,
+    from,
+    to,
+    pageIndex: number,
+    pageSize: number,
+    sortOrder,
+    fieldName
+  ) {
+    var obj = {
+      Lang: lang,
+      from: from,
+      to: to,
+      sortOrder: sortOrder,
+      fieldName: fieldName,
+      pageIndex: pageIndex,
+      pageSize: pageSize,
+    };
     const userUrl = this.url + 'Orders/FilterByRange';
-    return this.http.post(userUrl, JSON.stringify(obj));
+    return this.http.post(userUrl, obj);
   }
 
   updateAll(model: UpdateAll) {
