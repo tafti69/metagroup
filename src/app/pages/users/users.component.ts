@@ -9,10 +9,12 @@ import { ServicesService } from 'app/services.service';
 export class UsersComponent implements OnInit {
   constructor(private service: ServicesService) {}
 
-  users: any;
+  users: any[]=[];
   isLoading: boolean;
   cabId;
 
+  sortFieldName;
+  sortFieldOrder;
   startPage: number = 1;
   numRows: number = 10;
   totalRecords: number;
@@ -43,11 +45,12 @@ export class UsersComponent implements OnInit {
 
   searchUser(cabinetId) {
     this.cabId = cabinetId;
-    let lang = 'ff';
+    let lang = 'KA';
     this.service
       .searchUsers(this.cabId, this.startPage, this.numRows, lang)
       .subscribe((res) => {
         this.users = res.items;
+        this.totalRecords = res.totalCount;
       });
   }
 
@@ -55,7 +58,33 @@ export class UsersComponent implements OnInit {
     if (event === null || event === undefined) {
       return;
     }
-    this.startPage = event.first / 10;
+    
+    this.startPage = (event.first / 10) + 1
     this.getUsersPaging();
+   
+  }
+
+  sort(event) {
+    if(event.sortField) {
+
+      this.users.sort((data1, data2) => {
+        
+      let value1 = data1[event.sortField];
+      let value2 = data2[event.sortField];
+      let result = null;
+      
+      if (value1 == null && value2 != null)
+      result = -1;
+      else if (value1 != null && value2 == null)
+      result = 1;
+      else if (value1 == null && value2 == null)
+      result = 0;
+      else if (typeof value1 === 'string' && typeof value2 === 'string')
+      result = value1.localeCompare(value2);
+      else
+      result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+      return (event.sortOrder * result);
+      });
+      }
   }
 }

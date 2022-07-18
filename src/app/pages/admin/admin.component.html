@@ -44,6 +44,7 @@
       [totalRecords]="totalRecords"
       [showCurrentPageReport]="true"
       [sortOrder]="-1"
+      sortMode="multiple"
       responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="[
@@ -112,8 +113,7 @@
             pInputText
             size="50"
             placeholder="Search"
-            (input)="dt.filterGlobal($any($event.target).value, 'equals')"
-            (change)="searchByCabinetId($any($event.target).value)"
+            (keyup.enter)="searchByCabinetId($any($event.target).value)"
             style="
               width: 180px;
               align-self: flex-end;

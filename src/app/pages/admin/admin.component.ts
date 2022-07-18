@@ -191,16 +191,21 @@ export class AdminComponent implements OnInit {
   searchByCabinetId(cabinetId: string) {
     const cabinetId2 = cabinetId.charAt(0).toUpperCase() + cabinetId.slice(1);
     this.isLoading = true;
-    // if (cabinetId === '') {
-    //   this.getOrderPaging();
-    // }
+    if (cabinetId === '') {
+      this.getOrderPaging();
+    }
+   else {
     this.service
-      .searchByCabinetId(cabinetId2, this.startPage, this.numRows, this.lang)
-      .subscribe((res) => {
-        this.orders = res.items;
-        this.deliveryPrice = res.totalDeliveryPrice;
-        this.isLoading = false;
-      });
+    .searchByCabinetId(cabinetId2, this.startPage, this.numRows, this.lang)
+    .subscribe((res) => {
+      this.orders = res.items;
+      this.deliveryPrice = res.totalDeliveryPrice;
+      this.isLoading = false;
+      console.log(res);
+      this.totalRecords = res.totalCount;
+      
+    });
+   }
   }
 
   getOrderPaging() {
@@ -212,6 +217,8 @@ export class AdminComponent implements OnInit {
         this.totalRecords = res.totalCount;
         this.deliveryPrice = res.totalDeliveryPrice;
         this.isLoading = false;
+        console.log(res);
+        
       });
   }
 
@@ -219,7 +226,7 @@ export class AdminComponent implements OnInit {
     if (event === null || event === undefined) {
       return;
     }
-    this.startPage = event.first / 5;
+    this.startPage = (event.first / 5) + 1;
     this.getOrderPaging();
   }
 
