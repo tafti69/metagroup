@@ -50,7 +50,6 @@ export class UsersComponent implements OnInit {
         this.users = res.items;
         this.totalRecords = res.totalCount;
         this.isLoading = false;
-        console.log(res);
       });
   }
 
@@ -65,7 +64,7 @@ export class UsersComponent implements OnInit {
     }
 
     this.cabId = cabinetId;
-    if (this.cabId === '') {
+    if (cabinetId === '') {
       this.getUsersPaging();
     }
     let lang = 'KA';

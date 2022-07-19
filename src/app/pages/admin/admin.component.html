@@ -50,7 +50,7 @@
       [globalFilterFields]="[
         'cabinetId',
         'trackingId',
-        'height',
+        'weight',
         'paidAmount',
         'deliveryType.item.name'
       ]"
@@ -144,8 +144,8 @@
             {{ "tracking" | translate }}
             <p-sortIcon field="trackingId"></p-sortIcon>
           </th>
-          <th pSortableColumn="height">
-            {{ "weight" | translate }} <p-sortIcon field="height"></p-sortIcon>
+          <th pSortableColumn="weight">
+            {{ "weight" | translate }} <p-sortIcon field="weight"></p-sortIcon>
           </th>
           <th pSortableColumn="paidAmount">
             {{ "paid-amont" | translate }}

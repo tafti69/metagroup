@@ -148,9 +148,9 @@ export class AdminComponent implements OnInit {
     this.masterSelected === true;
     console.log(this.masterSelected);
 
-    // for (var i = 0; i < this.orders.length; i++) {
-    //   this.orders[i].isChecked = this.masterSelected;
-    // }
+    for (var i = 0; i < this.orders.length; i++) {
+      this.orders[i].isChecked = this.masterSelected;
+    }
   }
 
   onUpdateAllStatuses(e: Event) {
