@@ -391,6 +391,11 @@ export class ServicesService {
     const userUrl = this.url + `Accounts/SendVerificationCode/${phoneNumber}`;
     return this.http.get<any>(userUrl);
   }
+  
+  sendVerificationCodeByUserName(userName: string) {
+    const userUrl = this.url + `Accounts/SendVerificationCodeByUserName/${userName}`;
+    return this.http.get<any>(userUrl);
+  }
 
   forgotPassword(model: SignInModel) {
     const userUrl = this.url + 'Accounts/ForgotPassword';

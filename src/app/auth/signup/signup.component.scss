@@ -54,20 +54,22 @@
   option {
     padding: 4px;
   }
-  button {
-    width: 400px;
-    height: 40px;
-    background: #bc0808;
-    border-radius: 6px;
-    margin-top: 2rem;
-    margin-bottom: 0;
-    color: #fff;
-    @media (max-width: 1440px) {
-      width: 360px;
-    }
-    @media (max-width: 1000px) {
-      width: 300px;
-    }
+
+}
+
+button {
+  width: 400px;
+  height: 40px;
+  background: #bc0808;
+  border-radius: 6px;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  color: #fff;
+  @media (max-width: 1440px) {
+    width: 360px;
+  }
+  @media (max-width: 1000px) {
+    width: 300px;
   }
 }
 

@@ -11,31 +11,29 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private service: ServicesService, private router: Router) {}
 
   forgotPassword: string;
-  ngCode: any;
-  newCode: any;
+  ngCode: number;
+  newCode: number;
   codeVisible: boolean = false;
-  errPhone: string = '';
-  errCode: string = '';
+  errPhone: string;
+  errCode: string;
 
   ngOnInit(): void {}
 
   sendCode(forgotPassword) {
+    // this.codeVisible = true;
     if (forgotPassword) {
       this.codeVisible = true;
-      // this.service.sendVerificationCode(forgotPassword).subscribe((res) => {
-      //   console.log(res);
-      //   this.newCode = res.code;
-      // });
+      this.service.sendVerificationCodeByUserName(forgotPassword).subscribe((res) => {
+        this.newCode = res.code;
+      });
     } else {
       this.errPhone = 'Please enter your phone number';
     }
   }
 
   verify() {
-    console.log(this.newCode);
-    console.log(this.ngCode);
 
-    if (this.newCode === this.ngCode) {
+    if (this.newCode === +this.ngCode) {
       this.router.navigate(['/newpassword']);
     } else {
       this.errCode = 'Code is not correct.';

@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="signup-wrapper">
-  <form [formGroup]="form" (ngSubmit)="signUp()">
+  <form *ngIf="!codeVisible" [formGroup]="form" (ngSubmit)="signUp()">
     <div class="wrapper-register">
       <!-- <h3>რეგისტრაცია</h3> -->
       <div>
@@ -150,7 +150,7 @@
       </div>
       <div>
         <label>{{ "password" | translate }}</label>
-        <input type="password" formControlName="password" />
+        <input type="password" formControlName="password" minlength="3" />
         <span
           *ngIf="
             form.controls['password'].invalid &&
@@ -161,12 +161,15 @@
           <small *ngIf="form.controls['password'].errors.required">
             This field is required
           </small>
-          <!-- <small
-            style="color: red"
-            *ngIf="form.controls['password'].errors?.minLength"
+          
+        </span>
+        <span *ngIf="password.errors && isValidFormSubmitted != null && !isValidFormSubmitted">
+          <small
+            
+            *ngIf="password.errors.minlength"
           >
-            Password must be at least 8 characters long.
-          </small> -->
+            Password must be at least 3 characters.
+          </small>
         </span>
       </div>
       <div>
@@ -249,13 +252,22 @@
           </div>
         </button>
         <span *ngIf="errorResponse">
-          <span class="errordiv">{{ errorMsg }}</span>
-        </span>
-        <span *ngIf="!form.valid">
           <span style="font-size: 14px" class="errordiv">{{ errorMsg }}</span>
         </span>
+        <!-- <span *ngIf="!form.valid">
+          <span style="font-size: 14px" class="errordiv">{{ errorMsg }}</span>
+        </span> -->
         
       </div>
     </div>
   </form>
+  <div *ngIf="codeVisible" style="text-align: center;">
+    <input type="text" [(ngModel)]="ngCode">
+    <button (click)="verify()">Verify
+      <div style="margin-top: -2px" class="lds-ring" *ngIf="isLoading">
+        <div></div>
+      </div>
+    </button>
+    <small>{{errCode}}</small>
+  </div>
 </div>

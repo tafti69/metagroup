@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SignInModel } from 'app/models/auth';
 import { ServicesService } from 'app/services.service';
 
@@ -9,22 +11,28 @@ import { ServicesService } from 'app/services.service';
 })
 export class NewPasswordComponent implements OnInit {
 
-  constructor(private service: ServicesService) { }
+  constructor(private service: ServicesService, private router: Router) { }
 
+  isValidFormSubmitted = false;
   email;
   newPassword;
+  form: NgForm
 
   ngOnInit(): void {
   }
 
-  continue() {
+  continue(form: NgForm) {
     let model = new SignInModel();
     model.email = this.email;
     model.password = this.newPassword;
 
+    this.isValidFormSubmitted = false;
+     if (form.invalid) {
+        return;
+     }
     this.service.forgotPassword(model).subscribe(res => {
-      console.log(res);
-      
+      this.isValidFormSubmitted = true;
+      this.router.navigate(['/home'])
     })
   }
 }
