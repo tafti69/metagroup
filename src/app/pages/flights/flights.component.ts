@@ -36,17 +36,16 @@ export class FlightsComponent implements OnInit {
     this.isLoading = true;
     this.service.createFlight(model).subscribe((res) => {
       this.isLoading = false;
+
       setTimeout(() => {
         window.location.reload();
-      }, 500)
+      }, 500);
     });
   }
 
   getFlights() {
     this.service.getFlights().subscribe((res) => {
       this.flights = res;
-      console.log(res);
-      
     });
   }
 

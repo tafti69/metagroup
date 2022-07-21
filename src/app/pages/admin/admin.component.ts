@@ -88,11 +88,6 @@ export class AdminComponent implements OnInit {
     this.getOrderPaging();
     this.getPartners();
     this.getCurrencies();
-
-    // this.subjectKey.subscribe((res) => {
-    //   console.log(res);
-    //   this.getOrders(res)
-    // });
   }
 
   getCurrencies() {
@@ -146,7 +141,6 @@ export class AdminComponent implements OnInit {
   checkUncheckAll(m) {
     this.masterSelected = m;
     this.masterSelected === true;
-    console.log(this.masterSelected);
 
     for (var i = 0; i < this.orders.length; i++) {
       this.orders[i].isChecked = this.masterSelected;
@@ -154,6 +148,7 @@ export class AdminComponent implements OnInit {
   }
 
   onUpdateAllStatuses(e: Event) {
+    const dash = this.dashboardDTO;
     this.selectedOrderIds = this.orders.filter((x) => x.isChecked === true);
     let model = new UpdateAll();
     let newIds: string[] = [];
@@ -168,6 +163,8 @@ export class AdminComponent implements OnInit {
     model.statusId = statusId;
     model.orderIds = newIds;
     model.allSellected = this.masterSelected;
+    model.from = dash.fromDateTime;
+    model.to = dash.toDateTime;
 
     this.service.updateAll(model).subscribe((res) => {
       // window.location.reload();
@@ -176,6 +173,7 @@ export class AdminComponent implements OnInit {
   }
 
   onUpdateAllDeliveries(e: Event) {
+    const dash = this.dashboardDTO;
     this.selectedOrderIds = this.orders.filter((x) => x.isChecked === true);
     let model = new UpdateAll();
     let newIds: string[] = [];
@@ -190,6 +188,8 @@ export class AdminComponent implements OnInit {
     model.deliveryTypeId = deliveryId;
     model.orderIds = newIds;
     model.allSellected = this.masterSelected;
+    model.from = dash.fromDateTime;
+    model.to = dash.toDateTime;
 
     this.service.updateAll(model).subscribe((res) => {
       // window.location.reload();

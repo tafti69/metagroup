@@ -22,18 +22,16 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   sendCode(forgotPassword) {
-    this.codeVisible = true;
-    // if (forgotPassword) {
-    //   this.codeVisible = true;
-    //   this.service
-    //     .sendVerificationCodeByUserName(forgotPassword)
-    //     .subscribe((res) => {
-    //       this.newCode = res.code;
-    //     });
-
-    // } else {
-    //   this.errPhone = 'Please enter your phone number';
-    // }
+    if (forgotPassword) {
+      this.codeVisible = true;
+      this.service
+        .sendVerificationCodeByUserName(forgotPassword)
+        .subscribe((res) => {
+          this.newCode = res.code;
+        });
+    } else {
+      this.errPhone = 'Please enter your phone number';
+    }
   }
 
   verify() {
