@@ -34,6 +34,8 @@ export class SignupComponent implements OnInit {
       localStorage.setItem('lang', 'AZE');
     }
 
+    console.log(this.codeVisible);
+    
     this.form = new FormGroup(
       {
         email: new FormControl('', Validators.required),

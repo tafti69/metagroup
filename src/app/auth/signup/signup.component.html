@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="signup-wrapper">
-  <form *ngIf="!codeVisible" [formGroup]="form" (ngSubmit)="signUp()">
+  <form *ngIf="!codeVisible" [formGroup]="form">
     <div class="wrapper-register">
       <!-- <h3>რეგისტრაცია</h3> -->
       <div>
@@ -245,7 +245,7 @@
         /><label style="margin-left: 4px" for="o2"> ფიზიკური პირი</label><br />
       </span>
       <div style="align-items: center">
-        <button type="submit">
+        <button type="button" (click)="signUp()">
           რეგისტრაცია
           <div style="margin-top: -2px" class="lds-ring" *ngIf="isLoading">
             <div></div>
