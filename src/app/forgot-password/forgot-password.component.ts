@@ -16,23 +16,27 @@ export class ForgotPasswordComponent implements OnInit {
   codeVisible: boolean = false;
   errPhone: string;
   errCode: string;
+  timeLeft: number = 60;
+  enable: boolean = false;
 
   ngOnInit(): void {}
 
   sendCode(forgotPassword) {
-    // this.codeVisible = true;
-    if (forgotPassword) {
-      this.codeVisible = true;
-      this.service.sendVerificationCodeByUserName(forgotPassword).subscribe((res) => {
-        this.newCode = res.code;
-      });
-    } else {
-      this.errPhone = 'Please enter your phone number';
-    }
+    this.codeVisible = true;
+    // if (forgotPassword) {
+    //   this.codeVisible = true;
+    //   this.service
+    //     .sendVerificationCodeByUserName(forgotPassword)
+    //     .subscribe((res) => {
+    //       this.newCode = res.code;
+    //     });
+
+    // } else {
+    //   this.errPhone = 'Please enter your phone number';
+    // }
   }
 
   verify() {
-
     if (this.newCode === +this.ngCode) {
       this.router.navigate(['/newpassword']);
     } else {
@@ -40,3 +44,12 @@ export class ForgotPasswordComponent implements OnInit {
     }
   }
 }
+
+// setInterval(() => {
+//   if (this.timeLeft > 0) {
+//     this.timeLeft--;
+//   }
+//   if (this.timeLeft === 0) {
+//     this.enable = true;
+//   }
+// }, 1000);

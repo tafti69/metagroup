@@ -42,6 +42,8 @@ export class SigninComponent implements OnInit {
 
     this.userService.loginUser(model).subscribe(
       (res) => {
+        console.log(res);
+
         this.isLoading = false;
         localStorage.setItem('id', res.id);
         localStorage.setItem('token', res.token);
