@@ -2,10 +2,14 @@
 
 <div class="signup-wrapper">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <form *ngIf="!codeVisible" [formGroup]="form">
 =======
   <form *ngIf="codeVisible" [formGroup]="form" (ngSubmit)="signUp()">
 >>>>>>> 3bc9ff38da8906dafec9991b51732f77affab3e2
+=======
+  <form *ngIf="!codeVisible" [formGroup]="form" (ngSubmit)="signUp()">
+>>>>>>> 71f9f2f88eff79ca7f33feaae84ac46788e6c58d
     <div class="wrapper-register">
       <!-- <h3>რეგისტრაცია</h3> -->
       <div>
@@ -270,7 +274,7 @@
       </div>
     </div>
   </form>
-  <div *ngIf="!codeVisible" style="text-align: center">
+  <div *ngIf="codeVisible" style="text-align: center">
     <div style="flex-direction: column; display: flex; align-items: flex-start">
       <label>Code</label> <input type="text" [(ngModel)]="ngCode" />
     </div>

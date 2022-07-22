@@ -27,6 +27,8 @@ export class UpdateAll {
   statusId: string;
   deliveryTypeId: string;
   allSellected: boolean;
+  from: any;
+  to: any;
 }
 
 export class OrdersDTO {

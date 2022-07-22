@@ -34,14 +34,14 @@ export class MainPageComponent implements OnInit {
   }
 
   getUser() {
-    this.service.getUserInfo(this.userId).subscribe(res => {
-        this.userName = res.firstNameEN + " " + res.lastNameEN;
-    })
+    this.service.getUserInfo(this.userId).subscribe((res) => {
+      this.userName = res.firstNameEN + ' ' + res.lastNameEN;
+    });
   }
 
   getFlights() {
     this.service.getFlights().subscribe((res) => {
-      this.flights = res.slice(0, 3);
+      this.flights = res.slice(0, 2);
     });
   }
 
