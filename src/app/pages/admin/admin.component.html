@@ -32,6 +32,12 @@
       </div>
     </button>
   </form>
+
+  <!-- <div class="excel">
+    <button (click)="exportExcel()">
+      <img src="../../../assets/excel.svg" alt="" />
+    </button>
+  </div> -->
   <div>
     <p-table
       #dt
@@ -97,17 +103,10 @@
             </option>
           </select>
         </div>
-        <div style="display: flex; flex-direction: row">
-          <!-- <i class="pi pi-search" style="margin: 4px 4px 0 0"></i> -->
-          <!-- <input
-            type="text"
-            (input)="
-              dt.filter($any($event.target).value, 'cabinetId', 'equals')
-            "
-            
-            placeholder="Cabinet Id"
-            style="width: 120px; align-self: flex-end; margin-top: -16px"
-          /> -->
+        <div style="display: flex; flex-direction: row; margin-top: -6px">
+          <button class="excel" (click)="exportExcel()">
+            <img src="../../../assets/excel.svg" alt="" />
+          </button>
           <input
             type="text"
             pInputText

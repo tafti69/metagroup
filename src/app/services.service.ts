@@ -44,6 +44,11 @@ export class ServicesService {
     return this.http.post<SignUpModel>(userUrl, model);
   }
 
+  deleteUser(userId) {
+    const userUrl = this.url + `Accounts/Delete/${userId}`;
+    return this.http.delete<any>(userUrl);
+  }
+
   loginUser(model: SignInModel) {
     const userUrl = this.url + 'Accounts/SignIn';
     localStorage.setItem('email', model.email);
@@ -380,6 +385,22 @@ export class ServicesService {
     return this.http.post(userUrl, JSON.stringify(model));
   }
 
+  // public async exportExcel(from: any, to: any, search: string): Promise<Blob> {
+  //   const httpOptionsLoc = httpOptions;
+  //   httpOptionsLoc.params = { from: from, to: to, SearchText: search };
+  //   const userUrl = this.url + 'Orders/ExportToExcel';
+  //   return await this.http.get<Blob>(userUrl, httpOptionsLoc).toPromise();
+  // }
+
+  exportExcel(from: any, to: any, search: string): Observable<any> {
+    var params = { from: from, to: to, SearchText: search };
+    const userUrl = this.url + 'Orders/ExportToExcel';
+    return this.http.get<any>(userUrl, {
+      params: params,
+      responseType: 'blob' as 'json',
+    });
+  }
+
   getDashboardInfo(lang: string, id: string) {
     const httpOptionsLoc = httpOptions;
     httpOptionsLoc.params = { Id: id, Lang: lang };
@@ -391,9 +412,10 @@ export class ServicesService {
     const userUrl = this.url + `Accounts/SendVerificationCode/${phoneNumber}`;
     return this.http.get<any>(userUrl);
   }
-  
+
   sendVerificationCodeByUserName(userName: string) {
-    const userUrl = this.url + `Accounts/SendVerificationCodeByUserName/${userName}`;
+    const userUrl =
+      this.url + `Accounts/SendVerificationCodeByUserName/${userName}`;
     return this.http.get<any>(userUrl);
   }
 

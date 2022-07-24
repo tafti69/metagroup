@@ -77,6 +77,7 @@
     </div>
     <!-- [ngStyle]="{ display: ifPaidAmount ? 'none' : '' }" -->
     <button
+      [disabled]="!form.valid"
       style="margin-left: 8px"
       [style.background-color]="success ? '#52b788' : ''"
     >

@@ -163,8 +163,8 @@ export class AdminComponent implements OnInit {
     model.statusId = statusId;
     model.orderIds = newIds;
     model.allSellected = this.masterSelected;
-    model.from = dash.fromDateTime;
-    model.to = dash.toDateTime;
+    model.from = dash.fromDateTime ? dash.fromDateTime : null;
+    model.to = dash.toDateTime ? dash.toDateTime : null;
 
     this.service.updateAll(model).subscribe((res) => {
       // window.location.reload();
@@ -188,8 +188,8 @@ export class AdminComponent implements OnInit {
     model.deliveryTypeId = deliveryId;
     model.orderIds = newIds;
     model.allSellected = this.masterSelected;
-    model.from = dash.fromDateTime;
-    model.to = dash.toDateTime;
+    model.from = dash.fromDateTime ? dash.fromDateTime : null;
+    model.to = dash.toDateTime ? dash.toDateTime : null;
 
     this.service.updateAll(model).subscribe((res) => {
       // window.location.reload();
@@ -253,8 +253,6 @@ export class AdminComponent implements OnInit {
           dash.toDateTime
         )
         .subscribe((res) => {
-          console.log(res);
-
           this.orders = res.items;
           this.deliveryPrice = res.totalDeliveryPrice;
           this.isLoading = false;
@@ -321,7 +319,6 @@ export class AdminComponent implements OnInit {
         this.totalRecords = res.totalCount;
         this.deliveryPrice = res.totalDeliveryPrice;
         this.isLoading = false;
-        console.log(this.ordersForCheck);
       });
   }
 
@@ -351,16 +348,9 @@ export class AdminComponent implements OnInit {
     }
 
     this.searchByCabinetId2();
-
-    // if (this.ifFilter === true) {
-    //   this.onFilterDate();
-    // }
-    // this.getOrderPaging();
   }
 
   get dashboardDTO() {
-    //  new Date(form.fromDateTime).getTime()
-
     const form = this.formDate.value;
     return {
       cabinetId: this.cabId ? this.cabId : '',
@@ -427,4 +417,43 @@ export class AdminComponent implements OnInit {
 
     this.service.updateWeight(model).subscribe((res) => {});
   }
+  //
+  exportExcel() {
+    const dash = this.dashboardDTO;
+    this.service
+      .exportExcel(dash.fromDateTime, dash.toDateTime, dash.cabinetId)
+      .subscribe((resp) => {
+        console.log(resp);
+        const blob = new Blob([resp], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+        const object = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('download', 'orders.xlsx');
+        a.setAttribute('href', object);
+        const newEvent = new MouseEvent('click');
+        a.dispatchEvent(newEvent);
+      });
+  }
+
+  // public async exportExcel() {
+  //   const dash = this.dashboardDTO;
+  //   const fileName = 'Orders.xlsx';
+  //   const blob = await this.service.exportExcel(
+  //     dash.fromDateTime,
+  //     dash.toDateTime,
+  //     dash.cabinetId
+  //   );
+  //   const url = window.URL.createObjectURL(blob);
+
+  //   const a: HTMLAnchorElement = document.createElement(
+  //     'a'
+  //   ) as HTMLAnchorElement;
+  //   a.href = url;
+  //   a.download = fileName;
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  //   URL.revokeObjectURL(url);
+  // }
 }

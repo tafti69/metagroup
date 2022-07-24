@@ -18,19 +18,19 @@ export class UsersComponent implements OnInit {
   startPage: number = 1;
   numRows: number = 10;
   totalRecords: number;
+  userId;
 
   ngOnInit(): void {
     this.getUsersPaging();
-    //  this.getUsers();
+
+    this.userId = localStorage.getItem('id');
   }
 
-  // getUsers() {
-  //   this.isLoading = true;
-  //   this.service.getUsers().subscribe((res) => {
-  //     this.users = res;
-  //     this.isLoading = false;
-  //   });
-  // }
+  deleteUser(user) {
+    this.service.deleteUser(user).subscribe((res) => {
+      this.getUsersPaging();
+    });
+  }
 
   getUsersPaging() {
     let sortField = '';
@@ -129,4 +129,12 @@ export class UsersComponent implements OnInit {
       });
     }
   }
+
+  // getUsers() {
+  //   this.isLoading = true;
+  //   this.service.getUsers().subscribe((res) => {
+  //     this.users = res;
+  //     this.isLoading = false;
+  //   });
+  // }
 }

@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
           header: 'Surname:',
           field: this.surname,
         },
-        { header: 'ტელეფონი / Telephone / Telefon:', field: '5349110518' },
+        { header: 'Telefon:', field: '5349110518' },
         // {
         //   header: 'პირადი ნომერი / Personal Id / Piradi No:',
         //   field: this.personalId,

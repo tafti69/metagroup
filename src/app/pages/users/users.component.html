@@ -97,6 +97,9 @@
             {{ "address" | translate }}
             <p-sortIcon field="address"></p-sortIcon>
           </th>
+          <th>
+            {{ "action" | translate }}
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-o>
@@ -118,6 +121,11 @@
           <td>{{ o.region }}</td>
 
           <td>{{ o.address }}</td>
+          <td>
+            <button class="delete" (click)="deleteUser(o.id)">
+              <i class="pi pi-times" style="font-size: 14px"></i>
+            </button>
+          </td>
         </tr>
       </ng-template>
     </p-table>

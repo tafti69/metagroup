@@ -27,11 +27,12 @@ header {
 
 .dashboard-wrapper {
   margin-left: 220px;
-  margin-top: 4rem;
+  margin-top: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   width: 80%;
+  overflow: hidden;
 
   @media (max-width: 1140px) {
     width: 70%;
@@ -40,7 +41,7 @@ header {
   }
   @media (max-width: 640px) {
     margin-left: 20px;
-    width: 98%;
+    width: 94%;
   }
 }
 

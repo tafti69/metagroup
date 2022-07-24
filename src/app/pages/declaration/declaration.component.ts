@@ -40,7 +40,7 @@ export class DeclarationComponent implements OnInit {
     }
 
     this.form = new FormGroup({
-      trackingId: new FormControl('', Validators.required),
+      trackingId: new FormControl(''),
       paidAmount: new FormControl('', Validators.required),
       currencyId: new FormControl('', Validators.required),
       partnerId: new FormControl('', Validators.required),
@@ -108,6 +108,7 @@ export class DeclarationComponent implements OnInit {
       this.turkCargo = res.turkishCargo;
       this.ifPaidAmount = res.paidAmount;
       this.isLoading = false;
+
       this.form.patchValue({
         trackingId: this.trackId,
         paidAmount: res.paidAmount,

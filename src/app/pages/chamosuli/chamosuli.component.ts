@@ -26,7 +26,7 @@ export class ChamosuliComponent implements OnInit {
   statuses: any = [];
   deliveries: any = [];
   currencies: any = [];
-  iban: string = 'GE91TB7034736080100019';
+  iban: string = 'GE25BG0000000162637059';
   deliveryPrice: number = 0;
   deliveryPrice2: number = 0;
 
@@ -53,7 +53,6 @@ export class ChamosuliComponent implements OnInit {
 
     model.orderId = id;
     model.deliveryTypeId = deliveryId;
-
 
     this.service.updateDeliveryType(model).subscribe((res) => {
       this.snackBar.open('Delivery Type Updated');

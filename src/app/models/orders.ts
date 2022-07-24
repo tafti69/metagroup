@@ -47,3 +47,9 @@ export class OrdersDTO {
   isChecked: boolean;
   deliveryPrice: number;
 }
+
+export class ExcelModel {
+  from: number;
+  to: number;
+  SearchText: string;
+}
